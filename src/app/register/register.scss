@@ -1,0 +1,42 @@
+$safetyWhite: #fff;
+$safetyBlue: #4285F4;
+$safetyDark: #323232;
+body {
+    margin: initial;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    header {
+        a,
+        title-header {
+            text-decoration: none;
+            cursor: pointer;
+            color: #fff;
+            position: relative;
+            top: 0px;
+            font-size: 15px;
+            left: 22% !important;
+        }
+    }
+    div {
+        text-align: center;
+        form {
+            input,
+            select {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                padding: 7px 15px;
+                border-radius: 4px;
+                border: #d6d6d6 solid 1px;
+                margin: 4px;
+            }
+            p{
+                margin: 4px 0px 4px 0px;
+            }
+            .insert-login {
+                width: 372px;
+                
+            }
+            /* .checkbox-align{
+                text-align: left;
+            } */
+        }
+    }
+}

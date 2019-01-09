@@ -1,0 +1,25 @@
+$safetyWhite: #fff;
+$safetyBlue: #4285F4;
+$safetyDark: #323232;
+$safetyGrey: rgb(167, 167, 167);
+footer {
+    background-color: $safetyDark;
+    display: -webkit-box;
+    height: 100px;
+    color: $safetyGrey;
+    font-size: 11px;
+    text-align: center !important;
+    div {
+        position: relative;
+        top: 21px;
+        left: 40%;
+        height: 65px;
+        a {
+            text-decoration: none;
+            color: $safetyGrey;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    }
+}

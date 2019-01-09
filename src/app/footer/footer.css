@@ -1,0 +1,23 @@
+footer {
+  background-color: #323232;
+  display: -webkit-box;
+  height: 100px;
+  color: #a7a7a7;
+  font-size: 11px;
+  text-align: center !important;
+}
+footer div {
+  position: relative;
+  top: 21px;
+  left: 40%;
+  height: 65px;
+}
+footer div a {
+  text-decoration: none;
+  color: #a7a7a7;
+}
+footer div a:hover {
+  text-decoration: underline;
+}
+
+/*# sourceMappingURL=footer.css.map */
