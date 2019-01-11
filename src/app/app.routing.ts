@@ -1,12 +1,16 @@
-/* import {ModuleWithProviders} from '@angular/core';
+import {ModuleWithProviders} from '@angular/core';
 import {Routes,RouterModule} from '@angular/router';
-import { RegisterComponent } from './register.component';
-import { AppComponent } from './app.component';
+import { NgModule }             from '@angular/core';
+import { RegisterComponent } from './register/register.component';
+import { HomeComponent } from './home/home.component';
 
 const appRoutes:Routes=[
-    {path:"",component:AppComponent}, 
+    {path:"", component:HomeComponent}, 
     {path:'register',component:RegisterComponent}    
 ];
 
-export const appRoutingProviders:any[]=[];
-export const routing:ModuleWithProviders=RouterModule.forRoot(appRoutes); */
+@NgModule({
+    imports: [ RouterModule.forRoot(appRoutes) ],
+    exports: [ RouterModule ]
+  })
+  export class AppRoutingModule {}
