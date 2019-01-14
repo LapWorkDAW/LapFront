@@ -1,18 +1,6 @@
-<!DOCTYPE html>
-<html>
 
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Log In - LapWork</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <!-- <script src="main.js"></script> -->
-</head>
-
-<body>
     <header>
-        <h2><a class="title-header" href="app.component.html">LapWork</a></h2>
+        <h2><a [routerLink]="['']" class="title-header" >LapWork</a></h2>
     </header>
     <div id="main">
         <h1>Log In</h1>
@@ -21,9 +9,6 @@
             <input type="password" placeholder="Password" name="code" value="" required> <br>
             <p>Your LapWork ID is your username.</p>
             <input type="submit" name="userLogIn" value="Sign In">
-        </form>
-        <a href="#">Don't have a LapWork ID? Create one now.</a>
+        </form>       
+        <a [routerLink]="['../register']">Don't have a LapWork ID? Create one now.</a> 
     </div>
-</body>
-
-</html>
