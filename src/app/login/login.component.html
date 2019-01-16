@@ -1,14 +1,14 @@
-
-    <header>
-        <h2><a [routerLink]="['']" class="title-header" >LapWork</a></h2>
-    </header>
-    <div id="main">
-        <h1>Log In</h1>
-        <form action="">
-            <input type="text" placeholder="LapWork ID" name="username" value="" required> <br>
-            <input type="password" placeholder="Password" name="code" value="" required> <br>
-            <p>Your LapWork ID is your username.</p>
-            <input type="submit" name="userLogIn" value="Sign In">
-        </form>       
-        <a [routerLink]="['../register']">Don't have a LapWork ID? Create one now.</a> 
-    </div>
+<header>
+    <h2><a [routerLink]="['']" class="title-header">LapWork</a></h2>
+</header>
+<div id="main">
+    <h1>Sign in</h1>
+    <form action="">
+        <input type="text" placeholder="LapWork ID" name="username" value="" required> <br>
+        <input type="password" placeholder="Password" name="code" value="" required> <br>
+        <p>Your LapWork ID is your username.</p>
+        <input id="userLogIn" type="submit" name="userLogIn" value="Sign In">
+    </form>
+    <a [routerLink]="['../register']">Don't have a LapWork ID? Create one now.</a>
+</div>
+<footer-tag></footer-tag>

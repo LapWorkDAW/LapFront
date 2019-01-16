@@ -1,0 +1,59 @@
+$safetyWhite: #fff;
+$safetyBlue: #4285F4;
+$safetyBlueBark: #0070c9;
+$safetyDark: #323232;
+header {
+    h2 {
+        a {
+            left: 0px !important;
+            top: 0px;
+        }
+    }
+}
+div {
+    position: relative;
+    text-align: left;
+    left: 22%;
+    top: 32px;
+    width: 339px;
+    h1 {
+        font-weight: 600;
+    }
+    form {
+        input {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            padding: 7px 33px;
+            border-radius: 4px;
+            border: #d6d6d6 solid 1px;
+            padding: 14px 150px 14px 18px;
+            margin: 0px 0px 16px 0px;
+        }
+        p {
+            font-size: 14px;
+            position: relative;
+            top: -17px;
+        }
+        #userLogIn {
+            background-color: $safetyBlue;
+            color: $safetyWhite;
+            border: $safetyBlue;
+            padding: 14px 139px;
+        }
+        #userLogIn:hover {
+            background-color: #5492f9;
+            cursor: pointer;
+        }
+    }
+    a {
+        text-decoration: none;
+        color: $safetyBlueBark;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+}
+
+footer-tag {
+    position: relative;
+    top: 176px;
+}
