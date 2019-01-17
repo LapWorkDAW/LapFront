@@ -1,0 +1,15 @@
+header h2 a {
+  left: 0px !important;
+  top: 0px;
+}
+
+div {
+  text-align: center;
+  position: relative;
+  top: 32px;
+}
+div h1 {
+  font-weight: 600;
+}
+
+/*# sourceMappingURL=privacyPolicy.component.css.map */
