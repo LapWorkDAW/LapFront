@@ -9,16 +9,12 @@
         <input type="text" placeholder="Surname" name="surname" value="" required> <br>
         <input class="insert-login" type="text" placeholder="User name" name="username" value="" required> <br>
         <input class="insert-login" type="text" placeholder="Mail" name="email" value="" required> <br>
-        <p>Country/ Region</p> 
-        <select class="insert-login" name="country" id="">
-            <option value="Spain">Spain</option>
-            <option value="France">France</option>
-            <!-- <option value="" *ngFor="let country of countries" ></option> -->
-        </select> <br>
+        <p>Country/ Region</p>        
+        <input google-place type="text" class="google-place-input insert-login" placeholder="Type to search.."> <br>       
         <input class="insert-login" type="date" placeholder="Birthdate" name="birthdate" value="" required> <br>
         <input class="insert-login" type="password" placeholder="Password" name="key" value="" required><br>
         <input class="insert-login" type="password" placeholder="Confirm password" name="checkKey" value="" required><br><br>
-        
+
         <div>
             <input type="checkbox" name="privacy" value="privacy" required checked> I have read and
             accept <a [routerLink]="['../privacyPolicy']">Privacy Policy</a>. <br>

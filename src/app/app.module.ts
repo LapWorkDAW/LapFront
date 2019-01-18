@@ -8,6 +8,7 @@ import { RegisterComponent } from './register/register.component';
 import { LogInComponent } from './login/login.component';
 import { FooterComponent } from './footer/footer.component';
 import { PrivacyPolicyComponent } from './privacyPolicy/privacyPolicy.component';
+import { GooglePlacesDirective } from './google-places.directive';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { PrivacyPolicyComponent } from './privacyPolicy/privacyPolicy.component'
     HomeComponent,
     LogInComponent,
     FooterComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
+    GooglePlacesDirective
   ],
   imports: [
     BrowserModule,
