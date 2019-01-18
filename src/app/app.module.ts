@@ -8,7 +8,8 @@ import { RegisterComponent } from './register/register.component';
 import { LogInComponent } from './login/login.component';
 import { FooterComponent } from './footer/footer.component';
 import { PrivacyPolicyComponent } from './privacyPolicy/privacyPolicy.component';
-
+import { TermsOfUseComponent } from './termsOfUse/termsOfUse.component';
+import { NavNoLogComponent } from './navNoLog/navNoLog.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,9 @@ import { PrivacyPolicyComponent } from './privacyPolicy/privacyPolicy.component'
     HomeComponent,
     LogInComponent,
     FooterComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
+    TermsOfUseComponent,
+    NavNoLogComponent
   ],
   imports: [
     BrowserModule,
