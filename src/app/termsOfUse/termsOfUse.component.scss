@@ -1,0 +1,31 @@
+$safetyWhite: #fff;
+$safetyBlue: #4285F4;
+$safetyBlueBark: #0070c9;
+$safetyDark: #323232;
+div {
+    text-align: center;
+    position: relative;
+    top: 32px;
+    h1 {
+        font-weight: 600;
+    }
+    div {
+        a{
+            text-decoration: none;
+            color: $safetyBlueBark;
+        }
+        text-align: left;
+        padding: 0px 200px 0px 296px;
+        strong,
+        h2,
+        h3,
+        h4 {
+            font-weight: 600;
+        }
+    }
+}
+
+footer-tag {
+    position: relative;
+    top: 150px;
+}

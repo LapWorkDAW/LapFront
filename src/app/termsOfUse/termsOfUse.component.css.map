@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":[],"names":[],"mappings":"","file":"termsOfUse.component.css"}
+{"version":3,"sourceRoot":"","sources":["termsofuse.component.scss"],"names":[],"mappings":"AAIA;EACI;EACA;EACA;;AACA;EACI;;AAEJ;EAKI;EACA;;AALA;EACI;EACA,OAZK;;AAgBT;AAAA;AAAA;AAAA;EAII;;;AAKZ;EACI;EACA","file":"termsOfUse.component.css"}
