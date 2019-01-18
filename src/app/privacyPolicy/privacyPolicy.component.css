@@ -11,5 +11,24 @@ div {
 div h1 {
   font-weight: 600;
 }
+div div {
+  text-align: left;
+  padding: 0px 200px 0px 296px;
+}
+div div a {
+  text-decoration: none;
+  color: #0070c9;
+}
+div div strong,
+div div h2,
+div div h3,
+div div h4 {
+  font-weight: 600;
+}
+
+footer-tag {
+  position: relative;
+  top: 150px;
+}
 
 /*# sourceMappingURL=privacyPolicy.component.css.map */
