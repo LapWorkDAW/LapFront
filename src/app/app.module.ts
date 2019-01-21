@@ -10,6 +10,7 @@ import { FooterComponent } from './footer/footer.component';
 import { PrivacyPolicyComponent } from './privacyPolicy/privacyPolicy.component';
 import { TermsOfUseComponent } from './termsOfUse/termsOfUse.component';
 import { NavNoLogComponent } from './navNoLog/navNoLog.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NavNoLogComponent } from './navNoLog/navNoLog.component';
     FooterComponent,
     PrivacyPolicyComponent,
     TermsOfUseComponent,
-    NavNoLogComponent
+    NavNoLogComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

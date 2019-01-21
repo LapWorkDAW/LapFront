@@ -7,6 +7,7 @@ import { LogInComponent } from './login/login.component';
 import { PrivacyPolicyComponent } from './privacyPolicy/privacyPolicy.component';
 import { TermsOfUseComponent } from './termsOfUse/termsOfUse.component';
 import { NavNoLogComponent } from './navNoLog/navNoLog.component';
+import { ContactComponent } from './contact/contact.component';
 
 
 const appRoutes: Routes = [
@@ -15,7 +16,8 @@ const appRoutes: Routes = [
     { path: 'privacyPolicy', component: PrivacyPolicyComponent },
     { path: 'termsOfUse', component: TermsOfUseComponent },
     { path: 'login', component: LogInComponent },
-    { path: 'navNoLog', component: NavNoLogComponent}
+    { path: 'navNoLog', component: NavNoLogComponent},
+    { path: 'contact', component: ContactComponent}
 ];
 
 @NgModule({
