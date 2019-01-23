@@ -10,7 +10,13 @@
         <input class="insert-login" type="text" placeholder="User name" name="username" value="" required> <br>
         <input class="insert-login" type="text" placeholder="Mail" name="email" value="" required> <br>
         <p>Country/ Region</p>        
-        <input google-place type="text" class="google-place-input insert-login" placeholder="Type to search.."> <br>       
+        <input google-place type="text" class="insert-login" (onSelect)="setAddress($event)" placeholder="Type to search.."> <br> 
+        <ul style="list-style-type: none;">
+            <li *ngFor="let key of addrKeys">
+              <span style="font-weight: bold">{{key}}</span>: <span>{{addr[key]}}</span>
+            </li>
+          </ul><br>
+          
         <input class="insert-login" type="date" placeholder="Birthdate" name="birthdate" value="" required> <br>
         <input class="insert-login" type="password" placeholder="Password" name="key" value="" required><br>
         <input class="insert-login" type="password" placeholder="Confirm password" name="checkKey" value="" required><br><br>
