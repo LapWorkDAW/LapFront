@@ -1,13 +1,3 @@
-header h2 a {
-  text-decoration: none;
-  cursor: pointer;
-  color: #fff;
-  position: relative;
-  top: 0px;
-  font-size: 15px;
-  left: 0px !important;
-}
-
 div {
   text-align: center;
   position: relative;
