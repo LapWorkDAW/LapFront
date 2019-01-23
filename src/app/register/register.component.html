@@ -3,24 +3,26 @@
     <h1>Create your account</h1>
     <a [routerLink]="['../login']">Already have a LapWork ID? Find it here</a>
     <form action="">
-        <input type="text" placeholder="First name" name="firstname" value="" required>
-        <input type="text" placeholder="Surname" name="surname" value="" required> <br>
-        <input class="insert-login" type="text" placeholder="User name" name="username" value="" required> <br>
-        <input class="insert-login" type="text" placeholder="Mail" name="email" value="" required> <br>
-        <p>Country/ Region</p> 
-        <select class="insert-login" name="country" id="">
-            <option value="Spain">Spain</option>
-            <option value="France">France</option>
-            <!-- <option value="" *ngFor="let country of countries" ></option> -->
-        </select> <br>
-        <input class="insert-login" type="date" placeholder="Birthdate" name="birthdate" value="" required> <br>
-        <input class="insert-login" type="password" placeholder="Password" name="key" value="" required><br>
+        <input type="text" [(ngModel)]="user.firstname" placeholder="First name" name="firstname" value="" required>
+        <input type="text" [(ngModel)]="user.surname" placeholder="Surname" name="surname" value="" required> <br>
+        <input class="insert-login" [(ngModel)]="user.username" type="text" placeholder="User name" name="username" value="" required> <br>
+        <input class="insert-login" [(ngModel)]="user.email" type="text" placeholder="Mail" name="email" value="" required> <br>
+        <p>Country/ Region</p>        
+        <input google-place type="text" class="insert-login" (onSelect)="setAddress($event)" placeholder="Type to search.."> <br> 
+       <!--  <ul style="list-style-type: none;">
+            <li *ngFor="let key of addrKeys">
+              <span style="font-weight: bold">{{key}}</span>: <span>{{addr[key]}}</span>
+            </li>
+          </ul><br> -->
+          
+        <input class="insert-login" [(ngModel)]="user.birthdate" type="date" placeholder="Birthdate" name="birthdate" value="" required> <br>
+        <input class="insert-login" [(ngModel)]="user.password" type="password" placeholder="Password" name="key" value="" required><br>
         <input class="insert-login" type="password" placeholder="Confirm password" name="checkKey" value="" required><br><br>
-        
+
         <div>
             <input type="checkbox" name="privacy" value="privacy" required checked> I have read and
             accept <a [routerLink]="['../privacyPolicy']">Privacy Policy</a>. <br>
-            <input type="checkbox" name="namePrivacy" value="savename"> I confirm all
+            <input type="checkbox" [(ngModel)]="user.savename" name="namePrivacy" value="savename"> I confirm all
             information provided is my own; I understand and agree I will be used as per the LapWork Provacy
             Policy. I can withdaw my prior consent at any time<br>
         </div>

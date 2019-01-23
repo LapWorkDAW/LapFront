@@ -8,9 +8,11 @@ import { RegisterComponent } from './register/register.component';
 import { LogInComponent } from './login/login.component';
 import { FooterComponent } from './footer/footer.component';
 import { PrivacyPolicyComponent } from './privacyPolicy/privacyPolicy.component';
+import { GooglePlacesDirective } from './google-places.directive';
 import { TermsOfUseComponent } from './termsOfUse/termsOfUse.component';
 import { NavNoLogComponent } from './navNoLog/navNoLog.component';
 import { ContactComponent } from './contact/contact.component';
+
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { ContactComponent } from './contact/contact.component';
     LogInComponent,
     FooterComponent,
     PrivacyPolicyComponent,
+    GooglePlacesDirective,
     TermsOfUseComponent,
     NavNoLogComponent,
     ContactComponent
