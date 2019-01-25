@@ -15,6 +15,14 @@ div form input {
   padding: 14px 150px 14px 18px;
   margin: 0px 0px 16px 0px;
 }
+div form img,
+div form #eye {
+  position: relative;
+  top: -49px;
+  height: 20px !important;
+  width: 20px !important;
+  left: 100%;
+}
 div form p {
   font-size: 14px;
   position: relative;
@@ -40,7 +48,7 @@ div a:hover {
 
 footer-tag {
   position: relative;
-  top: 176px;
+  top: 141px;
 }
 
 /*# sourceMappingURL=login.component.css.map */
