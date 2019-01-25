@@ -12,6 +12,7 @@ import { GooglePlacesDirective } from './google-places.directive';
 import { TermsOfUseComponent } from './termsOfUse/termsOfUse.component';
 import { NavNoLogComponent } from './navNoLog/navNoLog.component';
 import { ContactComponent } from './contact/contact.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ContactComponent } from './contact/contact.component';
     GooglePlacesDirective,
     TermsOfUseComponent,
     NavNoLogComponent,
-    ContactComponent
+    ContactComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

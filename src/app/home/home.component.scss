@@ -63,7 +63,8 @@ header {
 main {
     text-align: center;
     background-color: #FAFAFA;
-    #one, #two{
+    #one,
+    #two {
         padding: 10px 0px 36px 0px;
         position: relative;
         a {
@@ -78,7 +79,7 @@ main {
     #two {
         margin: 16px 0px 0px 0px !important;
         background-color: #fff;
-        div{
+        div {
             text-align: initial;
             display: inline-block;
         }

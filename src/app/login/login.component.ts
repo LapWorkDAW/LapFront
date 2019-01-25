@@ -13,6 +13,6 @@ export class LogInComponent {
     }
     changeTypeToPass() {
         this.password = "password";
-     }
+    }
 
 }

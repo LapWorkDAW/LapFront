@@ -8,6 +8,7 @@ import { PrivacyPolicyComponent } from './privacyPolicy/privacyPolicy.component'
 import { TermsOfUseComponent } from './termsOfUse/termsOfUse.component';
 import { NavNoLogComponent } from './navNoLog/navNoLog.component';
 import { ContactComponent } from './contact/contact.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 const appRoutes: Routes = [
@@ -17,7 +18,8 @@ const appRoutes: Routes = [
     { path: 'termsOfUse', component: TermsOfUseComponent },
     { path: 'login', component: LogInComponent },
     { path: 'navNoLog', component: NavNoLogComponent},
-    { path: 'contact', component: ContactComponent}
+    { path: 'contact', component: ContactComponent},
+    { path: 'profile', component: ProfileComponent}
 ];
 
 @NgModule({
