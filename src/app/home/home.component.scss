@@ -61,6 +61,21 @@ header {
 }
 
 main {
+    div{
+        text-align: center;
+        h1{
+            font-weight: 600;
+        }
+        div{
+            background-color: rgb(73, 75, 77);
+            margin: 0px 20px 0px 20px;
+            padding: 0px 45px 0px 46px;
+            min-width: 31%;
+            h2{
+                font-weight: 600;
+            }
+        }
+    }
     text-align: center;
     background-color: #FAFAFA;
     #one,
