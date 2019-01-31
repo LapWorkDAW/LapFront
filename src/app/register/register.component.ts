@@ -1,4 +1,8 @@
 import { Component, NgZone, OnInit } from '@angular/core';
+import { User } from 'src/assets/models/User';
+import { UserService } from '../services/user.service';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'register',
@@ -9,6 +13,11 @@ import { Component, NgZone, OnInit } from '@angular/core';
 export class RegisterComponent implements OnInit {
   public addrKeys: string[];
   public addr: object;
+  newUser: User = new User();
+
+  constructor(private zone: NgZone, private userService: UserService) { }
+
+  ngOnInit() { }
 
   //Method to be invoked everytime we receive a new instance 
   //of the address object from the onSelect event emitter.
@@ -18,11 +27,15 @@ export class RegisterComponent implements OnInit {
     this.zone.run(() => {
       this.addr = addrObj;
       this.addrKeys = Object.keys(addrObj);
+      //add new values to object User
+      this.newUser.latitude =this.addr["lat"];
+      this.newUser.longitude = this.addr["lng"];
+      console.log(this.newUser);
     });
   }
 
-  constructor(private zone: NgZone) { }
-
-  ngOnInit() {}
+  sendForm() {
+   console.log(this.newUser);   
+  }
 
 }
