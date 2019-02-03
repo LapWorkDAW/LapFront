@@ -12,8 +12,8 @@ import { GooglePlacesDirective } from './google-places.directive';
 import { TermsOfUseComponent } from './termsOfUse/termsOfUse.component';
 import { NavNoLogComponent } from './navNoLog/navNoLog.component';
 import { ContactComponent } from './contact/contact.component';
+import { HttpClientModule } from '@angular/common/http';
 import { ProfileComponent } from './profile/profile.component';
-
 
 @NgModule({
   declarations: [
@@ -32,7 +32,8 @@ import { ProfileComponent } from './profile/profile.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   bootstrap: [AppComponent]
 })
