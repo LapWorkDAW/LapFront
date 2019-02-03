@@ -1,4 +1,22 @@
 <navNoLog></navNoLog>
+
+
+<script> 
+        function signOut() { 
+         var auth2 = gapi.auth2.getAuthInstance(); 
+         auth2.signOut().then(function() { 
+         console.log('User signed out.'); 
+         }); 
+        } 
+    
+        function onLoad() { 
+         gapi.load('auth2', function() { 
+         gapi.auth2.init(); 
+         }); 
+        } 
+</script> 
+
+
 <div id="main">
     <h1>Create your account</h1>
     <a [routerLink]="['../login']">Already have a LapWork ID? Find it here</a>
@@ -31,9 +49,6 @@
     </form>
 </div>
 <!-- logIn Google -->
-<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
 
-
-<div><a [routerLink]="['']" onclick="signOut();">Sign out</a></div>
 
 <footer-tag></footer-tag>
