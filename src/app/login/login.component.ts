@@ -6,7 +6,17 @@ import { Component, NgZone  } from '@angular/core';
     styleUrls: ['../home/home.component.css', './login.component.css']
 })
 
-export class LogInComponent { 
+export class LogInComponent {
+    password = "password";
+    changeTypeToText() {
+        this.password = "text";
+    }
+    changeTypeToPass() {
+        this.password = "password";
+    }
+
+
+
 
 myFunc(){
 

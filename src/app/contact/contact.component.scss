@@ -1,12 +1,14 @@
 $safetyGrey: rgb(167, 167, 167);
+$safetyDark: #323232;
+$safetyLightGrey: #FAFAFA;
 #banner {
-    background: $safetyGrey;
     text-align: center;
     margin: 0;
     h1 {
-        padding: 100px 0px 100px 0px;
+        padding: 130px 0px 130px 0px;
         font-weight: 600;
         margin: 0;
+        color: $safetyDark;
     }
 }
 
@@ -15,36 +17,54 @@ $safetyGrey: rgb(167, 167, 167);
     td {
         vertical-align: top;
         padding: 0px;
+        width: 1300px;
         .contact {
+            /* 3 containers */
+            background-color: $safetyLightGrey;
+            border: solid $safetyLightGrey 1px;
+            min-height: 275px;
+            width: 439px;
+            border-radius: 4px;
             h2 {
+                /* inside the containers */
                 font-weight: 600;
-                padding: 0px 0px 0px 30px;
+                padding: 11px 0px 0px 56px;
             }
             div {
+                /* div de contacto-->direccion & email */
+                width: 300px;
+                margin: 0px 0px 0px 57px;
                 img,
                 p {
                     display: inline-block;
                     position: relative;
                 }
                 img {
-                    padding: 0px 15px 0px 40px;
+                    padding: 0px 30px 0px 0px;
+                }
+                #locationImg {
+                    top: -10px;
                 }
                 p {
-                    top: -3px;
+                    top: -5px;
+                    margin: 22px 0px 10px 0px;
                 }
             }
             form {
+                margin: -4px 0px 0px 50px;
                 input {
                     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
                     border-radius: 4px;
-                    border: #d6d6d6 solid 1px;
+                    border: $safetyGrey solid 1px;
                     margin: 5px;
                     padding: 8px 31px;
                 }
             }
-            width: 439px;
             iframe {
                 border: 0px;
+                height: 271px;
+                padding: 0px;
+                margin: 2px 0px -2px 2px;
             }
         }
     }

@@ -3,7 +3,8 @@
     <h1>Sign in</h1>
     <form action="">
         <input type="text" placeholder="LapWork ID" name="username" value="" required> <br>
-        <input type="password" placeholder="Password" name="code" value="" required> <br>
+        <input [type]="password" placeholder="Password" name="code" value="" required> <br>
+        <img id="eye" (mousedown)="changeTypeToText()" (mouseup)="changeTypeToPass()" [src]="'assets/icons/login-regis/eye.png'">
         <p>Your LapWork ID is your username.</p>
         <input id="userLogIn" type="submit" name="userLogIn" value="Sign In">
     </form>

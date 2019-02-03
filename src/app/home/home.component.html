@@ -18,29 +18,33 @@
       <img [src]="'assets/icons/home/table.jpeg'" alt="table" width="600">
     </div><!-- this is not finalized -->
 
-    <div id="two">
-      <h1>Outstanding projects</h1>
-      
-      <div>
-        <h2>Finished projects</h2>
-        
-        <ol>
-          <li *ngFor='let project of projects;'>
-            {{project.name}} <br>
-            {{project.desc}} <br>
-            {{project.creator}} <br>
-            
-            <!-- {{project.likes}} ???????-->
-          </li>
-        </ol>
-      </div>
-  
-      <div>
-        <h2>On going projects</h2>
-  
-      </div>
-    </div>    
-  </main>
-  <footer-tag></footer-tag>
+<main>
+  <div id="one">
+    <h1>A new way to manage your project</h1>
+    <p>Plan. Organize. Trak. In one visual cooperative way</p>
+    <a [routerLink]="['login']">Get started</a><br> <!-- full info link -->
+    <img [src]="'assets/icons/home/table.jpeg'" alt="table" width="600">
+  </div><!-- this is not finalized -->
 
-  
+  <div id="two">
+    <h1>Outstanding projects</h1>
+
+    <div>
+      <h2>Finished projects</h2>
+
+      <ol>
+        <!-- <li *ngFor='let project of projects;'>
+          {{project.name}} <br>
+          {{project.desc}} <br>
+          {{project.creator}} <br>
+        </li> -->
+      </ol>
+    </div>
+
+    <div>
+      <h2>On going projects</h2>
+
+    </div>
+  </div>
+</main>
+<footer-tag></footer-tag>

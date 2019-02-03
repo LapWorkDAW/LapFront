@@ -13,6 +13,7 @@ import { TermsOfUseComponent } from './termsOfUse/termsOfUse.component';
 import { NavNoLogComponent } from './navNoLog/navNoLog.component';
 import { ContactComponent } from './contact/contact.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     GooglePlacesDirective,
     TermsOfUseComponent,
     NavNoLogComponent,
-    ContactComponent
+    ContactComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

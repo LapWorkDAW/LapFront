@@ -60,15 +60,33 @@ main {
   text-align: center;
   background-color: #FAFAFA;
 }
-main #one, main #two {
+main div {
+  text-align: center;
+}
+main div h1 {
+  font-weight: 600;
+}
+main div div {
+  background-color: #494b4d;
+  margin: 0px 20px 0px 20px;
+  padding: 0px 45px 0px 46px;
+  min-width: 31%;
+}
+main div div h2 {
+  font-weight: 600;
+}
+main #one,
+main #two {
   padding: 10px 0px 36px 0px;
   position: relative;
 }
-main #one a, main #two a {
+main #one a,
+main #two a {
   text-decoration: none;
   cursor: pointer;
 }
-main #one img, main #two img {
+main #one img,
+main #two img {
   margin: 10px 0px 0px 0px;
   color: #ccc;
 }
