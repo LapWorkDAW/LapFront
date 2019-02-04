@@ -1,34 +1,54 @@
 <navNoLog></navNoLog>
+
+
+<script> 
+        function signOut() { 
+         var auth2 = gapi.auth2.getAuthInstance(); 
+         auth2.signOut().then(function() { 
+         console.log('User signed out.'); 
+         }); 
+        } 
+    
+        function onLoad() { 
+         gapi.load('auth2', function() { 
+         gapi.auth2.init(); 
+         }); 
+        } 
+</script> 
+
+
 <div id="main">
     <h1>Create your account</h1>
     <a [routerLink]="['../login']">Already have a LapWork ID? Find it here</a>
-    <form action="">
-        <input type="text" placeholder="First name" name="firstname" value="" required>
-        <input type="text" placeholder="Surname" name="surname" value="" required> <br>
-        <input class="insert-login" type="text" placeholder="User name" name="username" value="" required> <br>
-        <input class="insert-login" type="text" placeholder="Mail" name="email" value="" required> <br>
+    <form (ngSubmit)="sendForm()">
+        <input type="text" placeholder="First name" name="firstname" #firstName="ngModel" [(ngModel)]="newUser.firstname"
+            required>
+        <input type="text" placeholder="Surname" name="surname" #surname="ngModel" [(ngModel)]="newUser.surname"
+            required> <br>
+        <input class="insert-login" type="text" placeholder="User name" name="userName" #userName="ngModel" [(ngModel)]="newUser.userName"
+            required> <br>
+        <input class="insert-login" type="text" placeholder="Mail" name="email" #email="ngModel" [(ngModel)]="newUser.email"
+            required> <br>
         <p>Country/ Region</p>
-        <input google-place type="text" class="insert-login" (onSelect)="setAddress($event)" placeholder="Type to search..">
-        <br>
-        <!--  <ul style="list-style-type: none;">
-            <li *ngFor="let key of addrKeys">
-              <span style="font-weight: bold">{{key}}</span>: <span>{{addr[key]}}</span>
-            </li>
-          </ul><br> -->
-
-        <input class="insert-login" type="date" placeholder="Birthdate" name="birthdate" value="" required> <br>
-        <input class="insert-login" type="password" placeholder="Password" name="key" value="" required><br>
-        <input class="insert-login" type="password" placeholder="Confirm password" name="checkKey" value="" required><br><br>
+        <input google-place type="text" class="insert-login" (onSelect)="setAddress($event)" placeholder="Type to search.."
+            required> <br>
+        <input class="insert-login" type="date" placeholder="Birthdate" name="birthdate" #birthdate="ngModel"
+            [(ngModel)]="newUser.birthdate" required> <br>
+        <input class="insert-login" type="password" placeholder="Password" name="pass" #pass="ngModel" [(ngModel)]="newUser.pass"
+            required><br>
+        <input class="insert-login" type="password" placeholder="Confirm password" name="checkPass" required><br><br>
 
         <div>
             <input type="checkbox" name="privacy" value="privacy" required checked> I have read and
             accept <a [routerLink]="['../privacyPolicy']">Privacy Policy</a>. <br>
-            <input type="checkbox" name="namePrivacy" value="savename"> I confirm all
+            <input type="checkbox" name="namePrivacy" #saveName="ngModel" [(ngModel)]="newUser.saveName"> I confirm all
             information provided is my own; I understand and agree I will be used as per the LapWork <a [routerLink]="['../privacyPolicy']">Privacy
                 Policy</a>. I can withdaw my prior consent at any time<br>
         </div>
         <input type="submit" id="userRegister" name="userRegister" value="Continue">
     </form>
-
 </div>
+<!-- logIn Google -->
+
+
 <footer-tag></footer-tag>
