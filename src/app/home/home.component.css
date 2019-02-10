@@ -1,100 +1,145 @@
 header {
-  background: #020202c7;
+  /* sontents, the hole navbar */
+  background: #323232;
   color: #fff;
   height: 40px;
+  position: fixed;
+  top: 0px;
+  display: block;
+  left: 0px;
+  z-index: 9999;
+  width: 100%;
 }
-header h2 {
+header div {
+  /* position, "margins" */
+  margin: 0 auto;
+  position: relative;
+  top: 0px;
+  max-width: 980px;
+  padding: 0 22px;
+  z-index: 2;
+  height: 40px;
+}
+header div div {
+  /* all three divs from the nav */
+  max-width: 33%;
+  min-width: 32%;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  top: 0 !important;
+  position: relative;
+  height: 40px;
+  /* a:hover {
+      color: $safetyBlue;
+      transition-timing-function: ease-in;
+  } */
+}
+header div div h2 {
+  /* in  the first div  */
+  padding: 0px 0px 0px 60px;
   margin: 0px;
   font-weight: 400;
-  position: relative;
-  left: 22%;
-  top: 9px;
   font-size: 15px;
-  width: fit-content;
-  height: fit-content;
-}
-header #search {
-  display: inline-block;
   position: relative;
-  top: -8px;
-  left: 29%;
-  height: 22px;
+  top: 9px;
 }
-header #search img {
+header div div img {
+  /* magnifying glass */
   width: 16px;
-  top: -1px;
-  position: absolute;
-}
-header #search img:hover {
+  position: relative;
+  top: 11px;
   cursor: pointer;
+  margin: 0;
 }
-header #search input {
-  border: #9E9E9E 1px solid;
-  border-radius: 4px;
-  height: 20px;
-  padding: 3px 18px 5px 18px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  position: absolute;
-  top: -7px;
-  left: -1px;
-  width: 248px;
-  display: none;
-}
-header a {
-  text-decoration: none;
+header div div a {
+  /* text-decoration: none;
   cursor: pointer;
-  color: #fff;
+  color: $safetyWhite;
   position: relative;
   right: -66%;
   top: -16px;
   margin: 0px 40px 0px 0px;
   font-size: 15px;
-  padding: unset;
+  padding: unset; */
 }
-header a:hover {
-  color: #4285F4;
-  transition-timing-function: ease-in;
+header div #inputSearch {
+  display: none;
+}
+header div #search {
+  /* display: inline-block;
+  position: relative;
+  top: -8px;
+  left: 29%;
+  height: 22px; */
+}
+header div #search img {
+  /* width: 16px;
+  top: -1px;
+  position: absolute; */
+}
+header div #search img:hover {
+  /* cursor: pointer; */
+}
+header div #search input {
+  /* border: $safetyGrey 1px solid;
+  border-radius: 4px;
+  height: 20px;
+  padding: 3px 18px 5px 18px;
+  font-family: -apple-system,
+  BlinkMacSystemFont,
+  "Segoe UI",
+  Roboto,
+  Oxygen,
+  Ubuntu,
+  Cantarell,
+  "Open Sans",
+  "Helvetica Neue",
+  sans-serif;
+  position: absolute;
+  top: -7px;
+  left: -1px;
+  width: 248px; display: none;*/
 }
 
 main {
   text-align: center;
-  background-color: #FAFAFA;
 }
 main div {
+  padding: 10px 0px 36px 0px;
+  position: relative;
   text-align: center;
+  background-color: #FAFAFA;
+  margin: 0px 0px 50px 0px;
 }
 main div h1 {
   font-weight: 600;
 }
+main div a {
+  text-decoration: none;
+  color: #4285F4;
+  cursor: pointer;
+}
+main div a:hover {
+  color: #0070c9;
+}
+main div img {
+  margin: 11px 0px 0px 0px;
+  border-radius: 4px;
+}
 main div div {
-  background-color: #494b4d;
+  background-color: #323232;
+  border-radius: 4px;
   margin: 0px 20px 0px 20px;
   padding: 0px 45px 0px 46px;
   min-width: 31%;
+  margin: 16px 0px 0px 0px !important;
+  background-color: #fff;
 }
 main div div h2 {
   font-weight: 600;
 }
-main #one,
-main #two {
-  padding: 10px 0px 36px 0px;
-  position: relative;
-}
-main #one a,
-main #two a {
-  text-decoration: none;
-  cursor: pointer;
-}
-main #one img,
-main #two img {
-  margin: 10px 0px 0px 0px;
-  color: #ccc;
-}
-main #two {
-  margin: 16px 0px 0px 0px !important;
-  background-color: #fff;
-}
-main #two div {
+main div div div {
   text-align: initial;
   display: inline-block;
 }
