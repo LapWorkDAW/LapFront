@@ -18,10 +18,7 @@ export class RegisterComponent implements OnInit {
   constructor(private zone: NgZone, private userService: UserService) { }
 
   ngOnInit() { }
-  myFunc() {
-console.log("aaa");
 
-  }
   //Method to be invoked everytime we receive a new instance 
   //of the address object from the onSelect event emitter.
   setAddress(addrObj) {
@@ -33,7 +30,7 @@ console.log("aaa");
       //add new values to object User
       this.newUser.latitude =this.addr["lat"];
       this.newUser.longitude = this.addr["lng"];
-      console.log(this.newUser);
+      /* console.log(this.newUser); */
     });
   }
 
