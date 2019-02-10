@@ -1,18 +1,20 @@
-<navNoLog></navNoLog>
+<navNoLog ></navNoLog>
 <div id="main">
+
+    {{token}}
     <h1>Sign in</h1>
+    <button (click)="socialSignIn('linkedin')">Sign in with LinkedIn</button>
+    <button (click)="socialSignIn('google')">Sign in with Google</button>
     <form action="">
         <input type="text" placeholder="LapWork ID" name="username" value="" required> <br>
         <input [type]="password" placeholder="Password" name="code" value="" required> <br>
-        <img id="eye" (mousedown)="changeTypeToText()" (mouseup)="changeTypeToPass()" [src]="'assets/icons/login-regis/eye.png'">
+        <img id="eye" (mousedown)="changeTypeToText()" (mouseup)="changeTypeToPass()"
+            [src]="'assets/icons/login-regis/eye.png'">
         <p>Your LapWork ID is your username.</p>
         <input id="userLogIn" type="submit" name="userLogIn" value="Sign In">
     </form>
 
     <a [routerLink]="['../register']">Don't have a LapWork ID? Create one now.</a>
-
-    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-
 </div>
-
-<footer-tag></footer-tag>
+    
+    <footer-tag></footer-tag>

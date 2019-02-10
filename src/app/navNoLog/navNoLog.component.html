@@ -4,9 +4,9 @@
       <a class="navbar-brand" [routerLink]="['']">LapWork</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a [routerLink]="['']" class="title-header">LapWork</a></li>
-      <li><a [routerLink]="['login']" class="title-header">Log In</a></li>
-      <li><a [routerLink]="['']" onclick="signOut();" class="title-header">Sign out</a></li>
+      <li><a [routerLink]="['/register']">Register</a></li>
+      <li><a [routerLink]="['/login']" class="title-header">Log In</a></li>
+      <li><button (click)="signOut()" class="title-header">Sign out</button></li>
     </ul>
   </div>
 </nav>

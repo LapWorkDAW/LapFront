@@ -14,6 +14,25 @@ import { NavNoLogComponent } from './navNoLog/navNoLog.component';
 import { ContactComponent } from './contact/contact.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileComponent } from './profile/profile.component';
+import { StorageServiceModule } from 'angular-webstorage-service';
+import {
+  SocialLoginModule,
+  AuthServiceConfig,
+  GoogleLoginProvider,
+  LinkedinLoginProvider,
+} from "angular-6-social-login";
+
+export function getAuthServiceConfigs() {
+  let config = new AuthServiceConfig(
+      [
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+	      provider: new GoogleLoginProvider("417274944677-emff9mcs5opsu1rip11e5r1rjvhm41ls.apps.googleusercontent.com")
+        }
+      ]
+  );
+  return config;
+}
 
 @NgModule({
   declarations: [
@@ -29,11 +48,19 @@ import { ProfileComponent } from './profile/profile.component';
     ContactComponent,
     ProfileComponent
   ],
+  providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: getAuthServiceConfigs
+    }
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SocialLoginModule,
+    StorageServiceModule
   ],
   bootstrap: [AppComponent]
 })
