@@ -23,7 +23,7 @@ export class LogInComponent implements OnInit {
     } else if (socialPlatform == "google") {
       socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
       //Redirect a otra pagina
-      this.router.navigate(['/privacyPolicy'])
+      this.router.navigate(['/profile'])
     } else if (socialPlatform == "linkedin") {
       socialPlatformProvider = LinkedinLoginProvider.PROVIDER_ID;
     }

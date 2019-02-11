@@ -6,7 +6,7 @@
     <ul class="nav navbar-nav">
       <li><a [routerLink]="['/register']">Register</a></li>
       <li><a [routerLink]="['/login']" class="title-header">Log In</a></li>
-      <li><button (click)="signOut()" class="title-header">Sign out</button></li>
+      <li><button (click)="signOut()" class="title-header" *ngIf="signIn">Sign out</button></li>
     </ul>
   </div>
 </nav>

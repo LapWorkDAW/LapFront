@@ -9,7 +9,8 @@ import { Router } from '@angular/router';
 })
 
 export class NavNoLogComponent {
-    
+    signIn:boolean=false;
+    token:String;
     constructor(private socialAuthService: AuthService, public router: Router) { }
     public signOut() {
         this.socialAuthService.signOut();
@@ -19,5 +20,10 @@ export class NavNoLogComponent {
 
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.token = localStorage.getItem('token');
+        if (this.token != "null") {
+            this.signIn=true;
+        } 
+    }
 }
