@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 
 export class NavNoLogComponent {
-    signIn:boolean=false;
+    isSignIn:boolean=false;
     token:String;
     constructor(private socialAuthService: AuthService, public router: Router) { }
     public signOut() {
@@ -23,7 +23,8 @@ export class NavNoLogComponent {
     ngOnInit() {
         this.token = localStorage.getItem('token');
         if (this.token != "null") {
-            this.signIn=true;
+            this.isSignIn=true;
+            console.log(this.isSignIn);
         } 
     }
 }
