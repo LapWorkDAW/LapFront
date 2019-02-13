@@ -1,4 +1,4 @@
-import { Directive, ElementRef, OnInit, Output, EventEmitter } from '@angular/core';
+import { Directive, ElementRef, OnInit, Output, EventEmitter, NgZone } from '@angular/core';
 
 declare var google: any;
 
@@ -9,7 +9,7 @@ export class GooglePlacesDirective implements OnInit {
   @Output() onSelect: EventEmitter<any> = new EventEmitter();
   private element: HTMLInputElement;
 
-  constructor(elRef: ElementRef) {
+  constructor(elRef: ElementRef, private zone: NgZone) {
     //elRef will get a reference to the element where
     //the directive is placed
     this.element = elRef.nativeElement;
