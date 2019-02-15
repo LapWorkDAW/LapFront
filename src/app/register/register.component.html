@@ -41,13 +41,16 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group has-error has-feedback">
             <label>Country/ Region</label>
-            <input google-place type="text" class="insert-login" (onSelect)="setAddress($event)"
-                placeholder="Type to search.." />
-           <!--  <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
-                <div *ngIf="f.country.errors.required">Country/ Region is required</div>
-            </div> -->
+            <input google-place type="text" class="form-control" formControlName="country"
+                (onSelect)="setAddress($event)" placeholder="Type to search.." id="inputError" />
+            <div class="has-error" *ngIf="lleno">
+                <div>
+                    <label class="control-label" for="inputError">
+                        Country/ Region is required</label>
+                </div>
+            </div>
         </div>
 
         <div class="form-group">

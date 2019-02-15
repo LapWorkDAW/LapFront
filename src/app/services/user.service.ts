@@ -10,7 +10,23 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  postUser(user: User): Observable<any> {
+  getAll() {
+    /* return this.http.get<User[]>(`${config.apiUrl}/users`); */
+  }
+
+  getById(id: number) {
+    /* return this.http.get(`${config.apiUrl}/users/${id}`); */
+  }
+
+  update(user: User) {
+    /* return this.http.put(`${config.apiUrl}/users/${user.id}`, user); */
+  }
+
+  delete(id: number) {
+    /* return this.http.delete(`${config.apiUrl}/users/${id}`); */
+  }
+
+  register(user: User): Observable<any> {
     let url = "";
     return this.http.post(
       url, user, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }

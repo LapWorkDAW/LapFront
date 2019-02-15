@@ -14,6 +14,7 @@ export class User {
    cv: string;
    isActiv: boolean;
    saveName: boolean;
+   token:string;
 
   constructor() {}
 }
