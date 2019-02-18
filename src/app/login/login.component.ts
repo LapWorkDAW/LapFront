@@ -1,5 +1,5 @@
 
-import { Component, NgZone, OnInit, OnDestroy } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import {
   AuthService,
   FacebookLoginProvider,
@@ -20,11 +20,14 @@ import { UserService } from '../services/user.service';
   styleUrls: ['../home/home.component.css', './login.component.css']
 })
 
-export class LogInComponent implements OnInit, OnDestroy {
+export class LogInComponent implements OnInit {
   password = "password";
   currentUser: User;
   currentUserSubscription: Subscription;
-  users: User[] = [];
+  loginForm: FormGroup;
+  loading = false;
+  submitted = false;
+  returnUrl: string;
 
   changeTypeToText() {
     this.password = "text";
@@ -33,14 +36,18 @@ export class LogInComponent implements OnInit, OnDestroy {
     this.password = "password";
   }
   constructor(private socialAuthService: AuthService, public router: Router, private authenticationService: AuthenticationService,
-    private userService: UserService) {
-    this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
-      this.currentUser = user;
-    });
+    private userService: UserService, private formBuilder: FormBuilder,
+    private route: ActivatedRoute) {
+    // redirect to home if already logged in
+    if (this.authenticationService.currentUserValue) {
+      this.router.navigate(['/']);
+    }
   }
 
-  public socialSignIn(socialPlatform: string) {
 
+
+
+  public socialSignIn(socialPlatform: string) {
     let socialPlatformProvider;
     if (socialPlatform == "facebook") {
       socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
@@ -62,23 +69,37 @@ export class LogInComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.loadAllUsers();
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
-  ngOnDestroy(): void {
-    // unsubscribe to ensure no memory leaks
-    this.currentUserSubscription.unsubscribe();
+  get f() { return this.loginForm.controls; }
+
+  onSubmit() {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    this.loading = true;
+    this.authenticationService.login(this.f.username.value, this.f.password.value)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.router.navigate([this.returnUrl]);
+        },
+        error => {
+          /* this.alertService.error(error); */
+          this.loading = false;
+        });
   }
 
-  deleteUser(id: number) {
-    /*  this.userService.delete(id).pipe(first()).subscribe(() => {
-         this.loadAllUsers()
-     }); */
-  }
 
-  private loadAllUsers() {
-    /* this.userService.getAll().pipe(first()).subscribe(users => {
-        this.users = users;
-    }); */
-  }
 }

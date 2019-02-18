@@ -6,6 +6,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // import custom validator to validate that password and confirm password fields match
 import { MustMatch } from '../_helpers/must-match.validator';
 import { _getComponentHostLElementNode } from '@angular/core/src/render3/instructions';
+import { first } from 'rxjs/operators';
+import { AuthenticationService } from '../services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'register',
@@ -20,7 +23,14 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   isSelectCountry: boolean = false;
-  constructor(private zone: NgZone, private userService: UserService, private formBuilder: FormBuilder) { }
+
+  constructor(private zone: NgZone, private userService: UserService, private formBuilder: FormBuilder, private router: Router,
+    private authenticationService: AuthenticationService) {
+    if (this.authenticationService.currentUserValue) {
+      this.router.navigate(['/']);
+    }
+
+  }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -66,7 +76,6 @@ export class RegisterComponent implements OnInit {
   sendForm() {
     this.submitted = true;
     // stop here if form is invalid
-    console.log(this.registerForm);
     //Cogemos el campo de country para ver si ha puesto algo
     //Devuelve un true o un false que directamente le pasamos a la vista
     //para controlar con un ngIF si mostraremos el div del error o no
@@ -91,9 +100,21 @@ export class RegisterComponent implements OnInit {
     delete this.newUser['confirmPassword'];
     this.newUser.latitude = this.addr["lat"];
     this.newUser.longitude = this.addr["lng"];
-    this.userService.register(this.newUser);
-    this.newUser = new User();    
+    this.userService.register(this.registerForm.value)
+      .pipe(first())
+      .subscribe(
+        data => {
+          /* this.alertService.success('Registration successful', true); */
+          /* this.router.navigate(['/login']); */
+        },
+        error => {
+          /* this.alertService.error(error);
+          this.loading = false; */
+        });
+    this.newUser = new User();
     this.registerForm.reset();
+
   }
 
 }
+

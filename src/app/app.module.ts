@@ -12,7 +12,7 @@ import { GooglePlacesDirective } from './google-places.directive';
 import { TermsOfUseComponent } from './termsOfUse/termsOfUse.component';
 import { NavNoLogComponent } from './navNoLog/navNoLog.component';
 import { ContactComponent } from './contact/contact.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { ProfileComponent } from './profile/profile.component';
 import { StorageServiceModule } from 'angular-webstorage-service';
 import {
@@ -22,6 +22,8 @@ import {
   LinkedinLoginProvider,
 } from "angular-6-social-login";
 import { ReactiveFormsModule } from '@angular/forms';
+import { JwtInterceptor} from './_helpers/jwt.interceptor';
+import { ErrorInterceptor } from './_helpers/error.interceptor';
 
 export function getAuthServiceConfigs() {
   let config = new AuthServiceConfig(
@@ -53,7 +55,9 @@ export function getAuthServiceConfigs() {
     {
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
-    }
+    },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   imports: [
     BrowserModule,

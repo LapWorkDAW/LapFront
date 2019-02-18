@@ -1,9 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { first } from 'rxjs/operators';
-import { User } from 'src/assets/models/User';
-import { UserService } from '../services/user.service';
-import { AuthenticationService } from '../services/authentication.service';
+import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'home',
@@ -13,24 +9,10 @@ import { AuthenticationService } from '../services/authentication.service';
 
 
 
-export class HomeComponent implements OnInit, OnDestroy {
-  ngOnDestroy(): void {
-    
-  }
+export class HomeComponent implements OnInit {
 
-  currentUser: User;
-  currentUserSubscription: Subscription;
-  users: User[] = [];
   token = '';
 
-  constructor(
-    private authenticationService: AuthenticationService,
-    private userService: UserService
-  ) {
-    this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
-      this.currentUser = user;
-    });
-  }
 
 
   ngOnInit(): void {
@@ -41,19 +23,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       console.log("Usuario no logeado");
     }
 
-    this.loadAllUsers();
   }
 
-  deleteUser(id: number) {
-    /* this.userService.delete(id).pipe(first()).subscribe(() => {
-      this.loadAllUsers()
-    }); */
-  }
-
-  private loadAllUsers() {
-    /* this.userService.getAll().pipe(first()).subscribe(users => {
-      this.users = users;
-    }); */
-  }
 
 }
