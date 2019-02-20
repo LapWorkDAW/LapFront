@@ -3,12 +3,12 @@ import { User } from 'src/assets/models/User';
 import { UserService } from '../services/user.service';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import custom validator to validate that password and confirm password fields match
 import { MustMatch } from '../_helpers/must-match.validator';
 import { _getComponentHostLElementNode } from '@angular/core/src/render3/instructions';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'register',
@@ -25,11 +25,10 @@ export class RegisterComponent implements OnInit {
   isSelectCountry: boolean = false;
 
   constructor(private zone: NgZone, private userService: UserService, private formBuilder: FormBuilder, private router: Router,
-    private authenticationService: AuthenticationService) {
+    private authenticationService: AuthenticationService, private alertService: AlertService) {
     if (this.authenticationService.currentUserValue) {
       this.router.navigate(['/']);
     }
-
   }
 
   ngOnInit() {
@@ -47,8 +46,6 @@ export class RegisterComponent implements OnInit {
     }, {
         validator: MustMatch('password', 'confirmPassword')
       });
-
-    console.log("lleno:" + this.isSelectCountry);
   }
 
   //Method to be invoked everytime we receive a new instance 
@@ -56,9 +53,6 @@ export class RegisterComponent implements OnInit {
   setAddress(addrObj) {
     //We are wrapping this in a zone method to reflect the changes
     //to the object in the DOM.
-
-
-
     this.zone.run(() => {
       this.addr = addrObj;
       this.addrKeys = Object.keys(addrObj);
@@ -80,17 +74,12 @@ export class RegisterComponent implements OnInit {
     //Devuelve un true o un false que directamente le pasamos a la vista
     //para controlar con un ngIF si mostraremos el div del error o no
     this.isSelectCountry = <String>this.registerForm.get('country').value == "";
+    console.log(this.isSelectCountry);
 
-    /*
-    console.log("lleno dentro sendForm:" + this.lleno);
-    console.log(<String>this.registerForm.get('country').value == "");*/
-    if (this.registerForm.invalid) {
-      console.log("no valid");
+    if (this.registerForm.invalid || this.isSelectCountry) {
       return;
     }
-    /* this.registerForm.removeControl('country');
-    this.registerForm.removeControl('confirmPassword');
-    this.registerForm.removeControl('privacy'); */
+
     this.newUser = this.registerForm.value;
     console.log("hola user");
     console.log(this.newUser);
@@ -104,16 +93,14 @@ export class RegisterComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          /* this.alertService.success('Registration successful', true); */
-          /* this.router.navigate(['/login']); */
+          this.alertService.success('Registration successful', true);
+          this.router.navigate(['/login']);
         },
         error => {
-          /* this.alertService.error(error);
-          this.loading = false; */
+          this.alertService.error(error);
         });
     this.newUser = new User();
     this.registerForm.reset();
-
   }
 
 }

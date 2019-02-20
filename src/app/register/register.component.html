@@ -45,7 +45,7 @@
             <label>Country/ Region</label>
             <input google-place type="text" class="form-control" formControlName="country"
                 (onSelect)="setAddress($event)" placeholder="Type to search.." id="inputError" />
-            <div class="has-error" *ngIf="lleno">
+            <div class="has-error" *ngIf="isSelectCountry">
                 <div>
                     <label class="control-label" for="inputError">
                         Country/ Region is required</label>
