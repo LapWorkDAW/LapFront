@@ -7,8 +7,9 @@ import { MustMatch } from '../_helpers/must-match.validator';
 import { _getComponentHostLElementNode } from '@angular/core/src/render3/instructions';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../services/authentication.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService } from '../services/alert.service';
+import { RegisterService } from '../services/register.service';
 
 @Component({
   selector: 'register',
@@ -23,9 +24,12 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   isSelectCountry: boolean = false;
+  isEmailExist: boolean = false;
+  returnUrl: string;
 
   constructor(private zone: NgZone, private userService: UserService, private formBuilder: FormBuilder, private router: Router,
-    private authenticationService: AuthenticationService, private alertService: AlertService) {
+    private authenticationService: AuthenticationService, private alertService: AlertService, private route: ActivatedRoute,
+    private registerService: RegisterService) {
     if (this.authenticationService.currentUserValue) {
       this.router.navigate(['/']);
     }
@@ -46,6 +50,8 @@ export class RegisterComponent implements OnInit {
     }, {
         validator: MustMatch('password', 'confirmPassword')
       });
+
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   //Method to be invoked everytime we receive a new instance 
@@ -76,13 +82,11 @@ export class RegisterComponent implements OnInit {
     this.isSelectCountry = <String>this.registerForm.get('country').value == "";
     console.log(this.isSelectCountry);
 
-    if (this.registerForm.invalid || this.isSelectCountry) {
+    if (this.registerForm.invalid || this.isSelectCountry || this.isEmailExist) {
       return;
     }
 
     this.newUser = this.registerForm.value;
-    console.log("hola user");
-    console.log(this.newUser);
     //remove key from object
     delete this.newUser['country'];
     delete this.newUser['privacy'];
@@ -93,8 +97,17 @@ export class RegisterComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.alertService.success('Registration successful', true);
-          this.router.navigate(['/login']);
+          /* this.alertService.success('Registration successful', true);
+          this.router.navigate(['/login']); */
+          this.authenticationService.login(this.f.userName.value, this.f.password.value)
+            .pipe(first())
+            .subscribe(
+              data => {
+                this.router.navigate([this.returnUrl]);
+              },
+              error => {
+                this.alertService.error(error);
+              });
         },
         error => {
           this.alertService.error(error);
@@ -103,5 +116,14 @@ export class RegisterComponent implements OnInit {
     this.registerForm.reset();
   }
 
+  checkEmail() {
+        this.registerService.checkUserEmail(this.f.email.value).subscribe(
+      resul => {
+        this.isEmailExist = resul;
+      },
+      error => {
+        console.log(error);
+      });
+  }
 }
 

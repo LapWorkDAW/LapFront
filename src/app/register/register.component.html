@@ -34,10 +34,16 @@
         <div class="form-group">
             <label>Email</label>
             <input type="text" formControlName="email" class="form-control"
-                [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                [ngClass]="{ 'is-invalid': submitted && f.email.errors }" (blur)="checkEmail()"/>
             <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                 <div *ngIf="f.email.errors.required">Email is required</div>
                 <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+            </div>
+            <div class="has-error" *ngIf="isEmailExist">
+                <div>
+                    <label class="control-label" for="inputError">
+                        This mail is already used. Try another one.</label>
+                </div>
             </div>
         </div>
 

@@ -1,7 +1,7 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from 'angular-6-social-login';
 import { Router } from '@angular/router';
-import {User} from 'src/assets/models/User';
+import { User } from 'src/assets/models/User';
 import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
@@ -11,19 +11,29 @@ import { AuthenticationService } from '../services/authentication.service';
 })
 
 export class NavNoLogComponent {
-    isSignIn:boolean=false;
+    isSignIn: boolean = false;
     currentUser: User;
-    token:String;
-    constructor(private socialAuthService: AuthService, public router: Router,private authenticationService: AuthenticationService) { 
+    token: String;
+    constructor(private socialAuthService: AuthService, public router: Router, private authenticationService: AuthenticationService) {
         this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     }
- 
-   
+
+
     public signOut() {
-        this.socialAuthService.signOut();
-        this.router.navigate(['/']);
-        console.log("user logOut");
-        localStorage.setItem('token',"null");        
+        //verificar si password es de un sitio
+        //haces una cosa
+        //sino llamas a logout
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (this.currentUser.pass === null || this.currentUser.pass === "") {
+            this.socialAuthService.signOut();
+            this.router.navigate(['/']);
+            /* localStorage.setItem('token', "null"); */
+        } else {
+            this.authenticationService.logout();
+            this.router.navigate(['']);
+        }
+
+
     }
 
     ngOnInit() {
@@ -31,11 +41,8 @@ export class NavNoLogComponent {
         if (this.token != "null") {
             this.isSignIn=true;
             console.log(this.isSignIn);
-        } */ 
+        } */
     }
 
-   logout() {
-      this.authenticationService.logout();
-      this.router.navigate(['']);
-  }
+
 }
