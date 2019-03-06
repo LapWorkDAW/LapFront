@@ -9,8 +9,8 @@ export class RegisterService {
 
   constructor(private http: HttpClient) { }
 
-  checkUserEmail(email:String): Observable<any>{
-    let url = "";
+  checkUserEmail(email:String){
+    let url = "/api.php?controller=User&function=getbymail&id="+email;
     return this.http.get(
       url,{ headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
     );

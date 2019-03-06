@@ -1,0 +1,8 @@
+{
+    "/api.php*": {
+        "target": "http://localhost:80/LapBack/",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    }
+}

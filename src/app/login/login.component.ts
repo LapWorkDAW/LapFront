@@ -44,11 +44,18 @@ export class LogInComponent implements OnInit {
     }
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
-        console.log(socialPlatform + " sign in data : ", userData);
-        console.log(userData.idToken);
-        localStorage.setItem('token', userData.idToken);
-        //Redirect to profile
-        this.router.navigate(['/profile'])
+        this.authenticationService.login(userData.email, null, userData.idToken)
+          .pipe(first())
+          .subscribe(
+            data => {
+              this.router.navigate([this.returnUrl]);
+            },
+            error => {
+              this.alertService.error(error);
+            });
+
+         //Redirect to profile
+        /*  this.router.navigate(['/profile']) */
       }
     );
   }
@@ -70,7 +77,7 @@ export class LogInComponent implements OnInit {
       return;
     }
 
-    this.authenticationService.login(this.f.username.value, this.f.password.value)
+    this.authenticationService.login(this.f.username.value, this.f.password.value, null)
       .pipe(first())
       .subscribe(
         data => {

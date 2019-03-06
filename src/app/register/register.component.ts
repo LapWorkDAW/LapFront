@@ -99,8 +99,7 @@ export class RegisterComponent implements OnInit {
         data => {
           /* this.alertService.success('Registration successful', true);
           this.router.navigate(['/login']); */
-          this.authenticationService.login(this.f.userName.value, this.f.password.value)
-            .pipe(first())
+          this.authenticationService.login(this.f.userName.value, this.f.password.value, null)
             .subscribe(
               data => {
                 this.router.navigate([this.returnUrl]);
@@ -117,12 +116,12 @@ export class RegisterComponent implements OnInit {
   }
 
   checkEmail() {
-        this.registerService.checkUserEmail(this.f.email.value).subscribe(
+    this.registerService.checkUserEmail(this.f.email.value).subscribe(
       resul => {
-        this.isEmailExist = resul;
+        this.isEmailExist= true;
       },
       error => {
-        console.log(error);
+        this.isEmailExist= false;
       });
   }
 }

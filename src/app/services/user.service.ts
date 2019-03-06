@@ -10,10 +10,6 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getAll() {
-    /* return this.http.get<User[]>(`${config.apiUrl}/users`); */
-  }
-
   getById(id: number) {
     /* return this.http.get(`${config.apiUrl}/users/${id}`); */
   }
@@ -32,4 +28,14 @@ export class UserService {
       url, user, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
     );
   }
+
+  getAllUsers(fn: Function) {
+    let url = "api.php?controller=Users&function=getactiv";
+    fetch(url)
+      .then(resp => resp.json())
+      .then(resp => {
+        fn(resp.data);
+      })
+  }
+
 }

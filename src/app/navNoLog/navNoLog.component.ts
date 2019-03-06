@@ -26,14 +26,11 @@ export class NavNoLogComponent {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (this.currentUser.pass === null || this.currentUser.pass === "") {
             this.socialAuthService.signOut();
-            this.router.navigate(['/']);
+            /* this.router.navigate(['/']); */
             /* localStorage.setItem('token', "null"); */
-        } else {
-            this.authenticationService.logout();
-            this.router.navigate(['']);
         }
-
-
+        this.authenticationService.logout();
+        this.router.navigate(['']);       
     }
 
     ngOnInit() {
