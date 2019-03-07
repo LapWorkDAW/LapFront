@@ -42,7 +42,6 @@ export class AuthenticationService {
         this.http.post(
             url, json, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
         );
-        // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
 

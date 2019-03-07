@@ -23,19 +23,17 @@ export class UserService {
   }
 
   register(user: User): Observable<any> {
-    let url = "";
+    let url = "/api.php?controller=User";
     return this.http.post(
       url, user, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
     );
   }
 
-  getAllUsers(fn: Function) {
-    let url = "api.php?controller=Users&function=getactiv";
-    fetch(url)
-      .then(resp => resp.json())
-      .then(resp => {
-        fn(resp.data);
-      })
+  getAllUsers(fn:Function) {
+    let url = "/api.php?controller=Users&function=getactiv";
+    return this.http.post(
+      url, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
+    );
   }
-
+  
 }

@@ -99,14 +99,15 @@ export class RegisterComponent implements OnInit {
         data => {
           /* this.alertService.success('Registration successful', true);
           this.router.navigate(['/login']); */
-          this.authenticationService.login(this.f.userName.value, this.f.password.value, null)
+          console.log(data);
+          /* this.authenticationService.login(this.f.userName.value, this.f.password.value, null)
             .subscribe(
               data => {
                 this.router.navigate([this.returnUrl]);
               },
               error => {
                 this.alertService.error(error);
-              });
+              }); */
         },
         error => {
           this.alertService.error(error);
@@ -119,6 +120,7 @@ export class RegisterComponent implements OnInit {
     this.registerService.checkUserEmail(this.f.email.value).subscribe(
       resul => {
         this.isEmailExist= true;
+        console.log(resul);
       },
       error => {
         this.isEmailExist= false;
