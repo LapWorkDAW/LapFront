@@ -33,4 +33,20 @@ export class GooglePlacesDirective implements OnInit {
     });
   }
 
+  getAddress(lat, lng) {
+    let latlng = new google.maps.LatLng(lat, lng);
+    let geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        if (results[0]) {
+          return results[0].formatted_address;
+        } else {
+          alert('Location not found');
+        }
+      } else {
+        alert('Geocoder failed due to: ' + status);
+      }
+    });
+  }
+
 }

@@ -6,6 +6,7 @@ import { UserService } from '../services/user.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { ConditionalExpr } from '@angular/compiler';
 import { Router } from '@angular/router';
+import { GooglePlacesDirective } from '../google-places.directive';
 
 @Component({
     selector: 'profile',
@@ -13,16 +14,18 @@ import { Router } from '@angular/router';
     styleUrls: ['../home/home.component.css', './profile.component.css']
 })
 export class ProfileComponent implements OnInit, OnDestroy {
-   
+
     currentUser: User;
     currentUserSubscription: Subscription;
     users: User[] = [];
+    userLocation: String;
 
-    ngOnDestroy(): void {}
+
+    ngOnDestroy(): void { }
 
     constructor(
         private authenticationService: AuthenticationService,
-        private userService: UserService, private router: Router
+        private userService: UserService, private router: Router, private googlePlacesDirective: GooglePlacesDirective
     ) {
         this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
             this.currentUser = user;
@@ -32,13 +35,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
         }
     }
 
-    
-        ngOnInit(): void {
-        this.currentUser=JSON.parse(localStorage.getItem("currentUser"));
+
+    ngOnInit(): void {
+        this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
         console.log(this.currentUser);
+        //Retrieve address in string format
+      console.log(  this.googlePlacesDirective.getAddress(this.currentUser.latitude, this.currentUser.longitude));
+        
+
     }
-
-
 
     deleteUser(id: number) {
         /* this.userService.delete(id).pipe(first()).subscribe(() => {
