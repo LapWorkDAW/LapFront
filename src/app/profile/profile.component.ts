@@ -13,9 +13,12 @@ import { Router } from '@angular/router';
     styleUrls: ['../home/home.component.css', './profile.component.css']
 })
 export class ProfileComponent implements OnInit, OnDestroy {
-    ngOnDestroy(): void {
+   
+    currentUser: User;
+    currentUserSubscription: Subscription;
+    users: User[] = [];
 
-    }
+    ngOnDestroy(): void {}
 
     constructor(
         private authenticationService: AuthenticationService,
@@ -30,15 +33,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
 
     
-    currentUser: User;
-    currentUserSubscription: Subscription;
-    users: User[] = [];
-
-    ngOnInit(): void {
-        this.userService.getAllUsers((usersbd: Array<User>) => {
-            this.users = usersbd;
-            console.log(this.users);
-        });
+        ngOnInit(): void {
+        this.currentUser=JSON.parse(localStorage.getItem("currentUser"));
+        console.log(this.currentUser);
     }
 
 

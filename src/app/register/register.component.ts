@@ -45,10 +45,10 @@ export class RegisterComponent implements OnInit {
       country: [''],
       privacy: ['', Validators.requiredTrue],
       saveName: [''],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      pass: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
     }, {
-        validator: MustMatch('password', 'confirmPassword')
+        validator: MustMatch('pass', 'confirmPassword')
       });
 
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -80,8 +80,6 @@ export class RegisterComponent implements OnInit {
     //Devuelve un true o un false que directamente le pasamos a la vista
     //para controlar con un ngIF si mostraremos el div del error o no
     this.isSelectCountry = <String>this.registerForm.get('country').value == "";
-    console.log(this.isSelectCountry);
-
     if (this.registerForm.invalid || this.isSelectCountry || this.isEmailExist) {
       return;
     }
@@ -91,25 +89,29 @@ export class RegisterComponent implements OnInit {
     delete this.newUser['country'];
     delete this.newUser['privacy'];
     delete this.newUser['confirmPassword'];
+    //add key to object
     this.newUser.latitude = this.addr["lat"];
     this.newUser.longitude = this.addr["lng"];
+//save userName and pass for login
+    let username = this.newUser.userName;
+    let password = this.newUser.pass;
+
+//register
     this.userService.register(this.registerForm.value)
-      .pipe(first())
       .subscribe(
-        data => {
-          /* this.alertService.success('Registration successful', true);
-          this.router.navigate(['/login']); */
-          console.log(data);
-          /* this.authenticationService.login(this.f.userName.value, this.f.password.value, null)
+        resul => {
+          //login
+          this.authenticationService.login(username, password, null)
             .subscribe(
-              data => {
-                this.router.navigate([this.returnUrl]);
+              resul => {
+                this.router.navigate(['/profile']);
               },
               error => {
                 this.alertService.error(error);
-              }); */
+              });
         },
         error => {
+          console.log("error");
           this.alertService.error(error);
         });
     this.newUser = new User();
@@ -119,11 +121,10 @@ export class RegisterComponent implements OnInit {
   checkEmail() {
     this.registerService.checkUserEmail(this.f.email.value).subscribe(
       resul => {
-        this.isEmailExist= true;
-        console.log(resul);
+        this.isEmailExist = true;
       },
       error => {
-        this.isEmailExist= false;
+        this.isEmailExist = false;
       });
   }
 }

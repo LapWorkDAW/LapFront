@@ -33,7 +33,7 @@ export class LogInComponent implements OnInit {
     private route: ActivatedRoute, private alertService: AlertService) {
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/']);
+      this.router.navigate(['/profile']);
     }
   }
 
@@ -81,7 +81,9 @@ export class LogInComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate([this.returnUrl]);
+          //Preguntar que es this.returnURL
+          /* this.router.navigate([this.returnUrl]); */
+          this.router.navigate(['/profile']);
         },
         error => {
           this.alertService.error(error);

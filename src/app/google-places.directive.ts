@@ -16,8 +16,6 @@ export class GooglePlacesDirective implements OnInit {
   }
 
   getFormattedAddress(place) {
-    //Utilizar para recoger la dirección
-    console.log(place);
     //@params: place - Google Autocomplete place object
     //@returns: location_obj - An address object in human readable format
     let location_obj = {};

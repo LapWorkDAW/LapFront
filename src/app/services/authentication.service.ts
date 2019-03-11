@@ -20,11 +20,11 @@ export class AuthenticationService {
 
     login(username: string, password, token) {
         let json = { "username": username, "pass": password, "token": token };
-        console.log(json);
         let url = "/api.php?controller=User&function=login";
-        return this.http.post<any>(url, json)
-            .pipe(map(user => {
+        return this.http.post<any>(url, json, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) })
+            .pipe(map(datos => {
                 // login successful if there's a jwt token in the response
+                let user = datos["data"][0];
                 if (user && user.token) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
@@ -36,14 +36,19 @@ export class AuthenticationService {
     }
 
     logout() {
-        let json = { "id": JSON.parse(localStorage.getItem('currentUser')).id };
+        let user = JSON.parse(localStorage.getItem('currentUser'));
+        let json = { "id": user.idUser };
         let url = "/api.php?controller=User&function=logout";
-        //hago peticion al back para vaciar token
-        this.http.post(
-            url, json, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
-        );
+
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
-
+        //hago peticion al back para vaciar token
+        this.http.post<any>(url, json, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) })
+            .subscribe(
+                resul => {
+                    console.log(resul);
+                }
+            );
     }
+
 }

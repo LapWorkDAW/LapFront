@@ -18,7 +18,7 @@ const appRoutes: Routes = [
     { path: 'login', component: LogInComponent },
     { path: 'navNoLog', component: NavNoLogComponent},
     { path: 'contact', component: ContactComponent},
-    { path: 'profile', component: ProfileComponent},
+    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
