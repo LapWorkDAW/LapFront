@@ -1,6 +1,7 @@
 import { Directive, ElementRef, OnInit, Output, EventEmitter, NgZone } from '@angular/core';
 
 declare var google: any;
+var geocoder = new google.maps.Geocoder();
 
 @Directive({
   selector: '[google-place]'
@@ -34,12 +35,12 @@ export class GooglePlacesDirective implements OnInit {
   }
 
   getAddress(lat, lng) {
-    let latlng = new google.maps.LatLng(lat, lng);
-    let geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+    let latlng = new google.maps.LatLng(lat, lng);    
+   return geocoder.geocode({ 'latLng': latlng }, function (results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
-        if (results[0]) {
-          return results[0].formatted_address;
+        if (results[9]) {
+          /* alert(results[9].formatted_address);   */   
+          localStorage.setItem("city",results[9].formatted_address);             
         } else {
           alert('Location not found');
         }

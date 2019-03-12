@@ -12,6 +12,7 @@ import { GooglePlacesDirective } from '../google-places.directive';
     selector: 'profile',
     templateUrl: './profile.component.html',
     styleUrls: ['../home/home.component.css', './profile.component.css']
+    ,providers:[GooglePlacesDirective]
 })
 export class ProfileComponent implements OnInit, OnDestroy {
 
@@ -25,7 +26,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     constructor(
         private authenticationService: AuthenticationService,
-        private userService: UserService, private router: Router, private googlePlacesDirective: GooglePlacesDirective
+        private userService: UserService, private router: Router,
+         private googlePlacesDirective: GooglePlacesDirective
     ) {
         this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
             this.currentUser = user;
@@ -40,9 +42,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
         console.log(this.currentUser);
         //Retrieve address in string format
-      console.log(  this.googlePlacesDirective.getAddress(this.currentUser.latitude, this.currentUser.longitude));
+      this.googlePlacesDirective.getAddress(this.currentUser.latitude, this.currentUser.longitude);
+      this.userLocation =localStorage.getItem("city");  
+      console.log(this.googlePlacesDirective.getAddress(this.currentUser.latitude, this.currentUser.longitude));
+        console.log(this.userLocation);
         
-
     }
 
     deleteUser(id: number) {
