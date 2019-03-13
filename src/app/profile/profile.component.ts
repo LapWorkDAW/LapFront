@@ -4,7 +4,6 @@ import { User } from 'src/assets/models/User';
 import { UserService } from '../services/user.service';
 import { ProjectService } from '../services/project.service';
 import { AuthenticationService } from '../services/authentication.service';
-import { ConditionalExpr } from '@angular/compiler';
 import { Router } from '@angular/router';
 import { GooglePlacesDirective } from '../google-places.directive';
 import { Project } from 'src/assets/models/Project';
@@ -58,10 +57,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     getProjectsInProgress() {
         this.projectService.getProjectNoFinished(this.currentUser.token).subscribe(
-            result=>{
-                this.projectsInProgress=result["data"];
+            result => {
+                this.projectsInProgress = result["data"];
             },
-            error=>{
+            error => {
                 console.log(error);
             }
         )
@@ -69,10 +68,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     getProjectsFinished() {
         this.projectService.getProjectFinished(this.currentUser.token).subscribe(
-            result=>{
-                this.projectsFinished=result["data"];
+            result => {
+                this.projectsFinished = result["data"];
             },
-            error=>{
+            error => {
                 console.log(error);
             }
         )
@@ -80,10 +79,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     getProjectsStar() {
         this.projectService.getProjectStar(this.currentUser.token).subscribe(
-            result=>{
-                this.projectsStar=result["data"];
+            result => {
+                this.projectsStar = result["data"];
             },
-            error=>{
+            error => {
                 console.log(error);
             }
         )
@@ -91,10 +90,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     getProjectsFavorite() {
         this.projectService.getProjectStar(this.currentUser.token).subscribe(
-            result=>{
-                this.projectsStar=result["data"];
+            result => {
+                this.projectsStar = result["data"];
             },
-            error=>{
+            error => {
                 console.log(error);
             }
         )

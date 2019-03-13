@@ -10,7 +10,6 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-
   update(user: User, token: String) {
     let url = "/api.php?controller=User&token=" + token;
     return this.http.put(
