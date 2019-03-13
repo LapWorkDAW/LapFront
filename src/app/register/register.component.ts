@@ -28,14 +28,14 @@ export class RegisterComponent implements OnInit {
       this.addr = addrObj;
       this.addrKeys = Object.keys(addrObj);
       //add new values to object User
-      this.newUser.latitude =this.addr["lat"];
+      this.newUser.latitude = this.addr["lat"];
       this.newUser.longitude = this.addr["lng"];
       /* console.log(this.newUser); */
     });
   }
 
   sendForm() {
-   console.log(this.newUser);   
+    console.log(this.newUser);
   }
 
 }

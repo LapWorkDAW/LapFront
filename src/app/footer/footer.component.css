@@ -1,23 +1,25 @@
+/* $safetyDark: #323232;
+$safetyGrey: rgb(167, 167, 167);
 footer {
-  background-color: #323232;
-  display: -webkit-box;
-  height: 111px;
-  color: #a7a7a7;
-  font-size: 11px;
-  text-align: center !important;
-}
-footer div {
-  position: relative;
-  top: 21px;
-  left: 40%;
-  height: 65px;
-}
-footer div a {
-  text-decoration: none;
-  color: #a7a7a7;
-}
-footer div a:hover {
-  text-decoration: underline;
-}
+    background-color: $safetyDark;
+    display: -webkit-box;
+    height: 111px;
+    color: $safetyGrey;
+    font-size: 11px;
+    text-align: center !important;
+    div {
+        position: relative;
+        top: 21px;
+        left: 40%;
+        height: 65px;
+        a {
+            text-decoration: none;
+            color: $safetyGrey;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    }
+} */
 
 /*# sourceMappingURL=footer.component.css.map */
