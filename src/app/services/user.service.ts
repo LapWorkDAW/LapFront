@@ -10,16 +10,19 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getById(id: number) {
-    /* return this.http.get(`${config.apiUrl}/users/${id}`); */
+
+  update(user: User, token: String) {
+    let url = "/api.php?controller=User&token=" + token;
+    return this.http.put(
+      url, user, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
+    );
   }
 
-  update(user: User) {
-    /* return this.http.put(`${config.apiUrl}/users/${user.id}`, user); */
-  }
-
-  delete(id: number) {
-    /* return this.http.delete(`${config.apiUrl}/users/${id}`); */
+  delete(token: String) {
+    let url = "/api.php?controller=User&token=" + token;
+    return this.http.delete(
+      url, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
+    );
   }
 
   register(user: User): Observable<any> {
@@ -28,12 +31,4 @@ export class UserService {
       url, user, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
     );
   }
-
-  getAllUsers(fn:Function) {
-    let url = "/api.php?controller=Users&function=getactiv";
-    return this.http.post(
-      url, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
-    );
-  }
-  
 }

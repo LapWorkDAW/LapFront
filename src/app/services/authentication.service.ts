@@ -37,7 +37,7 @@ export class AuthenticationService {
 
     logout() {
         let user = JSON.parse(localStorage.getItem('currentUser'));
-        let json = { "id": user.idUser };
+        let json = { "token": user.token };
         let url = "/api.php?controller=User&function=logout";
 
         localStorage.removeItem('currentUser');

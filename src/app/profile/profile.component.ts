@@ -1,33 +1,34 @@
-import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { first, map } from 'rxjs/operators';
 import { User } from 'src/assets/models/User';
 import { UserService } from '../services/user.service';
+import { ProjectService } from '../services/project.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { ConditionalExpr } from '@angular/compiler';
 import { Router } from '@angular/router';
 import { GooglePlacesDirective } from '../google-places.directive';
+import { Project } from 'src/assets/models/Project';
 
 @Component({
     selector: 'profile',
     templateUrl: './profile.component.html',
     styleUrls: ['../home/home.component.css', './profile.component.css']
-    ,providers:[GooglePlacesDirective]
+    , providers: [GooglePlacesDirective]
 })
 export class ProfileComponent implements OnInit, OnDestroy {
 
     currentUser: User;
     currentUserSubscription: Subscription;
-    users: User[] = [];
     userLocation: String;
-
-
-    ngOnDestroy(): void { }
+    projectsStar: Array<Project>;
+    projectsFavorite: Array<Project>;
+    projectsInProgress: Array<Project>;
+    projectsFinished: Array<Project>;
 
     constructor(
-        private authenticationService: AuthenticationService,
+        private authenticationService: AuthenticationService, private projectService: ProjectService,
         private userService: UserService, private router: Router,
-         private googlePlacesDirective: GooglePlacesDirective
+        private googlePlacesDirective: GooglePlacesDirective
     ) {
         this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
             this.currentUser = user;
@@ -37,22 +38,68 @@ export class ProfileComponent implements OnInit, OnDestroy {
         }
     }
 
-
     ngOnInit(): void {
         this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
         console.log(this.currentUser);
         //Retrieve address in string format
-      this.googlePlacesDirective.getAddress(this.currentUser.latitude, this.currentUser.longitude);
-      this.userLocation =localStorage.getItem("city");  
-      console.log(this.googlePlacesDirective.getAddress(this.currentUser.latitude, this.currentUser.longitude));
-        console.log(this.userLocation);
-        
+        this.googlePlacesDirective.getAddress(this.currentUser.latitude, this.currentUser.longitude);
+        this.userLocation = localStorage.getItem("city");
     }
 
-    deleteUser(id: number) {
-        /* this.userService.delete(id).pipe(first()).subscribe(() => {
-          this.loadAllUsers()
-        }); */
+    deleteUser() {
+        this.userService.delete(this.currentUser.token).subscribe(
+            result => {
+                console.log(result);
+            },
+            error => {
+                console.log(error);
+            });
     }
+
+    getProjectsInProgress() {
+        this.projectService.getProjectNoFinished(this.currentUser.token).subscribe(
+            result=>{
+                this.projectsInProgress=result["data"];
+            },
+            error=>{
+                console.log(error);
+            }
+        )
+    }
+
+    getProjectsFinished() {
+        this.projectService.getProjectFinished(this.currentUser.token).subscribe(
+            result=>{
+                this.projectsFinished=result["data"];
+            },
+            error=>{
+                console.log(error);
+            }
+        )
+    }
+
+    getProjectsStar() {
+        this.projectService.getProjectStar(this.currentUser.token).subscribe(
+            result=>{
+                this.projectsStar=result["data"];
+            },
+            error=>{
+                console.log(error);
+            }
+        )
+    }
+
+    getProjectsFavorite() {
+        this.projectService.getProjectStar(this.currentUser.token).subscribe(
+            result=>{
+                this.projectsStar=result["data"];
+            },
+            error=>{
+                console.log(error);
+            }
+        )
+    }
+
+    ngOnDestroy(): void { }
 
 }
