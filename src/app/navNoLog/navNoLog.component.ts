@@ -36,7 +36,7 @@ export class NavNoLogComponent {
     ngOnInit() {
         /* this.token = localStorage.getItem('token');
         if (this.token != "null") {
-            this.isSignIn=true;
+            this.isSignIn = true;
             console.log(this.isSignIn);
         } */
     }

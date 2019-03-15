@@ -72,7 +72,7 @@ export class RegisterComponent implements OnInit {
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
 
-  //MÃ©todo de submit del formulario
+  //Método de submit del formulario
   sendForm() {
     this.submitted = true;
     // stop here if form is invalid

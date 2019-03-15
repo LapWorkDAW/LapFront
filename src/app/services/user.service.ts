@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User } from 'src/assets/models/User';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { User } from "src/assets/models/User";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class UserService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
 
   update(user: User, token: String) {
@@ -27,8 +27,17 @@ export class UserService {
 
   register(user: User): Observable<any> {
     let url = "/api.php?controller=User";
-    return this.http.post(
-      url, user, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
-    );
+    return this.http.post(url, user, {
+      headers: new HttpHeaders({ "Content-Type": "application/json" })
+    });
+  }
+  getAllUsers(fn: Function) {
+    let url =
+      "http://localhost/LapBack/api.php?controller=User&function=getactiv";
+    fetch(url)
+      .then(resp => resp.json())
+      .then(resp => {
+        fn(resp.data);
+      });
   }
 }

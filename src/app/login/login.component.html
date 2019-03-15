@@ -1,8 +1,8 @@
 <navNoLog></navNoLog>
-<div id="main">
+<!-- <div id="main">
     {{token}}
     <h1>Sign in</h1>
-    <button (click)="socialSignIn('linkedin')">Sign in with LinkedIn</button>
+
     <button (click)="socialSignIn('google')">Sign in with Google</button>
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -28,6 +28,24 @@
     </form>
 
     <a [routerLink]="['../register']">Don't have a LapWork ID? Create one now.</a>
+</div> -->
+<div class="container">
+  <br>
+  <h1 class="text-center mt-4">Sign in</h1>
+  <a [routerLink]="['../register']">Don't have a LapWork ID? Create one now.</a>
+
+  <div class="dropdown-divider"></div>
+  <form (ngSubmit)="sendForm()">
+    <div class="form-group">
+      <label for="inputEmail1">Email</label>
+      <input type="text" class="form-control" id="inputEmail" #email="ngModel" [(ngModel)]="newUser.email" required>
+    </div>
+
+
+
+    <button type="button" class="btn btn-outline-primary">Sign In with Google</button>
+  </form>
+
 </div>
 
 <footer-tag></footer-tag>
