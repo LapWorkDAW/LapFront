@@ -4,7 +4,6 @@ import { User } from 'src/assets/models/User';
 import { UserService } from '../services/user.service';
 import { ProjectService } from '../services/project.service';
 import { AuthenticationService } from '../services/authentication.service';
-import { ConditionalExpr } from '@angular/compiler';
 import { Router } from '@angular/router';
 import { GooglePlacesDirective } from '../google-places.directive';
 import { Project } from 'src/assets/models/Project';
