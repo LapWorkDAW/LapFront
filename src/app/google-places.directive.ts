@@ -39,7 +39,7 @@ export class GooglePlacesDirective implements OnInit {
    return geocoder.geocode({ 'latLng': latlng }, function (results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
         if (results[9]) {
-          /* alert(results[9].formatted_address);   */   
+          /* alert(results[9].formatted_address); */   
           localStorage.setItem("city",results[9].formatted_address);             
         } else {
           alert('Location not found');
@@ -48,6 +48,6 @@ export class GooglePlacesDirective implements OnInit {
         alert('Geocoder failed due to: ' + status);
       }
     });
-  }
+  }  
 
 }
