@@ -10,8 +10,23 @@ import { map } from "rxjs/operators";
 export class UserService {
   constructor(private http: HttpClient) {}
 
-  postUser(user: User): Observable<any> {
-    let url = "";
+
+  update(user: User, token: String) {
+    let url = "/api.php?controller=User&token=" + token;
+    return this.http.put(
+      url, user, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
+    );
+  }
+
+  delete(token: String) {
+    let url = "/api.php?controller=User&token=" + token;
+    return this.http.delete(
+      url, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
+    );
+  }
+
+  register(user: User): Observable<any> {
+    let url = "/api.php?controller=User";
     return this.http.post(url, user, {
       headers: new HttpHeaders({ "Content-Type": "application/json" })
     });

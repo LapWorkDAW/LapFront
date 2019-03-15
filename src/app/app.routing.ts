@@ -1,4 +1,3 @@
-import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { RegisterComponent } from './register/register.component';
@@ -9,7 +8,7 @@ import { TermsOfUseComponent } from './termsOfUse/termsOfUse.component';
 import { NavNoLogComponent } from './navNoLog/navNoLog.component';
 import { ContactComponent } from './contact/contact.component';
 import { ProfileComponent } from './profile/profile.component';
-
+import { AuthGuard } from './_guard/auth.guard';
 
 const appRoutes: Routes = [
     { path: "", component: HomeComponent },
@@ -19,7 +18,10 @@ const appRoutes: Routes = [
     { path: 'login', component: LogInComponent },
     { path: 'navNoLog', component: NavNoLogComponent},
     { path: 'contact', component: ContactComponent},
-    { path: 'profile', component: ProfileComponent}
+    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+
+    // otherwise redirect to home
+    { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

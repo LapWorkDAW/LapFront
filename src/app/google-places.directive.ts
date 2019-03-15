@@ -1,6 +1,7 @@
-import { Directive, ElementRef, OnInit, Output, EventEmitter } from '@angular/core';
+import { Directive, ElementRef, OnInit, Output, EventEmitter, NgZone } from '@angular/core';
 
 declare var google: any;
+var geocoder = new google.maps.Geocoder();
 
 @Directive({
   selector: '[google-place]'
@@ -9,7 +10,7 @@ export class GooglePlacesDirective implements OnInit {
   @Output() onSelect: EventEmitter<any> = new EventEmitter();
   private element: HTMLInputElement;
 
-  constructor(elRef: ElementRef) {
+  constructor(elRef: ElementRef, private zone: NgZone) {
     //elRef will get a reference to the element where
     //the directive is placed
     this.element = elRef.nativeElement;
@@ -30,6 +31,22 @@ export class GooglePlacesDirective implements OnInit {
     google.maps.event.addListener(autocomplete, 'place_changed', () => {
       //Emit the new address object for the updated place
       this.onSelect.emit(this.getFormattedAddress(autocomplete.getPlace()));
+    });
+  }
+
+  getAddress(lat, lng) {
+    let latlng = new google.maps.LatLng(lat, lng);    
+   return geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        if (results[9]) {
+          /* alert(results[9].formatted_address);   */   
+          localStorage.setItem("city",results[9].formatted_address);             
+        } else {
+          alert('Location not found');
+        }
+      } else {
+        alert('Geocoder failed due to: ' + status);
+      }
     });
   }
 

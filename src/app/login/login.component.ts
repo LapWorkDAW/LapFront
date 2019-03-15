@@ -1,12 +1,15 @@
 
 import { Component, NgZone, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import {
-  AuthService,
-  FacebookLoginProvider,
-  GoogleLoginProvider,
-  LinkedinLoginProvider
-} from 'angular-6-social-login';
+import { AuthService, GoogleLoginProvider } from 'angular-6-social-login';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { first } from 'rxjs/operators';
+import { AuthenticationService } from '../services/authentication.service';
+import { User } from 'src/assets/models/User';
+import { Subscription } from 'rxjs';
+import { UserService } from '../services/user.service';
+import { AlertService } from '../services/alert.service';
+
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
@@ -14,36 +17,78 @@ import {
 })
 
 export class LogInComponent implements OnInit {
-  constructor(private socialAuthService: AuthService, public router: Router) { }
+  password = "password";
+  loginForm: FormGroup;
+  submitted = false;
+  returnUrl: string;
+
+  changeTypeToText() {
+    this.password = "text";
+  }
+  changeTypeToPass() {
+    this.password = "password";
+  }
+  constructor(private socialAuthService: AuthService, public router: Router, private authenticationService: AuthenticationService,
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute, private alertService: AlertService) {
+    // redirect to home if already logged in
+    if (this.authenticationService.currentUserValue) {
+      this.router.navigate(['/profile']);
+    }
+  }
 
   public socialSignIn(socialPlatform: string) {
     let socialPlatformProvider;
-    if (socialPlatform == "facebook") {
-      socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
-    } else if (socialPlatform == "google") {
+    if (socialPlatform == "google") {
       socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
-      //Redirect a otra pagina
-      this.router.navigate(['/profile'])
-    } else if (socialPlatform == "linkedin") {
-      socialPlatformProvider = LinkedinLoginProvider.PROVIDER_ID;
     }
-
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
-        console.log(socialPlatform + " sign in data : ", userData);
-        console.log(userData.idToken);
+        this.authenticationService.login(userData.email, null, userData.idToken)
+          .pipe(first())
+          .subscribe(
+            data => {
+              this.router.navigate([this.returnUrl]);
+            },
+            error => {
+              this.alertService.error(error);
+            });
 
-        localStorage.setItem('token',userData.idToken);
-        
-        // Now sign-in with userData
-        // ...
-
+         //Redirect to profile
+        /*  this.router.navigate(['/profile']) */
       }
     );
   }
 
   ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+  }
 
+  get f() { return this.loginForm.controls; }
+
+  onSubmit() {
+    this.submitted = true;
+    if (this.loginForm.invalid) {
+      return;
+    }
+    console.log(this.f.username.value);
+    console.log(this.f.password.value);
+    this.authenticationService.login(this.f.username.value, this.f.password.value, null)
+      .pipe(first())
+      .subscribe(
+        data => {
+          //Preguntar que es this.returnURL
+          /* this.router.navigate([this.returnUrl]); */
+          this.router.navigate(['/profile']);
+        },
+        error => {
+          this.alertService.error(error);
+        });
   }
 
 }
