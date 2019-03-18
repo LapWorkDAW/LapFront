@@ -37,13 +37,12 @@ export class AuthenticationService {
 
     logout() {
         let user = JSON.parse(localStorage.getItem('currentUser'));
-        let json = { "token": user.token };
-        let url = "/api.php?controller=User&function=logout";
+        let url = "/api.php?controller=User&function=logout&token=" + user.token;
 
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
         //hago peticion al back para vaciar token
-        this.http.post<any>(url, json, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) })
+        this.http.get<any>(url, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) })
             .subscribe(
                 resul => {
                     console.log(resul);
