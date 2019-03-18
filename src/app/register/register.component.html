@@ -39,7 +39,7 @@
         <div *ngIf="f.email.errors.required">Email is required</div>
         <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
       </div>
-      <div class="has-error" *ngIf="isEmailExist">
+      <div class="has-error" class="invalid-feedback" *ngIf="isEmailExist">
         <div>
           <label class="control-label" for="inputError">
             This mail is already used. Try another one.</label>
@@ -51,9 +51,9 @@
       <label>Country/ Region</label>
       <input google-place type="text" class="form-control" formControlName="country" (onSelect)="setAddress($event)"
         placeholder="Type to search.." id="inputError" />
-      <div class="has-error" *ngIf="isSelectCountry">
+      <div class="has-error" class="invalid-feedback" *ngIf="isSelectCountry">
         <div>
-          <label class="control-label" for="inputError">
+          <label class="control-label" class="invalid-feedback" for="inputError">
             Country/ Region is required</label>
         </div>
       </div>
