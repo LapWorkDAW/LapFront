@@ -12,23 +12,24 @@
       <li class="nav-item active">
         <a class="nav-link" [routerLink]="['/login']">Log In</a>
       </li>
-      <li class="nav-item dropdown active" *ngIf="isSignIn">
-        <!-- *ngIf="isSignIn" -->
+      <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" *ngIf="currentUser" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Menu
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <p>Signed in as <br>"username" </p>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">My Projects</a>
+          <a class="dropdown-item" href="#">Favourites</a>
+          <a class="dropdown-item" href="#">Join projects</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Settings</a>
+          <a class="dropdown-item" (click)="signOut()" href="#">Log Out</a>
+        </div>
+      </li>
     </ul>
-    <a class="nav-link dropdown-toggle" *ngIf="currentUser" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-      aria-haspopup="true" aria-expanded="false">
-      Menu
-    </a>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <p class="text-right">Signed in as <br>"username" </p>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">Overview</a>
-      <a class="dropdown-item" href="#">My Projects</a>
-      <a class="dropdown-item" href="#">Favourites</a>
-      <a class="dropdown-item" href="#">Join projects</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">Settings</a>
-      <a class="dropdown-item" (click)="signOut()" href="#">Log Out</a>
-    </div>
+
+
   </div>
 </nav>
