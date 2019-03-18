@@ -1,8 +1,8 @@
 {
-    "/api.php*": {
-        "target": "http://localhost/LapBack/",
-        "secure": false,
-        "logLevel": "debug",
-        "changeOrigin": true
-    }
+  "/api.php*": {
+    "target": "http://172.16.2.51/LapBack/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
 }
