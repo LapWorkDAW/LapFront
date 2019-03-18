@@ -1,31 +1,88 @@
 <navNoLog></navNoLog>
-<main>
-  <div id="one">
-    <h1>A new way to manage your project</h1>
-    <p>Plan, organise, track in one visual cooperative way</p>
-    <a [routerLink]="['login']">Get started</a><br> <!-- full info link -->
-    <img [src]="'assets/icons/home/table.jpeg'" alt="table" width="600">
-  </div><!-- this is not finalized -->
-
-  <div id="two">
-    <h1>Outstanding projects</h1>
-
-    <div>
-      <h2>Finished projects</h2>
-
-      <ol>
-        <!-- <li *ngFor='let project of projects;'>
-          {{project.name}} <br>
-          {{project.desc}} <br>
-          {{project.creator}} <br>
-        </li> -->
-      </ol>
-    </div>
-
-    <div>
-      <h2>On going projects</h2>
-
-    </div>
+<div class="container col-md-7">
+  <div>
+    <br>
+    <h1 class="text-center mt-4">A new way to manage your project</h1>
+    <div class="text-center">
+      <p>Plan, organise, track in one visual cooperative way</p>
+      <a [routerLink]="['login']" class="text-center">Get started</a><br><br>
+      <img class="rounded-sm" [src]="'assets/icons/home/table.jpeg'" alt="table" class="img-fluid">
+    </div><br><br>
   </div>
-</main>
+
+  <div class="text-center"><br>
+    <h1>Outstanding projects</h1><br>
+    <div class="row">
+      <div class="col-6 mb-4">
+        <h3>Finished projects</h3>
+        <div class="card mt-4 text-left">
+          <img [src]="'assets/icons/home/table22.jpeg'" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">"card title"</h5>
+            <p class="card-text text-left">This is a wider card with supporting text below as a natural lead-in to
+              additional content. This content is a little bit longer.</p>
+            <small class="">"author"</small>
+            <div class="dropdown-divider"></div>
+            <div class="d-flex justify-content-between align-items-center">
+              <small class="">"stars"</small>
+              <small class="text-muted">"kind"</small>
+            </div>
+            <a class="btn btn-outline-primary mt-4" href="#" role="button">Link</a><br>
+          </div>
+        </div>
+
+
+        <div class="card mt-4 text-left">
+          <img [src]="'assets/icons/home/table5.jpeg'" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">"card title"</h5>
+            <p class="card-text text-left">This is a wider card with supporting text below as a natural lead-in to
+              additional content. This content is a little bit longer.</p>
+            <small class="">"author"</small>
+            <div class="dropdown-divider"></div>
+            <div class="d-flex justify-content-between align-items-center">
+              <small class="">"stars"</small>
+              <small class="text-muted">"kind"</small>
+            </div>
+            <a class="btn btn-outline-primary mt-4" href="#" role="button">Link</a><br>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 mb-4">
+        <h3>On going projects</h3>
+        <div class="card mt-4 text-left">
+          <img [src]="'assets/icons/home/table1.jpeg'" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">"card title"</h5>
+            <p class="card-text text-left">This is a wider card with supporting text below as a natural lead-in to
+              additional content. This content is a little bit longer.</p>
+            <small class="">"author"</small>
+            <div class="dropdown-divider"></div>
+            <div class="d-flex justify-content-between align-items-center">
+              <small class="">"likes"</small>
+              <small class="text-muted">"kind"</small>
+            </div>
+            <a class="btn btn-outline-primary mt-4" href="#" role="button">Link</a><br>
+          </div>
+        </div>
+        <div class="card mt-4 text-left">
+          <img [src]="'assets/icons/home/table3.jpeg'" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">"card title"</h5>
+            <p class="card-text text-left">This is a wider card with supporting text below as a natural lead-in to
+              additional content. This content is a little bit longer.</p>
+            <small class="">"author"</small>
+            <div class="dropdown-divider"></div>
+            <div class="d-flex justify-content-between align-items-center">
+              <small class="">"likes"</small>
+              <small class="text-muted">"kind"</small>
+            </div>
+            <a class="btn btn-outline-primary mt-4" href="#" role="button">Link</a><br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><br><br>
+</div>
 <footer-tag></footer-tag>

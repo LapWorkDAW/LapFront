@@ -1,46 +1,17 @@
 <navNoLog></navNoLog>
-<!-- <div id="main">
-    {{token}}
-    <h1>Sign in</h1>
-
-    <button (click)="socialSignIn('google')">Sign in with Google</button>
-
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <input type="text" formControlName="username" class="form-control"
-                [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-            <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                <div *ngIf="f.username.errors.required">Username is required</div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <input type="password" formControlName="password" class="form-control"
-                [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                <div *ngIf="f.password.errors.required">Password is required</div>
-            </div>
-        </div>
-        <p>Your LapWork ID is your username.</p>
-        <div class="form-group">
-            <button [disabled]="loading" class="btn btn-primary">Login</button>
-        </div>
-    </form>
-
-    <a [routerLink]="['../register']">Don't have a LapWork ID? Create one now.</a>
-</div> -->
-<div class="container">
+<div class="container col-md-5">
   <br>
-  <h1 class="text-center mt-4">Sign in</h1>
-  <a [routerLink]="['../register']">Don't have a LapWork ID? Create one now.</a>
+  <h1 class="text-center mt-4">Sign in</h1><br>
 
-  <div class="dropdown-divider"></div>
+  <a [routerLink]="['../register']">Don't have a LapWork ID? Create one now.</a>
+  <div class="dropdown-divider"></div><br>
+
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label>Orito Es El Mas Guay</label>
-      <input type="text" class="form-control" formControlName="username" [ngClass]="{'is-invalid': submitted && f.username.errors }" />
+      <label>User name</label>
+      <input paceholder-shown="email" type="text" class="form-control" formControlName="username" [ngClass]="{'is-invalid': submitted && f.username.errors }" />
       <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-        <div *ngIf="f.username.errors.required">Username is required</div>
+        <div *ngIf="f.username.errors.required">User name is required</div>
       </div>
     </div>
     <div class="form-group">
@@ -53,7 +24,7 @@
     <div class="form-group">
       <button [disabled]="loading" class="btn btn-primary"> Log In</button>
     </div>
-  </form>
+  </form><br>
 
   <div class="dropdown-divider"></div>
   <button type="button" (click)="socialSignIn('google')" class="btn btn-outline-primary">Sign In with Google</button>
