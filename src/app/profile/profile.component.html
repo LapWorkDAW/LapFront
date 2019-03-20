@@ -13,126 +13,139 @@
           <p class="card-link">{{currentUser.knowledge}}</p>
           <p class="card-link">{{currentUser.cv}}</p>
         </div>
+
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><a href="#" class="card-link">Edit</a></li>
+        </ul>
+
       </div>
+
     </div>
 
     <div class="col-8">
-      <nav class="mb-5">
-        <div class="nav nav-tabs " id="nav-tab" role="tablist">
-          <a class="nav-item nav-link active mx-2" id="nav-myProjects-tab" data-toggle="tab" href="#nav-myProjects"
-            role="tab" aria-controls="nav-myProjects" aria-selected="true">My Projects</a>
 
-          <a class="nav-item nav-link mx-2" id="nav-favourites-tab" data-toggle="tab" href="#nav-favourites" role="tab"
-            aria-controls="nav-favourites" aria-selected="false">Favourites</a>
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="myProjects-tab" data-toggle="tab" href="#myProjects" role="tab" aria-controls="home"
+            aria-selected="true">My projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="favourites-tab" data-toggle="tab" href="#favourites" role="tab" aria-controls="profile"
+            aria-selected="false">Favourites</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="joinProjects-tab" data-toggle="tab" href="#joinProjects" role="tab" aria-controls="contact"
+            aria-selected="false">Join projects</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="myProjects" role="tabpanel" aria-labelledby="myProjects-tab">
+          <h1>My Projects</h1>
 
-          <a class="nav-item nav-link mx-2" id="nav-joinProjects-tab" data-toggle="tab" href="#nav-joinProjects" role="tab"
-            aria-controls="nav-joinProjects" aria-selected="false">Join Projects</a>
+          <div class="d-flex justify-content-between align-items-center">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="pills-onGoingProjects-tab" data-toggle="pill" href="#pills-onGoingProjects"
+                  role="tab" aria-controls="pills-onGoingProjects" aria-selected="true">On-going projects</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="pills-finishedProjects-tab" data-toggle="pill" href="#pills-finishedProjects"
+                  role="tab" aria-controls="pills-finishedProjects" aria-selected="false">Finished projects</a>
+              </li>
+            </ul>
+            <a [routerLink]="['../createProject']" class="btn btn-outline-primary">Create project</a>
 
-        </div>
-      </nav>
-
-      <div class="tab-content mt-3" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="nav-myProjects" role="tabpanel" aria-labelledby="nav-myProjects-tab">
-
-          <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
-                aria-controls="pills-home" aria-selected="true">On-going projects</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
-                aria-controls="pills-profile" aria-selected="false">Finished projects</a>
-            </li>
-          </ul>
+          </div>
 
           <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-              <div class="card-columns mt-3">
+            <div class="tab-pane fade show active" id="pills-onGoingProjects" role="tabpanel" aria-labelledby="pills-onGoingProjects-tab">
+              <h3>On-going projects</h3>
+              <div class="card-columns">
                 <div class="card">
                   <img src="../../assets/icons/profile imgs/books.jpg" class="card-img-top" alt="...">
                   <div class="card-body">
-                    <h5 class="card-title">One</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                      additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-success">Literacy</small></p>
+                    <h5 class="card-title">""Title""</h5>
+                    <p class="card-text">""Description""</p>
+                    <div class="dropdown-divider"></div>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <small class="">"likes"</small>
+                      <small class="text-success">"kind"</small>
+                    </div>
                   </div>
                 </div>
+
+                <div class="card">
+                  <img src="../../assets/icons/profile imgs/cam.jpg" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">""Title""</h5>
+                    <p class="card-text">This card has supporting text below as a natural lead-in to additional
+                      content.</p>
+                    <div class="dropdown-divider"></div>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <small class="">"likes"</small>
+                      <small class="text-primary">"kind"</small>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="tab-pane fade" id="pills-finishedProjects" role="tabpanel" aria-labelledby="pills-finishedProjects-tab">
+              <h3>Finished projects</h3>
+              <div class="card-columns">
+                <div class="card">
+                  <img src="../../assets/icons/profile imgs/books.jpg" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">""Title""</h5>
+                    <p class="card-text">""Description""</p>
+                    <div class="dropdown-divider"></div>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <small class="">"faves"</small>
+                      <small class="text-danger">"kind"</small>
+                    </div>
+                  </div>
+                  <div class="card-footer text-muted">
+                    <small class="">"finish date"</small>
+                  </div>
+                </div>
+
                 <div class="card">
                   <img src="../../assets/icons/profile imgs/cam.jpg" class="card-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Two</h5>
                     <p class="card-text">This card has supporting text below as a natural lead-in to additional
                       content.</p>
-                    <p class="card-text"><small class="text-primary">Art</small></p>
+                    <div class="dropdown-divider"></div>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <small class="">"faves"</small>
+                      <small class="text-primary">"kind"</small>
+                    </div>
+                  </div>
+                  <div class="card-footer text-muted">
+                    <small class="">"finish date"</small>
                   </div>
                 </div>
-                <div class="card">
-                  <img src="../../assets/icons/profile imgs/fabrics.jpg" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Three</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                      additional
-                      content. This card has even longer content than the first to show that equal height action.</p>
-                    <p class="card-text"><small class="text-danger">Textil</small></p>
-                  </div>
-                </div>
-                <div class="card">
-                  <img src="../../assets/icons/profile imgs/fabrics.jpg" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Four</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                      additional
-                      content. This card has even longer content than the first to show that equal height action.</p>
-                    <p class="card-text"><small class="text-danger">Textil</small></p>
-                  </div>
-                </div>
-                <div class="card">
-                  <img src="../../assets/icons/profile imgs/books.jpg" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Five</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                      additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-success">Literacy</small></p>
-                  </div>
-                </div>
-                <div class="card">
-                  <img src="../../assets/icons/profile imgs/tech.jpg" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Six</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                      additional
-                      content. This card has even longer content than the first to show that equal height action.</p>
-                    <p class="card-text"><small class="text-warning">Tech</small></p>
-                  </div>
-                </div>
+
               </div>
 
             </div>
-            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">Nulla
-              posuere sollicitudin aliquam ultrices sagittis orci. Mauris sit amet massa vitae tortor condimentum
-              lacinia quis vel. Magna eget est lorem ipsum. Sit amet consectetur adipiscing elit. Urna condimentum
-              mattis pellentesque id nibh tortor id aliquet. Euismod quis viverra nibh cras pulvinar. Laoreet id donec
-              ultrices tincidunt arcu.</div>
+
           </div>
 
+
+
         </div>
-        <div class="tab-pane fade" id="nav-favourites" role="tabpanel" aria-labelledby="nav-favourites-tab">Cras
-          adipiscing enim eu turpis egestas pretium aenean pharetra. Ultricies tristique nulla aliquet enim tortor at
-          auctor urna. Arcu
-          vitae elementum curabitur vitae nunc sed velit dignissim. Sed egestas egestas fringilla phasellus faucibus
-          scelerisque eleifend donec. Euismod in pellentesque massa placerat duis ultricies. Amet mauris commodo quis
-          imperdiet massa tincidunt nunc pulvinar sapien. Ornare massa eget egestas purus viverra. Vitae turpis massa
-          sed elementum tempus egestas sed sed. Sagittis purus sit amet volutpat consequat mauris nunc congue nisi. Id
-          faucibus nisl tincidunt eget nullam non nisi est. </div>
-        <div class="tab-pane fade" id="nav-joinProjects" role="tabpanel" aria-labelledby="nav-joinProjects-tab">Leo
-          vel
-          fringilla est ullamcorper eget nulla facilisi. Faucibus a pellentesque sit amet porttitor eget dolor morbi.
-          Sed cras ornare
-          arcu dui. Neque egestas congue quisque egestas. Nulla at volutpat diam ut venenatis tellus in. Vitae
-          ultricies leo integer malesuada nunc vel risus commodo viverra. Faucibus vitae aliquet nec ullamcorper.
-          Mauris rhoncus
-          aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. </div>
+        <div class="tab-pane fade" id="favourites" role="tabpanel" aria-labelledby="favourites-tab">
+          <h1>Favourites</h1>
+        </div>
+        <div class="tab-pane fade" id="joinProjects" role="tabpanel" aria-labelledby="joinProjects-tab">
+          <h1>Join Projects</h1>
+        </div>
       </div>
+
     </div>
   </div>
 </div>

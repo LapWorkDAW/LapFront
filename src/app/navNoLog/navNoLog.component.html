@@ -18,14 +18,14 @@
           Menu
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <p>Signed in as <br>{{currentUser.userName}}</p>
+          <p class="dropdown-item text-primary">Signed in as <br>{{currentUser.firstname}}</p>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">My Projects</a>
-          <a class="dropdown-item" href="#">Favourites</a>
-          <a class="dropdown-item" href="#">Join projects</a>
+          <a class="dropdown-item" [routerLink]="['../profile']">My Projects</a>
+          <a class="dropdown-item" [routerLink]="['../profile']">Favourites</a>
+          <a class="dropdown-item" [routerLink]="['../profile']">Join projects</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Settings</a>
-          <a class="dropdown-item" (click)="signOut()" href="#">Log Out</a>
+          <a class="dropdown-item" [routerLink]="['../settings']">Settings</a>
+          <a class="dropdown-item" (click)="signOut()" href="">Log Out</a>
         </div>
       </li>
     </ul>

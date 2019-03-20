@@ -11,8 +11,10 @@ import { PrivacyPolicyComponent } from './privacyPolicy/privacyPolicy.component'
 import { GooglePlacesDirective } from './google-places.directive';
 import { TermsOfUseComponent } from './termsOfUse/termsOfUse.component';
 import { NavNoLogComponent } from './navNoLog/navNoLog.component';
+import { CreateProjectComponent } from './createProject/createProject.component';
+import { SettingsComponent } from './settings/settings.component';
 import { ContactComponent } from './contact/contact.component';
-import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ProfileComponent } from './profile/profile.component';
 import { StorageServiceModule } from 'angular-webstorage-service';
 import {
@@ -22,17 +24,17 @@ import {
   LinkedinLoginProvider,
 } from "angular-6-social-login";
 import { ReactiveFormsModule } from '@angular/forms';
-import { JwtInterceptor} from './_helpers/jwt.interceptor';
+import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 
 export function getAuthServiceConfigs() {
   let config = new AuthServiceConfig(
-      [
-        {
-          id: GoogleLoginProvider.PROVIDER_ID,
-	      provider: new GoogleLoginProvider("417274944677-emff9mcs5opsu1rip11e5r1rjvhm41ls.apps.googleusercontent.com")
-        }
-      ]
+    [
+      {
+        id: GoogleLoginProvider.PROVIDER_ID,
+        provider: new GoogleLoginProvider("417274944677-emff9mcs5opsu1rip11e5r1rjvhm41ls.apps.googleusercontent.com")
+      }
+    ]
   );
   return config;
 }
@@ -49,7 +51,11 @@ export function getAuthServiceConfigs() {
     TermsOfUseComponent,
     NavNoLogComponent,
     ContactComponent,
-    ProfileComponent
+    ProfileComponent,
+    CreateProjectComponent,
+    SettingsComponent
+    /* ,
+    UserSettingsComponent */
   ],
   providers: [
     {
@@ -57,7 +63,7 @@ export function getAuthServiceConfigs() {
       useFactory: getAuthServiceConfigs
     },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   imports: [
     BrowserModule,

@@ -2,12 +2,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
+import { CreateProjectComponent } from './createProject/createProject.component';
 import { LogInComponent } from './login/login.component';
 import { PrivacyPolicyComponent } from './privacyPolicy/privacyPolicy.component';
 import { TermsOfUseComponent } from './termsOfUse/termsOfUse.component';
 import { NavNoLogComponent } from './navNoLog/navNoLog.component';
 import { ContactComponent } from './contact/contact.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SettingsComponent } from './settings/settings.component';
 import { AuthGuard } from './_guard/auth.guard';
 
 const appRoutes: Routes = [
@@ -16,9 +18,11 @@ const appRoutes: Routes = [
     { path: 'privacyPolicy', component: PrivacyPolicyComponent },
     { path: 'termsOfUse', component: TermsOfUseComponent },
     { path: 'login', component: LogInComponent },
-    { path: 'navNoLog', component: NavNoLogComponent},
-    { path: 'contact', component: ContactComponent},
-    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+    { path: 'navNoLog', component: NavNoLogComponent },
+    { path: 'contact', component: ContactComponent },
+    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+    { path: 'createProject', component: CreateProjectComponent },
+    { path: 'settings', component: SettingsComponent },
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
