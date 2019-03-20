@@ -11,16 +11,14 @@
     <div class="form-row">
       <div class="form-group col-md">
         <label>First Name</label>
-        <input type="text" formControlName="firstName" class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+        <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
         <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
           <div *ngIf="f.firstName.errors.required">First Name is required</div>
         </div>
       </div>
       <div class="form-group col-md">
         <label>Surname</label>
-        <input type="text" formControlName="surname" class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f.surname.errors }" />
+        <input type="text" formControlName="surname" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.surname.errors }" />
         <div *ngIf="submitted && f.surname.errors" class="invalid-feedback">
           <div *ngIf="f.surname.errors.required">Surname is required</div>
         </div>
@@ -29,8 +27,7 @@
 
     <div class="form-group">
       <label>User name</label>
-      <input type="text" formControlName="userName" class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" />
+      <input type="text" formControlName="userName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" />
       <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
         <div *ngIf="f.userName.errors.required">User Name is required</div>
       </div>
@@ -38,14 +35,14 @@
 
     <div class="form-group">
       <label>Email</label>
-      <input type="text" formControlName="email" class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.email.errors }" (blur)="checkEmail()" />
+      <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+        (blur)="checkEmail()" />
       <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-        <div *ngIf="f.email.errors.required">Email is required</div>
-        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+        <div class="invalid-feedback" *ngIf="f.email.errors.required">Email is required</div>
+        <div class="invalid-feedback" *ngIf="f.email.errors.email">Email must be a valid email address</div>
       </div>
       <div *ngIf="isEmailExist">
-        <div>
+        <div class="invalid-feedback">
           <label>
             This mail is already used. Try another one.</label>
         </div>
@@ -56,9 +53,9 @@
       <label>Country/ Region</label>
       <input google-place type="text" class="form-control" formControlName="country" (onSelect)="setAddress($event)"
         placeholder="Type to search.." id="inputError" />
-      <div *ngIf="isSelectCountry">
-        <div>
-          <label>
+      <div class="invalid-feedback" *ngIf="isSelectCountry">
+        <div class="invalid-feedback">
+          <label class="invalid-feedback">
             Country/ Region is required</label>
         </div>
       </div>
@@ -66,8 +63,7 @@
 
     <div class="form-group">
       <label>Birthdate</label>
-      <input type="date" formControlName="birthdate" class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.birthdate.errors }" />
+      <input type="date" formControlName="birthdate" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.birthdate.errors }" />
       <div *ngIf="submitted && f.birthdate.errors" class="invalid-feedback">
         <div *ngIf="f.birthdate.errors.required">User Name is required</div>
       </div>
@@ -75,8 +71,7 @@
 
     <div class="form-group">
       <label>Password</label>
-      <input type="password" formControlName="pass" class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.pass.errors }" />
+      <input type="password" formControlName="pass" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.pass.errors }" />
       <div *ngIf="submitted && f.pass.errors" class="invalid-feedback">
         <div *ngIf="f.pass.errors.required">Password is required</div>
         <div *ngIf="f.pass.errors.minlength">Password must be at least 6 characters</div>
@@ -85,8 +80,7 @@
 
     <div class="form-group">
       <label>Confirm Password</label>
-      <input type="password" formControlName="confirmPassword" class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+      <input type="password" formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
       <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
         <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
         <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
@@ -97,8 +91,8 @@
 
     <div class="form-group">
       <div class="form-check">
-        <input type="checkbox" formControlName="privacy" class="form-check-input"
-          [ngClass]="{ 'is-invalid': submitted && f.privacy.errors }" checked />
+        <input type="checkbox" formControlName="privacy" class="form-check-input" [ngClass]="{ 'is-invalid': submitted && f.privacy.errors }"
+          checked />
         I have read and accept <a [routerLink]="['../privacyPolicy']">Privacy Policy</a>.
         <div *ngIf="submitted && f.privacy.errors" class="invalid-feedback">
           <div *ngIf="f.privacy.errors.required">Privacy Policy is required</div>
@@ -107,8 +101,7 @@
 
       <div class="form-check">
         <input type="checkbox" class="form-check-input" formControlName="saveName" /> I confirm all
-        information provided is my own; I understand and agree I will be used as per the LapWork <a
-          [routerLink]="['../privacyPolicy']">Privacy
+        information provided is my own; I understand and agree I will be used as per the LapWork <a [routerLink]="['../privacyPolicy']">Privacy
           Policy</a>. I can withdaw my prior consent at any time<br>
       </div>
     </div>

@@ -5,7 +5,7 @@
     <div class="col-3 mr-5">
       <!-- div carta user -->
       <div class="card" style="width: 18rem;">
-        <img src="/src/assets/icons/girl.jpg" class="card-img-top" alt="...">
+        <img [src]="'/src/assets/icons/girl.jpg'" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">{{currentUser.firstname}} {{currentUser.surname}}</h5>
           <p class="card-text">{{currentUser.description}}</p>
@@ -15,7 +15,7 @@
         </div>
 
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"><a href="#" class="card-link">Edit</a></li>
+          <li class="list-group-item"><a [routerLink]="['../settings']" class="card-link">Edit</a></li>
         </ul>
 
       </div>
