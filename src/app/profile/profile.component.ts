@@ -4,7 +4,7 @@ import { User } from 'src/assets/models/User';
 import { UserService } from '../services/user.service';
 import { ProjectService } from '../services/project.service';
 import { AuthenticationService } from '../services/authentication.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { GooglePlacesDirective } from '../google-places.directive';
 import { Project } from 'src/assets/models/Project';
 
@@ -15,6 +15,9 @@ import { Project } from 'src/assets/models/Project';
     , providers: [GooglePlacesDirective]
 })
 export class ProfileComponent implements OnInit, OnDestroy {
+    active_myProjects = "";
+    active_favourites = "";
+    active_joinProjects = "";
 
     currentUser: User;
     currentUserSubscription: Subscription;
@@ -25,6 +28,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     projectsFinished: Array<Project>;
 
     constructor(
+        private _activRoute: ActivatedRoute,
         private authenticationService: AuthenticationService, private projectService: ProjectService,
         private userService: UserService, private router: Router,
         private googlePlacesDirective: GooglePlacesDirective
@@ -41,8 +45,26 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
         console.log(this.currentUser);
         //Retrieve address in string format
-       /* this.googlePlacesDirective.getAddress(this.currentUser.latitude, this.currentUser.longitude);
-        this.userLocation = localStorage.getItem("city"); */
+        /* this.googlePlacesDirective.getAddress(this.currentUser.latitude, this.currentUser.longitude);
+         this.userLocation = localStorage.getItem("city"); */
+        this._activRoute.params.forEach(
+            (arrayParams: Params) => {
+                let option = arrayParams["option"];
+                switch (option) {
+                    case "myProjects":
+                        this.active_myProjects = "active";
+                        break;
+                    case "favourites":
+                        this.active_favourites = "active";
+                        break;
+                    case "joinProjects":
+                        this.active_joinProjects = "active";
+                        break;
+                    default:
+                        this.active_myProjects = "active";
+                }
+            }
+        );
     }
 
     deleteUser() {
@@ -57,10 +79,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     getProjectsInProgress() {
         this.projectService.getProjectNoFinished(this.currentUser.token).subscribe(
-            result=>{
-                this.projectsInProgress=result["data"];
+            result => {
+                this.projectsInProgress = result["data"];
             },
-            error=>{
+            error => {
                 console.log(error);
             }
         )
@@ -68,10 +90,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     getProjectsFinished() {
         this.projectService.getProjectFinished(this.currentUser.token).subscribe(
-            result=>{
-                this.projectsFinished=result["data"];
+            result => {
+                this.projectsFinished = result["data"];
             },
-            error=>{
+            error => {
                 console.log(error);
             }
         )
@@ -79,10 +101,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     getProjectsStar() {
         this.projectService.getProjectStar(this.currentUser.token).subscribe(
-            result=>{
-                this.projectsStar=result["data"];
+            result => {
+                this.projectsStar = result["data"];
             },
-            error=>{
+            error => {
                 console.log(error);
             }
         )
@@ -90,10 +112,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     getProjectsFavorite() {
         this.projectService.getProjectStar(this.currentUser.token).subscribe(
-            result=>{
-                this.projectsStar=result["data"];
+            result => {
+                this.projectsStar = result["data"];
             },
-            error=>{
+            error => {
                 console.log(error);
             }
         )

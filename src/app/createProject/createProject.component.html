@@ -3,18 +3,22 @@
 <div class="container col-md-5">
   <br>
   <h1 class="text-center mt-4">Create a new project</h1><br>
+  <p>Coordinate, track, and update your work in one place, so projects stay transparent and on schedule.</p>
+  <div class="dropdown-divider"></div>
 
   <form action="">
     <div class="form-group">
       <label>Project's name</label>
-      <input type="text" class="form-control" formControlName="projectname" [ngClass]="{'is-invalid': submitted && f.projectname.errors }" />
+      <input type="text" class="form-control" formControlName="projectname"
+        [ngClass]="{'is-invalid': submitted && f.projectname.errors }" />
       <div *ngIf="submitted && f.projectname.errors" class="invalid-feedback">
         <div *ngIf="f.projectname.errors.required">Project's name is required</div>
       </div>
     </div>
     <div class="form-group">
       <label>Description </label><small class="text-muted"> (optional)</small>
-      <input type="text" class="form-control" formControlName="description" [ngClass]="{'is-invalid': submitted && f.description.errors }" />
+      <input type="text" class="form-control" formControlName="description"
+        [ngClass]="{'is-invalid': submitted && f.description.errors }" />
     </div>
     <div class="form-group">
       <label>Type of project</label>
@@ -28,7 +32,8 @@
     </div>
     <div class="form-group">
       <label>Ending date</label>
-      <input type="date" formControlName="finishdate" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.finishdate.errors }" />
+      <input type="date" formControlName="finishdate" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.finishdate.errors }" />
       <div *ngIf="submitted && f.finishdate.errors" class="invalid-feedback">
         <div *ngIf="f.finishdate.errors.required">User Name is required</div>
       </div>

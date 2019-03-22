@@ -20,9 +20,9 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <p class="dropdown-item text-primary">Signed in as <br>{{currentUser.firstname}}</p>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" [routerLink]="['../profile']">My Projects</a>
-          <a class="dropdown-item" [routerLink]="['../profile']">Favourites</a>
-          <a class="dropdown-item" [routerLink]="['../profile']">Join projects</a>
+          <a class="dropdown-item" [routerLink]="['profile/myProjects']">My Projects</a>
+          <a class="dropdown-item" [routerLink]="['profile/favourites']">Favourites</a>
+          <a class="dropdown-item" [routerLink]="['profile/joinProjects']">Join projects</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" [routerLink]="['../settings']">Settings</a>
           <a class="dropdown-item" (click)="signOut()" href="">Log Out</a>
