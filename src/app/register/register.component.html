@@ -41,8 +41,8 @@
       <input type="text" formControlName="email" class="form-control"
         [ngClass]="{ 'is-invalid': submitted && f.email.errors }" (blur)="checkEmail()" />
       <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-        <div class="invalid-feedback" *ngIf="f.email.errors.required">Email is required</div>
-        <div class="invalid-feedback" *ngIf="f.email.errors.email">Email must be a valid email address</div>
+        <div *ngIf="f.email.errors.required">Email is required</div>
+        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
       </div>
       <div *ngIf="isEmailExist">
         <div>
@@ -52,14 +52,16 @@
       </div>
     </div>
 
-    <div class="form-group has-error has-feedback">
+    <div class="form-group has-error">
       <label>Country/ Region</label>
       <input google-place type="text" class="form-control" formControlName="country" (onSelect)="setAddress($event)"
         placeholder="Type to search.." id="inputError" />
+
+
       <div *ngIf="isSelectCountry">
         <div>
-          <label class="invalid-feedback">
-            Country/ Region is required</label>
+          <label style="color: #dc3545; font-size: 80%; margin-top: 0.25rem;">
+            Country & Region is required</label>
         </div>
       </div>
     </div>
