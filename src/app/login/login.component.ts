@@ -22,12 +22,17 @@ export class LogInComponent implements OnInit {
   submitted = false;
   returnUrl: string;
 
+  //TODO: on key down apear img
+  showEye() {
+
+  }
   changeTypeToText() {
     this.password = "text";
   }
   changeTypeToPass() {
     this.password = "password";
   }
+
   constructor(private socialAuthService: AuthService, public router: Router, private authenticationService: AuthenticationService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute, private alertService: AlertService) {
@@ -54,7 +59,7 @@ export class LogInComponent implements OnInit {
               this.alertService.error(error);
             });
 
-         //Redirect to profile
+        //Redirect to profile
         /*  this.router.navigate(['/profile']) */
       }
     );

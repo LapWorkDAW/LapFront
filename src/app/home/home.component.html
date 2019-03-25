@@ -6,7 +6,9 @@
     <div class="text-center">
       <p>Plan, organise, track in one visual cooperative way</p>
       <a [routerLink]="['login']" class="text-center" *ngIf="!currentUser">Get started</a>
-      <a [routerLink]="['login']" class="text-center" *ngIf="currentUser">Go to profile</a><br><br>
+      <a [routerLink]="['login']" class="text-center" *ngIf="currentUser">Go to profile</a>
+      <img [src]="'/src/assets/icons/general/next.png'" height="14px" style="margin-left: 3px" alt="">
+      <br><br>
       <img class="rounded-sm" [src]="'assets/icons/home/table.jpeg'" alt="table" class="img-fluid">
     </div><br><br>
   </div>
@@ -17,7 +19,7 @@
       <div class="col-6 mb-4">
         <h3>Finished projects</h3>
         <div class="card mt-4 text-left">
-          <img [src]="'assets/icons/home/table22.jpeg'" class="card-img-top" alt="...">
+          <img [src]="'/src/assets/icons/general/standard/table2.jpeg'" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">"card title"</h5>
             <p class="card-text text-left">This is a wider card with supporting text below as a natural lead-in to
@@ -33,7 +35,7 @@
         </div>
 
         <div class="card mt-4 text-left">
-          <img [src]="'assets/icons/home/table5.jpeg'" class="card-img-top" alt="...">
+          <img [src]="'/src/assets/icons/general/standard/table3.jpeg'" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">"card title"</h5>
             <p class="card-text text-left">This is a wider card with supporting text below as a natural lead-in to
@@ -47,13 +49,13 @@
             <a class="btn btn-outline-primary mt-4" href="#" role="button">Link</a><br>
           </div>
         </div>
-        <button type="button" class="btn float-right btn-lg btn-block mt-3 btn-outline-secondary">More</button>
+        <button type="button" class="btn btn-block mt-3 btn-outline-secondary">More</button>
       </div>
 
       <div class="col-6 mb-4">
         <h3>On going projects</h3>
         <div class="card mt-4 text-left">
-          <img [src]="'assets/icons/home/table1.jpeg'" class="card-img-top" alt="...">
+          <img [src]="'/src/assets/icons/general/standard/table5.jpeg'" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">"card title"</h5>
             <p class="card-text text-left">This is a wider card with supporting text below as a natural lead-in to
@@ -68,7 +70,7 @@
           </div>
         </div>
         <div class="card mt-4 text-left">
-          <img [src]="'assets/icons/home/table3.jpeg'" class="card-img-top" alt="...">
+          <img [src]="'/src/assets/icons/general/standard/table4.jpeg'" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">"card title"</h5>
             <p class="card-text text-left">This is a wider card with supporting text below as a natural lead-in to
@@ -82,7 +84,7 @@
             <a class="btn btn-outline-primary mt-4" href="#" role="button">Link</a><br>
           </div>
         </div>
-        <button type="button" class="btn float-right btn-lg btn-block mt-3 btn-outline-secondary">More</button>
+        <button type="button" class="btn btn-block mt-3 btn-outline-secondary">More</button>
       </div>
     </div>
   </div><br><br>
