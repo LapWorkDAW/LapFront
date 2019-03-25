@@ -5,7 +5,8 @@
     <h1 class="text-center mt-4">A new way to manage your project</h1>
     <div class="text-center">
       <p>Plan, organise, track in one visual cooperative way</p>
-      <a [routerLink]="['login']" class="text-center">Get started</a><br><br>
+      <a [routerLink]="['login']" class="text-center" *ngIf="!currentUser">Get started</a>
+      <a [routerLink]="['login']" class="text-center" *ngIf="currentUser">Go to profile</a><br><br>
       <img class="rounded-sm" [src]="'assets/icons/home/table.jpeg'" alt="table" class="img-fluid">
     </div><br><br>
   </div>
