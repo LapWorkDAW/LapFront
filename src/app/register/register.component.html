@@ -54,10 +54,8 @@
 
     <div class="form-group has-error">
       <label>Country/ Region</label>
-      <input google-place type="text" class="form-control" formControlName="country" (onSelect)="setAddress($event)"
-        placeholder="Type to search.." id="inputError" />
-
-
+      <input google-place type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted}"
+        formControlName="country" (onSelect)="setAddress($event)" placeholder="Type to search.." id="inputError" />
       <div *ngIf="isSelectCountry">
         <div>
           <label style="color: #dc3545; font-size: 80%; margin-top: 0.25rem;">
