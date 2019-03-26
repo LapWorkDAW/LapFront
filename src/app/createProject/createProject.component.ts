@@ -7,6 +7,7 @@ import { User } from "src/assets/models/User";
 import { Subscription } from "rxjs";
 import { Project } from "src/assets/models/Project";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ValidateDate } from '../_helpers/date.validator';
 
 @Component({
     selector: 'createProject',
@@ -48,10 +49,35 @@ export class CreateProjectComponent implements OnInit {
             projectName: ['', Validators.required],
             description: ['', Validators.required],
             idType: ['', Validators.required],
-            email: ['', [Validators.required]],
             dateFinish: ['', Validators.required],
             img: ['']
-        });
+        }, {
+                validator: ValidateDate('dateFinish')
+            });
+    }
+
+    get f() { return this.createProjectForm.controls; }
+
+    sendForm() {
+        this.submitted = true;
+
+        if (this.createProjectForm.invalid) {
+            return;
+        }
+        console.log(this.createProjectForm.value);
+        /*  this.projectService.register(this.currentUser.token, this.createProjectForm.value)
+             .subscribe(
+                 resul => {
+                     console.log(resul);
+ 
+                 },
+                 error => {
+                     console.log(error);
+ 
+                 }
+             );
+         this.newProject = new Project();
+         this.createProjectForm.reset(); */
     }
 
 

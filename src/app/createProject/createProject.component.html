@@ -38,6 +38,7 @@
         [ngClass]="{ 'is-invalid': submitted && f.dateFinish.errors }" />
       <div *ngIf="submitted && f.dateFinish.errors" class="invalid-feedback">
         <div *ngIf="f.dateFinish.errors.required">Project's ending date is required</div>
+        <div *ngIf="f.dateFinish.errors.validateDate">Ending date must be after the start date</div>
       </div>
     </div>
     <div class="form-group">
