@@ -9,7 +9,7 @@ export class ProjectService {
 
   constructor(private http: HttpClient) { }
 
-  register(token:String, project:Project){
+  register(token: String, project: Project) {
     let url = "/api.php?controller=Project&token=" + token;
     return this.http.post(
       url, project, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
@@ -23,8 +23,8 @@ export class ProjectService {
     );
   }
 
-  update(token: String, id: number, project:Project) {
-    let url = "/api.php?controller=Project&token=" + token + "&id="+id;
+  update(token: String, id: number, project: Project) {
+    let url = "/api.php?controller=Project&token=" + token + "&id=" + id;
     return this.http.put(
       url, project, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
     );
@@ -53,6 +53,13 @@ export class ProjectService {
 
   getProjectFavorite(token: String) {
     let url = "/api.php?controller=VProjectFav&function=allVotes&token=" + token;
+    return this.http.get(
+      url, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
+    );
+  }
+
+  getTypesProject(token: String) {
+    let url = "/api.php?controller=TypeProject&token=" + token;
     return this.http.get(
       url, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
     );

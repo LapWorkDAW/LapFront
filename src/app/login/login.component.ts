@@ -9,6 +9,7 @@ import { User } from 'src/assets/models/User';
 import { Subscription } from 'rxjs';
 import { UserService } from '../services/user.service';
 import { AlertService } from '../services/alert.service';
+import { RegisterService } from '../services/register.service';
 
 @Component({
   selector: 'login',
@@ -21,6 +22,9 @@ export class LogInComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
   returnUrl: string;
+  isEmailExist: boolean;
+  userExist: boolean;
+  userGoogle: User = new User();
 
   changeTypeToText() {
     this.password = "text";
@@ -29,7 +33,7 @@ export class LogInComponent implements OnInit {
     this.password = "password";
   }
   constructor(private socialAuthService: AuthService, public router: Router, private authenticationService: AuthenticationService,
-    private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder, private registerService: RegisterService, private userService: UserService,
     private route: ActivatedRoute, private alertService: AlertService) {
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
@@ -44,18 +48,14 @@ export class LogInComponent implements OnInit {
     }
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
-        this.authenticationService.login(userData.email, null, userData.idToken)
-          .pipe(first())
-          .subscribe(
-            data => {
-              this.router.navigate([this.returnUrl]);
-            },
-            error => {
-              this.alertService.error(error);
-            });
-
-         //Redirect to profile
-        /*  this.router.navigate(['/profile']) */
+        console.log(userData.token);
+        let fullName = userData.name.split(" ");
+        this.userGoogle.firstname = fullName[0];
+        this.userGoogle.surname = fullName[1];
+        this.userGoogle.email = userData.email;
+        this.userGoogle.token = userData.token;
+        this.userGoogle.photo = userData.image;
+        this.checkEmail(userData.email);
       }
     );
   }
@@ -76,18 +76,40 @@ export class LogInComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    console.log(this.f.username.value);
-    console.log(this.f.password.value);
-    this.authenticationService.login(this.f.username.value, this.f.password.value, null)
+    this.login(this.f.username.value, this.f.password.value, null);
+  }
+
+  checkEmail(email: string) {
+    this.registerService.checkUserEmail(email).subscribe(
+      resul => {
+        this.login(this.userGoogle.email, null, this.userGoogle.token);
+      },
+      error => {
+        console.log("Mal");
+        console.log(this.userGoogle);
+        this.userService.register(this.userGoogle)
+          .subscribe(
+            resul => {
+              console.log("bien");
+              this.login(this.userGoogle.email, null, this.userGoogle.token);
+            },
+            error => {
+              console.log("error");
+              this.alertService.error(error);
+            });
+      });
+  }
+
+  login(email, password, token) {
+    this.authenticationService.login(email, password, token)
       .pipe(first())
       .subscribe(
         data => {
-          //Preguntar que es this.returnURL
-          /* this.router.navigate([this.returnUrl]); */
-          this.router.navigate(['/profile']);
+          this.router.navigate(['/profile'])
         },
         error => {
           this.alertService.error(error);
+          this.router.navigate([this.returnUrl]);
         });
   }
 

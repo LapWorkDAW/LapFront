@@ -14,32 +14,21 @@ export class NavNoLogComponent {
     isSignIn: boolean = false;
     currentUser: User;
     token: String;
+
     constructor(private socialAuthService: AuthService, public router: Router, private authenticationService: AuthenticationService) {
         this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     }
 
+    ngOnInit() { }
 
     public signOut() {
-        //verificar si password es de un sitio
-        //haces una cosa
-        //sino llamas a logout
+        /* If the user's password is empty then he is a Google user */
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (this.currentUser.pass === null || this.currentUser.pass === "") {
             this.socialAuthService.signOut();
-            /* this.router.navigate(['/']); */
-            /* localStorage.setItem('token', "null"); */
         }
         this.authenticationService.logout();
-        this.router.navigate(['']);       
+        this.router.navigate(['']);
     }
-
-    ngOnInit() {
-        /* this.token = localStorage.getItem('token');
-        if (this.token != "null") {
-            this.isSignIn = true;
-            console.log(this.isSignIn);
-        } */
-    }
-
 
 }

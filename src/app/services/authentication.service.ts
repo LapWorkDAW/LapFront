@@ -37,17 +37,17 @@ export class AuthenticationService {
 
     logout() {
         let user = JSON.parse(localStorage.getItem('currentUser'));
+        console.log(user.token);
         let url = "/api.php?controller=User&function=logout&token=" + user.token;
-
-        localStorage.removeItem('currentUser');
-        this.currentUserSubject.next(null);
         //hago peticion al back para vaciar token
         this.http.get<any>(url, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) })
             .subscribe(
                 resul => {
-                    console.log(resul);
-                }
+                    localStorage.removeItem('currentUser');
+                    localStorage.removeItem('city');
+                    this.currentUserSubject.next(null);
+                },
+                error => { }
             );
     }
-
 }

@@ -6,41 +6,43 @@
   <p>Coordinate, track, and update your work in one place, so projects stay transparent and on schedule.</p>
   <div class="dropdown-divider"></div>
 
-  <form action="">
+  <form [formGroup]="createProjectForm" (ngSubmit)="sendForm()">
     <div class="form-group">
       <label>Project's name</label>
-      <input type="text" class="form-control" formControlName="projectname"
-        [ngClass]="{'is-invalid': submitted && f.projectname.errors }" />
-      <div *ngIf="submitted && f.projectname.errors" class="invalid-feedback">
-        <div *ngIf="f.projectname.errors.required">Project's name is required</div>
+      <input type="text" class="form-control" formControlName="projectName"
+        [ngClass]="{'is-invalid': submitted && f.projectName.errors }" />
+      <div *ngIf="submitted && f.projectName.errors" class="invalid-feedback">
+        <div *ngIf="f.projectName.errors.required">Project's name is required</div>
       </div>
     </div>
     <div class="form-group">
-      <label>Description </label><small class="text-muted"> (optional)</small>
+      <label>Description </label>
       <input type="text" class="form-control" formControlName="description"
         [ngClass]="{'is-invalid': submitted && f.description.errors }" />
+      <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+        <div *ngIf="f.description.errors.required">Project's description is required</div>
+      </div>
     </div>
     <div class="form-group">
       <label>Type of project</label>
-      <select class="form-control" name="" id="">
-        <option value="">Tech</option>
-        <option value="">Art</option>
-        <option value="">Engineering</option>
-        <option value="">IT</option>
-        <option value="">Literary</option>
+      <select class="form-control" formControlName="idType" [ngClass]="{'is-invalid': submitted && f.idType.errors }">
+        <option *ngFor="let type of typesProject" value={{type.idType}}>{{type.nameType}}</option>
       </select>
+      <div *ngIf="submitted && f.idType.errors" class="invalid-feedback">
+        <div *ngIf="f.idType.errors.required">Project's type is required</div>
+      </div>
     </div>
     <div class="form-group">
       <label>Ending date</label>
-      <input type="date" formControlName="finishdate" class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.finishdate.errors }" />
-      <div *ngIf="submitted && f.finishdate.errors" class="invalid-feedback">
-        <div *ngIf="f.finishdate.errors.required">User Name is required</div>
+      <input type="date" formControlName="dateFinish" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.dateFinish.errors }" />
+      <div *ngIf="submitted && f.dateFinish.errors" class="invalid-feedback">
+        <div *ngIf="f.dateFinish.errors.required">Project's ending date is required</div>
       </div>
     </div>
     <div class="form-group">
       <label>Insert an image</label><small> (optional)</small>
-      <input type="file" class="form-control-file" id="exampleFormControlFile1">
+      <input type="file" class="form-control-file" formControlName="img" id="exampleFormControlFile1">
     </div><br>
     <button class="btn btn-primary">Create</button>
   </form>
