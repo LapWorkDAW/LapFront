@@ -18,7 +18,8 @@
           Menu
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <p class="dropdown-item text-primary">Signed in as <br>{{currentUser.firstname}}</p>
+          <a class="dropdown-item text-primary" [routerLink]="['../profile']">Signed in as
+            <br>{{currentUser.firstname}}</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" [routerLink]="['profile/myProjects']">My Projects</a>
           <a class="dropdown-item" [routerLink]="['profile/favourites']">Favourites</a>

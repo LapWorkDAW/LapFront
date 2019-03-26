@@ -26,12 +26,17 @@ export class LogInComponent implements OnInit {
   userExist: boolean;
   userGoogle: User = new User();
 
+  //TODO: on key down apear img
+  showEye() {
+
+  }
   changeTypeToText() {
     this.password = "text";
   }
   changeTypeToPass() {
     this.password = "password";
   }
+
   constructor(private socialAuthService: AuthService, public router: Router, private authenticationService: AuthenticationService,
     private formBuilder: FormBuilder, private registerService: RegisterService, private userService: UserService,
     private route: ActivatedRoute, private alertService: AlertService) {
