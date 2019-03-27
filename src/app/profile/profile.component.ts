@@ -43,7 +43,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
-        console.log(this.currentUser);
         //Retrieve address in string format
         this.googlePlacesDirective.getAddress(this.currentUser.latitude, this.currentUser.longitude);
         this.userLocation = localStorage.getItem("city");

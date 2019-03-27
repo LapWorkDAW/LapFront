@@ -46,8 +46,7 @@ export class AuthenticationService {
                 },
                 error => { }
             );
-        localStorage.removeItem('currentUser');
-        localStorage.removeItem('city');
+        localStorage.clear();
         this.currentUserSubject.next(null);
     }
 }
