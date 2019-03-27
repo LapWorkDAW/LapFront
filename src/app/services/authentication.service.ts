@@ -43,11 +43,11 @@ export class AuthenticationService {
         this.http.get<any>(url, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) })
             .subscribe(
                 resul => {
-                    localStorage.removeItem('currentUser');
-                    localStorage.removeItem('city');
-                    this.currentUserSubject.next(null);
                 },
                 error => { }
             );
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('city');
+        this.currentUserSubject.next(null);
     }
 }
