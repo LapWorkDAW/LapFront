@@ -4,7 +4,7 @@ import { User } from 'src/assets/models/User';
 import { UserService } from '../services/user.service';
 import { ProjectService } from '../services/project.service';
 import { AuthenticationService } from '../services/authentication.service';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router } from '@angular/router';/* ActivatedRoute, Params */
 import { GooglePlacesDirective } from '../google-places.directive';
 import { Project } from 'src/assets/models/Project';
 
@@ -15,9 +15,9 @@ import { Project } from 'src/assets/models/Project';
     , providers: [GooglePlacesDirective]
 })
 export class ProfileComponent implements OnInit, OnDestroy {
-    active_myProjects = "";
+    /* active_myProjects = "";
     active_favourites = "";
-    active_joinProjects = "";
+    active_joinProjects = ""; */
 
     currentUser: User;
     currentUserSubscription: Subscription;
@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     projectsFinished: Array<Project>;
 
     constructor(
-        private _activRoute: ActivatedRoute,
+        /* private _activRoute: ActivatedRoute, */
         private authenticationService: AuthenticationService, private projectService: ProjectService,
         private userService: UserService, private router: Router,
         private googlePlacesDirective: GooglePlacesDirective
@@ -47,7 +47,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.googlePlacesDirective.getAddress(this.currentUser.latitude, this.currentUser.longitude);
         this.userLocation = localStorage.getItem("city");
 
-        this._activRoute.params.forEach(
+        /* this._activRoute.params.forEach(
             (arrayParams: Params) => {
                 let option = arrayParams["option"];
                 switch (option) {
@@ -64,7 +64,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
                         this.active_myProjects = "active";
                 }
             }
-        );
+        ); */
     }
 
     deleteUser() {
