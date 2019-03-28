@@ -20,7 +20,7 @@
       <div class="d-flex justify-content-between align-items-center">
         <input [type]="password" formControlName="password" class="form-control"
           [ngClass]="{'is-invalid': submitted && f.password.errors }" />
-        <img [src]="'/src/assets/icons/general/eye.png'" style="height: 30px;" (mousedown)="changeTypeToText()"
+        <img [src]="'assets/icons/general/eye.png'" style="height: 30px;" (mousedown)="changeTypeToText()"
           (mouseup)="changeTypeToPass()" alt="" class="float-right mt-1 ml-2 mr-1">
       </div>
       <div *ngIf="submitted && f.password.errors" class="invalid-feedback">

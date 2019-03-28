@@ -5,7 +5,7 @@
     <div class="col-3 mr-5">
       <!-- div carta user -->
       <div class="card" style="width: 18rem;">
-        <img [src]="'/src/assets/userAssets/photos/girl.jpg'" class="card-img-top" alt="...">
+        <img [src]="'assets/userAssets/photos/girl.jpg'" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">{{currentUser.firstname}} {{currentUser.surname}}</h5>
           <p class="card-text">{{currentUser.description}}</p>
@@ -64,8 +64,10 @@
               aria-labelledby="pills-onGoingProjects-tab">
               <h3>On-going projects</h3>
               <div class="card-columns">
+
+                <cardXs-tag></cardXs-tag>
                 <div class="card">
-                  <img [src]="'/src/assets/icons/standard/books.jpg'" class="card-img-top" alt="...">
+                  <img [src]="'assets/icons/standard/books.jpg'" class="card-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">""Title""</h5>
                     <p class="card-text">""Description""</p>
@@ -77,10 +79,10 @@
                   </div>
                 </div>
 
-                <div class="card">
-                  <img [src]="'/src/assets/icons/standard/cam.jpg'" class="card-img-top" alt="...">
+                <!-- <div class="card">
+                  <img [src]="'assets/icons/standard/cam.jpg'" class="card-img-top" alt="...">
                   <div class="card-body">
-                    <h5 class="card-title">""Title""</h5>
+                    <h5 class="card-title">""Title"" {{project.title}}</h5>
                     <p class="card-text">This card has supporting text below as a natural lead-in to additional
                       content.</p>
                     <div class="dropdown-divider"></div>
@@ -89,7 +91,7 @@
                       <small class="text-primary">"kind"</small>
                     </div>
                   </div>
-                </div>
+                </div> -->
 
               </div>
 
@@ -99,8 +101,8 @@
               aria-labelledby="pills-finishedProjects-tab">
               <h3>Finished projects</h3>
               <div class="card-columns">
-                <div class="card">
-                  <img [src]="'/src/assets/icons/standard/books.jpg'" class="card-img-top" alt="...">
+                <!-- <div class="card">
+                  <img [src]="'assets/icons/standard/books.jpg'" class="card-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">""Title""</h5>
                     <p class="card-text">""Description""</p>
@@ -113,10 +115,10 @@
                   <div class="card-footer text-muted">
                     <small class="">"finish date"</small>
                   </div>
-                </div>
+                </div> -->
 
-                <div class="card">
-                  <img [src]="'/src/assets/icons/standard/cam.jpg'" class="card-img-top" alt="...">
+                <!-- <div class="card">
+                  <img [src]="'assets/icons/standard/cam.jpg'" class="card-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Two</h5>
                     <p class="card-text">This card has supporting text below as a natural lead-in to additional
@@ -130,7 +132,7 @@
                   <div class="card-footer text-muted">
                     <small class="">"finish date"</small>
                   </div>
-                </div>
+                </div> -->
 
               </div>
 

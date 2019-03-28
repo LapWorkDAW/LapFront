@@ -13,6 +13,7 @@ import { TermsOfUseComponent } from './termsOfUse/termsOfUse.component';
 import { NavNoLogComponent } from './navNoLog/navNoLog.component';
 import { CreateProjectComponent } from './createProject/createProject.component';
 import { SettingsComponent } from './settings/settings.component';
+import { CardXsComponent } from './cardXs/cardXs.component';
 import { ContactComponent } from './contact/contact.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ProfileComponent } from './profile/profile.component';
@@ -53,7 +54,8 @@ export function getAuthServiceConfigs() {
     ContactComponent,
     ProfileComponent,
     CreateProjectComponent,
-    SettingsComponent
+    SettingsComponent,
+    CardXsComponent
     /* ,
     UserSettingsComponent */
   ],

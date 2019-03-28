@@ -5,7 +5,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mr-auto nav">
       <li class="nav-item active" *ngIf="!currentUser">
         <a class="nav-link" [routerLink]="['/register']">Register</a>
       </li>
@@ -21,15 +21,16 @@
           <a class="dropdown-item text-primary" [routerLink]="['../profile']">Signed in as
             <br>{{currentUser.firstname}}</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" [routerLink]="['profile']">My Projects</a>
-          <a class="dropdown-item" [routerLink]="['profile']">Favourites</a>
-          <a class="dropdown-item" [routerLink]="['profile']">Join projects</a>
+          <a class="dropdown-item" [routerLink]="['../profile']">My Projects</a>
+          <a class="dropdown-item" [routerLink]="['../profile']">Favourites</a>
+          <a class="dropdown-item" [routerLink]="['../profile']">Join projects</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" [routerLink]="['../settings']">Settings</a>
           <a class="dropdown-item" (click)="signOut()" href="">Log Out</a>
         </div>
       </li>
     </ul>
+
 
 
   </div>
