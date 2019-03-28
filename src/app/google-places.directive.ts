@@ -20,8 +20,7 @@ export class GooglePlacesDirective implements OnInit {
     //@params: place - Google Autocomplete place object
     //@returns: location_obj - An address object in human readable format
     let location_obj = {};
-    location_obj['lat'] = place.geometry.location.lat();
-    location_obj['lng'] = place.geometry.location.lng();
+    location_obj['location'] = place.formatted_address;
     return location_obj;
   }
 
@@ -33,21 +32,4 @@ export class GooglePlacesDirective implements OnInit {
       this.onSelect.emit(this.getFormattedAddress(autocomplete.getPlace()));
     });
   }
-
-  getAddress(lat, lng) {
-    geocoder = new google.maps.Geocoder();
-    let latlng = new google.maps.LatLng(lat, lng);
-    return geocoder.geocode({ 'latLng': latlng }, function (results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        if (results[9]) {
-          localStorage.setItem("city", results[9].formatted_address);
-        } else {
-          alert('Location not found');
-        }
-      } else {
-        alert('Geocoder failed due to: ' + status);
-      }
-    });
-  }
-
 }
