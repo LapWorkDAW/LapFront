@@ -89,8 +89,8 @@ export class RegisterComponent implements OnInit {
     delete this.newUser['privacy'];
     delete this.newUser['confirmPassword'];
     //add key to object
-    this.newUser.latitude = this.addr["lat"];
-    this.newUser.longitude = this.addr["lng"];
+    this.newUser.location = this.addr["location"];
+
     //save userName and pass for login
     let username = this.newUser.userName;
     let password = this.newUser.pass;
