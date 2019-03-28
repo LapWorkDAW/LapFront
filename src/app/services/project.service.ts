@@ -9,7 +9,7 @@ export class ProjectService {
 
   constructor(private http: HttpClient) { }
 
-  register(token: String, project: Project) {
+  register(token: String, project) {
     let url = "/api.php?controller=Project&token=" + token;
     return this.http.post(
       url, project, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }

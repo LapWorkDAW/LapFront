@@ -5,7 +5,7 @@ import { UserService } from '../services/user.service';
 import { ProjectService } from '../services/project.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';/* ActivatedRoute, Params */
-import { GooglePlacesDirective } from '../google-places.directive';
+import { GooglePlacesDirective } from '../google/google-places.directive';
 import { Project } from 'src/assets/models/Project';
 
 @Component({
@@ -21,7 +21,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     currentUser: User;
     currentUserSubscription: Subscription;
-    userLocation: String;
     projectsStar: Array<Project>;
     projectsFavorite: Array<Project>;
     projectsInProgress: Array<Project>;
@@ -43,6 +42,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        console.log(this.currentUser);
 
         /* this._activRoute.params.forEach(
             (arrayParams: Params) => {

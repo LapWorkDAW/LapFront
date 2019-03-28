@@ -26,6 +26,7 @@ export class RegisterComponent implements OnInit {
   isSelectCountry: boolean = false;
   isEmailExist: boolean = false;
   returnUrl: string;
+  googleOK = false;
 
   constructor(private zone: NgZone, private userService: UserService, private formBuilder: FormBuilder, private router: Router,
     private authenticationService: AuthenticationService, private alertService: AlertService, private route: ActivatedRoute,
@@ -36,6 +37,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
+    window.setInterval(() => { this.googleOK = true; }, 100);
     this.registerForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       surname: ['', Validators.required],
@@ -62,9 +64,6 @@ export class RegisterComponent implements OnInit {
     this.zone.run(() => {
       this.addr = addrObj;
       this.addrKeys = Object.keys(addrObj);
-      //add new values to object User
-      this.newUser.location = this.addr["location"];
-
     });
   }
 
@@ -89,7 +88,11 @@ export class RegisterComponent implements OnInit {
     delete this.newUser['privacy'];
     delete this.newUser['confirmPassword'];
     //add key to object
-    this.newUser.location = this.addr["location"];
+    let userLocation = this.addr["city"] + ", " + this.addr["country"];
+    this.newUser.location = userLocation;
+    console.log("los ants de ingresar a bb");
+
+    console.log(this.newUser.location);
 
     //save userName and pass for login
     let username = this.newUser.userName;

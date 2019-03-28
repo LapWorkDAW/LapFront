@@ -6,7 +6,7 @@
   <p>Coordinate, track, and update your work in one place, so projects stay transparent and on schedule.</p>
   <div class="dropdown-divider"></div>
 
-  <form [formGroup]="createProjectForm" (ngSubmit)="sendForm()">
+  <form [formGroup]="createProjectForm" (ngSubmit)="sendForm()" enctype="multipart/form-data">
     <div class="form-group">
       <label>Project's name</label>
       <input type="text" class="form-control" formControlName="projectName"
@@ -43,7 +43,8 @@
     </div>
     <div class="form-group">
       <label>Insert an image</label><small> (optional)</small>
-      <input type="file" class="form-control-file" formControlName="img" id="exampleFormControlFile1">
+      <input type="file" name="file" (change)="uploadDocument($event)" class="form-control-file" formControlName="img"
+        id="exampleFormControlFile1">
     </div><br>
     <button class="btn btn-primary">Create</button>
   </form>
