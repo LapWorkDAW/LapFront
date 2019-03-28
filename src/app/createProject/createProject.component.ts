@@ -65,20 +65,22 @@ export class CreateProjectComponent implements OnInit {
             return;
         }
         console.log(this.createProjectForm.value);
-        /*  this.projectService.register(this.currentUser.token, this.createProjectForm.value)
-             .subscribe(
-                 resul => {
-                     console.log(resul);
- 
-                 },
-                 error => {
-                     console.log(error);
- 
-                 }
-             );
-         this.newProject = new Project();
-         this.createProjectForm.reset(); */
+        this.newProject = this.createProjectForm.value;
+        this.newProject.userO = this.currentUser;
+        console.log(this.newProject);
+
+        this.projectService.register(this.currentUser.token, this.newProject)
+            .subscribe(
+                resul => {
+                    console.log(resul);
+
+                },
+                error => {
+                    console.log(error);
+
+                }
+            );
+        this.newProject = new Project();
+        this.createProjectForm.reset();
     }
-
-
 }

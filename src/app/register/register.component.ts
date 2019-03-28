@@ -63,16 +63,15 @@ export class RegisterComponent implements OnInit {
       this.addr = addrObj;
       this.addrKeys = Object.keys(addrObj);
       //add new values to object User
-      this.newUser.latitude = this.addr["lat"];
-      this.newUser.longitude = this.addr["lng"];
-      /* console.log(this.newUser); */
+      this.newUser.location = this.addr["location"];
+
     });
   }
 
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
 
-  //Método de submit del formulario
+  //Mï¿½todo de submit del formulario
   sendForm() {
     this.submitted = true;
     // stop here if form is invalid
@@ -90,13 +89,13 @@ export class RegisterComponent implements OnInit {
     delete this.newUser['privacy'];
     delete this.newUser['confirmPassword'];
     //add key to object
-    this.newUser.latitude = this.addr["lat"];
-    this.newUser.longitude = this.addr["lng"];
-//save userName and pass for login
+    this.newUser.location = this.addr["location"];
+
+    //save userName and pass for login
     let username = this.newUser.userName;
     let password = this.newUser.pass;
 
-//register
+    //register
     this.userService.register(this.registerForm.value)
       .subscribe(
         resul => {
