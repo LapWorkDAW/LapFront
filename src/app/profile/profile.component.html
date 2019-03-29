@@ -5,7 +5,12 @@
     <div class="col-3 mr-5">
       <!-- div carta user -->
       <div class="card" style="width: 18rem;">
-        <img [src]="currentUser.photo" class="card-img-top" alt="...">
+        <ng-template [ngIf]="photo" [ngIfElse]="notPhoto">
+          <img [src]="currentUser.photo" class="card-img-top photo" alt="...">
+        </ng-template>
+        <ng-template #notPhoto>
+          <img [src]="'./assets/userAssets/photos/girl.jpg'" class="card-img-top" alt="...">
+        </ng-template>
         <div class="card-body">
           <h5 class="card-title">{{currentUser.firstname}} {{currentUser.surname}}</h5>
           <p class="card-text">{{currentUser.description}}</p>

@@ -25,6 +25,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     projectsFavorite: Array<Project>;
     projectsInProgress: Array<Project>;
     projectsFinished: Array<Project>;
+    photo: boolean = true;
 
     constructor(
         /* private _activRoute: ActivatedRoute, */
@@ -38,12 +39,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
         if (this.currentUser == null) {
             this.router.navigate(['']);
         }
+
+        if (this.currentUser.photo == null) {
+            this.photo = false;
+        }
     }
 
     ngOnInit(): void {
         this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
-        console.log(this.currentUser);
-
         /* this._activRoute.params.forEach(
             (arrayParams: Params) => {
                 let option = arrayParams["option"];
