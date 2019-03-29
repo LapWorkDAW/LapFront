@@ -25,6 +25,7 @@ export class LogInComponent implements OnInit {
   isEmailExist: boolean;
   userExist: boolean;
   userGoogle: User = new User();
+  loginSuccessful = true;
 
   //TODO: on key down apear img
   showEye() {
@@ -113,8 +114,7 @@ export class LogInComponent implements OnInit {
           this.router.navigate(['/profile'])
         },
         error => {
-          this.alertService.error(error);
-          this.router.navigate([this.returnUrl]);
+          this.loginSuccessful = false;
         });
   }
 
