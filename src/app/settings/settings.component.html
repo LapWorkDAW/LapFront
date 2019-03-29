@@ -31,8 +31,13 @@
                   </div>
                   <div class="form-group col">
                     <label>Insert an image</label>
-                    <input type="file" name="file" (change)="uploadDocument($event)" class="form-control-file"
-                      formControlName="img" id="exampleFormControlFile1">
+
+                    <div class="custom-file">
+                      <label class="custom-file-label" for="inputGroupFile02"
+                        aria-describedby="inputGroupFileAdd">Choose file ...</label>
+                      <input type="file" name="file" (change)="uploadDocument($event)" class="custom-file-input"
+                        formControlName="img" id="inputGroupFile02">
+                    </div>
                   </div>
 
                 </div>
