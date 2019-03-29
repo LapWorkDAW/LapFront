@@ -9,8 +9,8 @@
           <div class="list-group" id="list-tab" role="tablist">
             <a class="list-group-item list-group-item-action active" id="list-profile-list" data-toggle="list"
               href="#list-profile" role="tab" aria-controls="profile">Profile</a>
-            <a class="list-group-item list-group-item-action" id="list-example-list" data-toggle="list"
-              href="#list-example" role="tab" aria-controls="example">Example</a>
+            <a class="list-group-item list-group-item-action" id="list-account-list" data-toggle="list"
+              href="#list-account" role="tab" aria-controls="account">Account</a>
             <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list"
               href="#list-messages" role="tab" aria-controls="messages">Messages</a>
             <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list"
@@ -26,38 +26,63 @@
               <h1>Public profile</h1><br>
               <form>
                 <div class="form-row">
+                  <div class="form-group col-2">
+                    <img [src]="currentUser.photo" class="img-thumbnail" alt="...">
+                  </div>
+                  <div class="form-group col">
+                    <label>Insert an image</label>
+                    <input type="file" name="file" (change)="uploadDocument($event)" class="form-control-file"
+                      formControlName="img" id="exampleFormControlFile1">
+                  </div>
+
+                </div>
+                <div class="form-row">
                   <div class="form-group col-md">
-                    <label>First Name</label>
-                    <input type="text" class="form-control" />
-                    <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-                      <div *ngIf="f.firstName.errors.required">First Name is required</div>
-                    </div>
+                    <label>First Name </label>
+                    <input type="text" placeholder="{{currentUser.firstname}}" class="form-control" />
                   </div>
                   <div class="form-group col-md">
                     <label>Surname</label>
-                    <input type="text" class="form-control" />
-                    <div *ngIf="submitted && f.surname.errors" class="invalid-feedback">
-                      <div *ngIf="f.surname.errors.required">Surname is required</div>
-                    </div>
+                    <input type="text" placeholder="{{currentUser.surname}}" class="form-control" />
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label>Description</label>
-                  <input type="text" class="form-control" />
-                  <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
-                    <div *ngIf="f.userName.errors.required">User Name is required</div>
-                  </div>
+                  <input type="text" placeholder="{{currentUser.description}}" class="form-control" />
                 </div>
 
+                <div class="form-group has-error" *ngIf="googleOK">
+                  <label>Country/ Region</label>
+                  <small class="text-muted">{{currentUser.location}}</small>
+                  <input placeholder="Type to search..." google-place type="text" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted}" formControlName="country" (onSelect)="setAddress($event)"
+                    id="inputError" />
+                </div>
+
+                <div class="form-group">
+                  <label>Birthdate</label>
+                  <input placeholder="{{currentUser.birthdate}}" type="date" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                  <label>Linkedin</label>
+                  <input placeholder="{{currentUser.cv}}" type="text" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                  <label>Knowledge</label>
+                  <input placeholder="{{currentUser.knowledge}}" type="text" class="form-control" />
+                </div><br>
+                <div class="btn btn-outline-primary">Save</div>
 
               </form>
             </div>
 
 
 
-            <div class="tab-pane fade" id="list-example" role="tabpanel" aria-labelledby="list-example-list">
-              <h1>Example</h1>
+            <div class="tab-pane fade" id="list-account" role="tabpanel" aria-labelledby="list-account-list">
+              <h1>Account</h1>
             </div>
             <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
             <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
