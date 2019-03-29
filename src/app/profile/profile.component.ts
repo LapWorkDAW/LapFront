@@ -5,14 +5,13 @@ import { UserService } from '../services/user.service';
 import { ProjectService } from '../services/project.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';/* ActivatedRoute, Params */
-import { GooglePlacesDirective } from '../google/google-places.directive';
 import { Project } from 'src/assets/models/Project';
 
 @Component({
     selector: 'profile',
     templateUrl: './profile.component.html',
     styleUrls: ['../home/home.component.css', './profile.component.css']
-    , providers: [GooglePlacesDirective]
+
 })
 export class ProfileComponent implements OnInit, OnDestroy {
     /* active_myProjects = "";
@@ -29,8 +28,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     constructor(
         /* private _activRoute: ActivatedRoute, */
         private authenticationService: AuthenticationService, private projectService: ProjectService,
-        private userService: UserService, private router: Router,
-        private googlePlacesDirective: GooglePlacesDirective
+        private userService: UserService, private router: Router
     ) {
         this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
             this.currentUser = user;
