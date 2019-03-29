@@ -26,6 +26,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     projectsInProgress: Array<Project>;
     projectsFinished: Array<Project>;
     photo: boolean = true;
+    typesProject: Array<String>;
 
     constructor(
         /* private _activRoute: ActivatedRoute, */
@@ -47,6 +48,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+        this.projectService.getTypesProject(this.currentUser.token).subscribe(
+            result => {
+                this.typesProject = result["data"];
+            },
+            error => {
+                console.log(error);
+            }
+        );
         /* this._activRoute.params.forEach(
             (arrayParams: Params) => {
                 let option = arrayParams["option"];
@@ -65,7 +75,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 }
             }
         ); */
+
+        this.getProjectsInProgress();
     }
+
 
     deleteUser() {
         this.userService.delete(this.currentUser.token).subscribe(
@@ -81,8 +94,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.projectService.getProjectNoFinished(this.currentUser.token).subscribe(
             result => {
                 this.projectsInProgress = result["data"];
+                console.log(this.projectsInProgress);
+
             },
             error => {
+
                 console.log(error);
             }
         )
@@ -119,8 +135,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 console.log(error);
             }
         )
+
     }
-
     ngOnDestroy(): void { }
-
 }

@@ -5,7 +5,6 @@ import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from '../_helpers/must-match.validator';
 import { _getComponentHostLElementNode } from '@angular/core/src/render3/instructions';
-import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService } from '../services/alert.service';

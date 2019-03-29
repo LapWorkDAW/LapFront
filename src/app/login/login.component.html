@@ -5,7 +5,7 @@
 
   <a [routerLink]="['../register']">Don't have a LapWork ID? Create one now.</a>
   <div class="dropdown-divider"></div><br>
-  <div *ngIf="!loginSuccessful">Hola</div>
+  <div *ngIf="!loginSuccessful" class="alert alert-danger" role="alert">Username or password is incorrect</div>
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label>User name</label>
