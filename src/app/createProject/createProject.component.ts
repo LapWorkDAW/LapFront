@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthenticationService } from "../services/authentication.service";
-import { UserService } from "../services/user.service";
 import { ProjectService } from "../services/project.service";
 import { User } from "src/assets/models/User";
 import { Subscription } from "rxjs";
@@ -23,9 +22,8 @@ export class CreateProjectComponent implements OnInit {
     submitted = false;
 
     constructor(
-        private _activRoute: ActivatedRoute,
         private authenticationService: AuthenticationService, private projectService: ProjectService,
-        private userService: UserService, private router: Router, private formBuilder: FormBuilder
+        private router: Router, private formBuilder: FormBuilder
     ) {
         this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
             this.currentUser = user;
@@ -87,7 +85,10 @@ export class CreateProjectComponent implements OnInit {
         uploadData.append('userO', JSON.stringify(this.currentUser));
         uploadData.append('nameCreator', this.newProject.nameCreator); */
         uploadData.append('project', JSON.stringify(this.newProject));
-        uploadData.append('file', this.createProjectForm.get('file').value);
+        if (this.createProjectForm.get('file') != null) {
+            uploadData.append('file', this.createProjectForm.get('file').value);
+        }
+
 
         this.projectService.register(this.currentUser.token, uploadData)
             .subscribe(

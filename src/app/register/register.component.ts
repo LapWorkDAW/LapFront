@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
   googleOK = false;
 
   constructor(private zone: NgZone, private userService: UserService, private formBuilder: FormBuilder, private router: Router,
-    private authenticationService: AuthenticationService, private alertService: AlertService, private route: ActivatedRoute,
+    private authenticationService: AuthenticationService, private route: ActivatedRoute,
     private registerService: RegisterService) {
     if (this.authenticationService.currentUserValue) {
       this.router.navigate(['/']);
@@ -89,9 +89,6 @@ export class RegisterComponent implements OnInit {
     //add key to object
     let userLocation = this.addr["city"] + ", " + this.addr["country"];
     this.newUser.location = userLocation;
-    console.log("los ants de ingresar a bb");
-
-    console.log(this.newUser.location);
 
     //save userName and pass for login
     let username = this.newUser.userName;
@@ -108,12 +105,9 @@ export class RegisterComponent implements OnInit {
                 this.router.navigate(['/profile']);
               },
               error => {
-                this.alertService.error(error);
               });
         },
         error => {
-          console.log("error");
-          this.alertService.error(error);
         });
     this.newUser = new User();
     this.registerForm.reset();

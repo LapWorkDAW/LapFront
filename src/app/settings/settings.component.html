@@ -24,7 +24,9 @@
             <div class="tab-pane fade show active" id="list-profile" role="tabpanel"
               aria-labelledby="list-profile-list">
               <h1>Public profile</h1><br>
-              <form>
+              <div *ngIf="dateModifiedSuccessfull" class="alert alert-success" role="alert">Data have been updated.
+              </div>
+              <form [formGroup]="modifyUserForm" (ngSubmit)="sendForm()">
                 <div class="form-row">
                   <div class="form-group col-2">
                     <img [src]="currentUser.photo" class="img-thumbnail" alt="...">
@@ -35,8 +37,8 @@
                     <div class="custom-file">
                       <label class="custom-file-label" for="inputGroupFile02"
                         aria-describedby="inputGroupFileAdd">Choose file ...</label>
-                      <input type="file" name="file" (change)="uploadDocument($event)" class="custom-file-input"
-                        formControlName="img" id="inputGroupFile02">
+                      <input type="file" name="file" class="custom-file-input" formControlName="photo"
+                        id="inputGroupFile02">
                     </div>
                   </div>
 
@@ -44,47 +46,46 @@
                 <div class="form-row">
                   <div class="form-group col-md">
                     <label>First Name </label>
-                    <input type="text" placeholder="{{currentUser.firstname}}" class="form-control" />
+                    <input type="text" class="form-control" formControlName="firstname" />
                   </div>
                   <div class="form-group col-md">
                     <label>Surname</label>
-                    <input type="text" placeholder="{{currentUser.surname}}" class="form-control" />
+                    <input type="text" class="form-control" formControlName="surname" />
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label>Description</label>
-                  <input type="text" placeholder="{{currentUser.description}}" class="form-control" />
+                  <input type="text" class="form-control" formControlName="description" />
                 </div>
 
                 <div class="form-group has-error" *ngIf="googleOK">
-                  <label>Country/ Region</label>
+                  <label>Country/ Region</label><br>
                   <small class="text-muted">{{currentUser.location}}</small>
                   <input placeholder="Type to search..." google-place type="text" class="form-control"
-                    [ngClass]="{ 'is-invalid': submitted}" formControlName="country" (onSelect)="setAddress($event)"
+                    [ngClass]="{ 'is-invalid': submitted}" formControlName="location" (onSelect)="setAddress($event)"
                     id="inputError" />
                 </div>
 
                 <div class="form-group">
                   <label>Birthdate</label>
-                  <input placeholder="{{currentUser.birthdate}}" type="date" class="form-control" />
+                  <input placeholder="{{currentUser.birthdate}}" type="date" class="form-control"
+                    formControlName="birthdate" />
                 </div>
 
                 <div class="form-group">
                   <label>Linkedin</label>
-                  <input placeholder="{{currentUser.cv}}" type="text" class="form-control" />
+                  <input placeholder="{{currentUser.cv}}" type="text" class="form-control" formControlName="cv" />
                 </div>
 
                 <div class="form-group">
                   <label>Knowledge</label>
-                  <input placeholder="{{currentUser.knowledge}}" type="text" class="form-control" />
+                  <input placeholder="{{currentUser.knowledge}}" type="text" class="form-control"
+                    formControlName="knowledge" />
                 </div><br>
-                <div class="btn btn-outline-primary">Save</div>
-
+                <button class="btn btn-outline-primary">Save</button>
               </form>
             </div>
-
-
 
             <div class="tab-pane fade" id="list-account" role="tabpanel" aria-labelledby="list-account-list">
               <h1>Account</h1>
@@ -93,9 +94,6 @@
             <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
           </div>
         </div>
-
-
-
 
       </div>
 

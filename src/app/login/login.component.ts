@@ -54,7 +54,6 @@ export class LogInComponent implements OnInit {
     }
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
-        console.log(userData.token);
         let fullName = userData.name.split(" ");
         this.userGoogle.firstname = fullName[0];
         this.userGoogle.surname = fullName[1];
@@ -91,16 +90,12 @@ export class LogInComponent implements OnInit {
         this.login(this.userGoogle.email, null, this.userGoogle.token);
       },
       error => {
-        console.log("Mal");
-        console.log(this.userGoogle);
         this.userService.register(this.userGoogle)
           .subscribe(
             resul => {
-              console.log("bien");
               this.login(this.userGoogle.email, null, this.userGoogle.token);
             },
             error => {
-              console.log("error");
               this.alertService.error(error);
             });
       });

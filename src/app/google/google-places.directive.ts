@@ -21,9 +21,13 @@ export class GooglePlacesDirective implements OnInit {
     //@returns: location_obj - An address object in human readable format
     let location_obj = {};
     location_obj['city'] = place.address_components[0]['long_name'];
-    location_obj['country'] = place.address_components[3]['long_name'];
-    return location_obj;
+    if (place.address_components[2] == undefined) {
+      location_obj['country'] = place.address_components[1]['long_name'];
+    } else {
+      location_obj['country'] = place.address_components[2]['long_name'];
+    }
 
+    return location_obj;
   }
 
   ngOnInit() {
