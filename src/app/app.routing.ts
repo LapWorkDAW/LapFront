@@ -10,6 +10,7 @@ import { NavNoLogComponent } from './navNoLog/navNoLog.component';
 import { ContactComponent } from './contact/contact.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SettingsComponent } from './settings/settings.component';
+import { ProjectsComponent } from './projects/projects.component';
 import { AuthGuard } from './_guard/auth.guard';
 
 const appRoutes: Routes = [
@@ -24,6 +25,7 @@ const appRoutes: Routes = [
     /* { path: 'profile/:option', component: ProfileComponent, canActivate: [AuthGuard] }, */
     { path: 'createProject', component: CreateProjectComponent },
     { path: 'settings', component: SettingsComponent },
+    { path: 'projects', component: ProjectsComponent },
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }

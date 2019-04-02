@@ -14,9 +14,15 @@ export class NavNoLogComponent {
     isSignIn: boolean = false;
     currentUser: User;
     token: String;
+    photo: boolean = true;
 
     constructor(private socialAuthService: AuthService, public router: Router, private authenticationService: AuthenticationService) {
         this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+
+
+        /* if (this.currentUser.photo == null) {
+            this.photo = false;
+        } */
     }
 
     ngOnInit() { }

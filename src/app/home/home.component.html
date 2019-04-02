@@ -32,8 +32,7 @@
             <a class="btn btn-outline-primary mt-4" href="#" role="button">Link</a><br>
           </div>
         </div>
-        <button type="button" class="btn btn-block mt-3 btn-outline-secondary">More</button>
-
+        <a [routerLink]="['projects']" class="btn btn-block mt-3 btn-outline-secondary">More</a>
       </div>
 
       <div class="col-6 mb-4">
@@ -49,14 +48,11 @@
               <small class="">"likes"</small>
               <small class="text-muted">{{project.idType}}</small>
             </div>
-            <a class="btn btn-outline-primary mt-4" href="#" role="button">Link</a><br>
+            <a class="btn btn-outline-primary mt-4" [routerLink]="['projects']" role="button">Link</a><br>
           </div>
         </div>
-        <button type="button" class="btn btn-block mt-3 btn-outline-secondary">More</button>
+
+        <a [routerLink]="['projects']" class="btn btn-block mt-3 btn-outline-secondary">More</a>
       </div>
     </div>
-  </div>
 
-</div><br><br>
-
-<footer-tag></footer-tag>

@@ -41,15 +41,21 @@
         <div *ngIf="f.dateFinish.errors.validateDate">Ending date must be after the start date</div>
       </div>
     </div>
-    <div> <label>Insert an image</label><small> (optional)</small></div>
-    <div class="input-group mb-3">
+    <div class="form-group">
+      <label>Insert an image</label>
+      <small>(optional)</small><br>
       <div class="custom-file">
-        <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAdd">Choose
-          file ...</label>
         <input type="file" name="file" (change)="uploadDocument($event)" class="custom-file-input" formControlName="img"
           id="inputGroupFile02">
-      </div>
-    </div><br>
+        <label class="custom-file-label" for="inputGroupFile02">Choose
+          file ...</label>
+      </div><br>
+      <!--  <div class="custom-file">
+        <input type="file" class="custom-file-input" id="customFile">
+        <label class="custom-file-label" for="customFile">Choose file</label>
+      </div> -->
+    </div>
+    <br>
     <button class="btn btn-primary">Create</button>
   </form>
 </div><br><br>

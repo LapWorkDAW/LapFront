@@ -17,9 +17,20 @@
           aria-haspopup="true" aria-expanded="false">
           Menu
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item text-primary" [routerLink]="['../profile']">Signed in as
-            <br>{{currentUser.firstname}}</a>
+        <div class="dropdown-menu" style="min-width:250px;" aria-labelledby="navbarDropdown">
+          <div class="list-inline">
+            <ng-template [ngIf]="currentUser" [ngIfElse]="notPhoto">
+              <img [src]="currentUser.photo" style="height: 40px;"
+                class="list-inline-item rounded float-left ml-4 photo" alt="...">
+            </ng-template>
+            <ng-template #notPhoto>
+              <img [src]="'./assets/userAssets/photos/girl.jpg'" style="height: 40px;"
+                class=" list-inline-item rounded float-left ml-4" alt="...">
+            </ng-template>
+            <a class="dropdown-item text-primary" [routerLink]="['../profile']">Signed in as
+              <br>{{currentUser.firstname}}</a>
+          </div>
+
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" [routerLink]="['../profile']">My Projects</a>
           <a class="dropdown-item" [routerLink]="['../profile']">Favourites</a>
