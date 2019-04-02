@@ -3,11 +3,14 @@ import { User } from 'src/assets/models/User';
 import { Project } from 'src/assets/models/Project';
 import { ProjectService } from '../services/project.service';
 import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { RatingModule, Rating } from "ngx-rating";
 
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
+
 })
 
 export class HomeComponent implements OnInit {
@@ -15,7 +18,7 @@ export class HomeComponent implements OnInit {
   projectsInProgress: Array<Project>;
   projectsFinished: Array<Project>;
 
-  constructor(private projectService: ProjectService) { }
+  constructor(private projectService: ProjectService, private router: Router) { }
   ngOnInit(): void {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.getProjectsInProgress();

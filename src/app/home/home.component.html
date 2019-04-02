@@ -28,13 +28,13 @@
             <div class="d-flex justify-content-between align-items-center">
               <small class="">{{project.stars}}</small>
 
-              <!-- <div class="form-group">
+              <div class="form-group">
                 <ngb-rating [formControl]="ctrl"></ngb-rating>
                 <div class="form-text small">
                   <div *ngIf="ctrl.valid" class="text-success">Thanks!</div>
                   <div *ngIf="ctrl.invalid" class="text-danger">Please rate us</div>
                 </div>
-              </div> -->
+              </div>
 
 
               <small class="text-muted">{{project.idType}}</small>
@@ -59,10 +59,10 @@
                 {{project.likes}}</small>
               <small class="text-muted">{{project.idType}}</small>
             </div>
-            <a class="btn btn-outline-primary mt-4" [routerLink]="['oneProject']" role="button">Link</a><br>
+            <a class="btn btn-outline-primary mt-4" routerLink="['/oneProject',project.idProject]"
+              routerLinkActive="active" role="button">Link</a><br>
           </div>
         </div>
-
         <a [routerLink]="['projects']" class="btn btn-block mt-3 btn-outline-secondary">More</a>
       </div>
     </div>

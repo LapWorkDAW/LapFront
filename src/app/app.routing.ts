@@ -27,7 +27,7 @@ const appRoutes: Routes = [
     { path: 'createProject', component: CreateProjectComponent },
     { path: 'settings', component: SettingsComponent },
     { path: 'projects', component: ProjectsComponent },
-    { path: 'oneProject', component: OneProjectComponent },
+    { path: 'oneProject/:id', component: OneProjectComponent },
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }

@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Router, ActivatedRoute, Params } from "@angular/router";
 
 @Component({
     selector: 'oneProject',
@@ -6,5 +7,14 @@ import { Component } from "@angular/core";
     styleUrls: ['./oneProject.component.css']
 })
 export class OneProjectComponent {
-
+    id: number;
+    constructor(private _router: Router,
+        private _activRoute: ActivatedRoute) { }
+    ngOnInit() {
+        this._activRoute.params.forEach(
+            (arrayParams: Params) => {
+                console.dir(arrayParams);
+                this.id = arrayParams["id"];
+            });
+    }
 }
