@@ -4,21 +4,42 @@ import { Project } from 'src/assets/models/Project';
 import { ProjectService } from '../services/project.service';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { RatingModule, Rating } from "ngx-rating";
+import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
-
+  styleUrls: ['./home.component.css'],
+  styles: [`
+    .star {
+      position: relative;
+      display: inline-block;
+      font-size: 1rem;
+      color: #d3d3d3;
+    }
+    .full {
+      color:#007bff;
+    }
+    .half {
+      position: absolute;
+      display: inline-block;
+      overflow: hidden;
+      color: #007bff;
+    }
+  `],
+  providers: [NgbRatingConfig]
 })
 
 export class HomeComponent implements OnInit {
   currentUser: User;
   projectsInProgress: Array<Project>;
   projectsFinished: Array<Project>;
+  ctrl = new FormControl(null, Validators.required);
 
-  constructor(private projectService: ProjectService, private router: Router) { }
+  constructor(private projectService: ProjectService, private router: Router, config: NgbRatingConfig) {
+    // customize default values of ratings used by this component tree
+    config.max = 1;
+  }
   ngOnInit(): void {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.getProjectsInProgress();
@@ -65,14 +86,14 @@ export class HomeComponent implements OnInit {
 
 
 
-  ctrl = new FormControl(null, Validators.required);
+
 
   toggle() {
-    if (this.ctrl.disabled) {
-      this.ctrl.enable();
-    } else {
-      this.ctrl.disable();
-    }
+
+    /* this.ctrl.value */
+
+    this.ctrl.disable();
+
   }
 
 }

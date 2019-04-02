@@ -28,8 +28,7 @@ import {
 import { ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
-import { RatingModule } from 'ngx-rating';
-/* import {NgbModule} from '@ng-bootstrap/ng-bootstrap'; */
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 export function getAuthServiceConfigs() {
   let config = new AuthServiceConfig(
@@ -79,8 +78,7 @@ export function getAuthServiceConfigs() {
     SocialLoginModule,
     StorageServiceModule,
     ReactiveFormsModule,
-    RatingModule
-    /* NgbModule */
+    NgbModule
   ],
   bootstrap: [AppComponent]
 })
