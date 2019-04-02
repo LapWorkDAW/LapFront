@@ -86,7 +86,7 @@ export class CreateProjectComponent implements OnInit {
         uploadData.append('nameCreator', this.newProject.nameCreator); */
         uploadData.append('project', JSON.stringify(this.newProject));
         if (this.createProjectForm.get('file') != null) {
-            uploadData.append('file', this.createProjectForm.get('file').value);
+            uploadData.append('photo', this.createProjectForm.get('file').value);
         }
 
 

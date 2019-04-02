@@ -8,10 +8,10 @@ import { map } from "rxjs/operators";
   providedIn: "root"
 })
 export class UserService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
 
-  update(user: User, token: String) {
+  update(user: FormData, token: String) {
     let url = "/api.php?controller=User&token=" + token;
     return this.http.put(
       url, user, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }

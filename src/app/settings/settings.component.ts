@@ -92,25 +92,35 @@ export class SettingsComponent implements OnInit {
         }
 
         this.modifyUser.photo = this.currentUser.photo;
-
         const uploadData = new FormData();
-
-        uploadData.append('modifyDate', JSON.stringify(this.modifyUser));
+        uploadData.append('user', JSON.stringify(this.modifyUser));
         if (this.modifyUserForm.get('file') != null) {
-            uploadData.append('file', this.modifyUserForm.get('file').value);
+            uploadData.append('photo', this.modifyUserForm.get('file').value);
+            this.userService.update(uploadData, this.currentUser.token)
+                .subscribe(
+                    resul => {
+                        this.dateModifiedSuccessfull = true;
+                        console.log(resul);
+                    },
+                    error => {
+                        console.log(error);
+                    }
+                );
+        } else {
+            /*  this.userService.update(this.modifyUser, this.currentUser.token)
+                                     .subscribe(
+                                         resul => {
+                                             this.dateModifiedSuccessfull = true;
+                                             console.log(resul);
+                                         },
+                                         error => {
+                                             console.log(error);
+                                         }
+                                     );*/
         }
 
-        /*  this.projectService.register(this.currentUser.token, uploadData)
-             .subscribe(
-                 resul => {
-                     this.dateModifiedSuccessfull = true;
-                     console.log(resul);
-                 },
-                 error => {
-                     console.log(error);
-                 }
-             );
-         this.modifyUser = new User();
+
+        /* this.modifyUser = new User();
          this.modifyUserForm.reset(); */
     }
 }

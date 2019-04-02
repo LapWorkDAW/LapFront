@@ -17,11 +17,17 @@ export class HomeComponent implements OnInit {
   constructor(private projectService: ProjectService) { }
   ngOnInit(): void {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.getProjectsInProgress();
+    this.getProjectsFinished();
   }
   getProjectsInProgress() {
     this.projectService.getProjectNoFinished(this.currentUser.token).subscribe(
       result => {
         this.projectsInProgress = result["data"];
+        console.log("progress");
+
+        console.log(this.projectsInProgress);
+
       },
       error => {
         console.log(error);
@@ -33,6 +39,9 @@ export class HomeComponent implements OnInit {
     this.projectService.getProjectFinished(this.currentUser.token).subscribe(
       result => {
         this.projectsFinished = result["data"];
+        console.log("finsh");
+
+        console.log(this.projectsFinished);
       },
       error => {
         console.log(error);
