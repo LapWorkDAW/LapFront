@@ -96,7 +96,7 @@ export class SettingsComponent implements OnInit {
         uploadData.append('user', JSON.stringify(this.modifyUser));
         if (this.modifyUserForm.get('file') != null) {
             uploadData.append('photo', this.modifyUserForm.get('file').value);
-            this.userService.update(uploadData, this.currentUser.token)
+            this.userService.updatewithImg(uploadData, this.currentUser.token)
                 .subscribe(
                     resul => {
                         this.dateModifiedSuccessfull = true;
@@ -107,16 +107,16 @@ export class SettingsComponent implements OnInit {
                     }
                 );
         } else {
-            /*  this.userService.update(this.modifyUser, this.currentUser.token)
-                                     .subscribe(
-                                         resul => {
-                                             this.dateModifiedSuccessfull = true;
-                                             console.log(resul);
-                                         },
-                                         error => {
-                                             console.log(error);
-                                         }
-                                     );*/
+            this.userService.update(this.modifyUser, this.currentUser.token)
+                .subscribe(
+                    resul => {
+                        this.dateModifiedSuccessfull = true;
+                        console.log(resul);
+                    },
+                    error => {
+                        console.log(error);
+                    }
+                );
         }
 
 

@@ -74,7 +74,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
             }
         ); */
 
-        this.getProjectsInProgress();
+        /* this.getProjectsInProgress(); */
     }
 
 
@@ -88,7 +88,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
             });
     }
 
-    getProjectsInProgress() {
+    /* getProjectsInProgress() {
         this.projectService.getProjectNoFinished(this.currentUser.token).subscribe(
             result => {
                 this.projectsInProgress = result["data"];
@@ -99,10 +99,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
                 console.log(error);
             }
-        )
-    }
+        ) 
+}*/
 
-    getProjectsFinished() {
+    /* getProjectsFinished() {
         this.projectService.getProjectFinished(this.currentUser.token).subscribe(
             result => {
                 this.projectsFinished = result["data"];
@@ -111,9 +111,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 console.log(error);
             }
         )
-    }
+    } */
 
-    getProjectsStar() {
+    /* getProjectsStar() {
         this.projectService.getProjectStar(this.currentUser.token).subscribe(
             result => {
                 this.projectsStar = result["data"];
@@ -122,9 +122,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 console.log(error);
             }
         )
-    }
+    } */
 
-    getProjectsFavorite() {
+    /* getProjectsFavorite() {
         this.projectService.getProjectStar(this.currentUser.token).subscribe(
             result => {
                 this.projectsStar = result["data"];
@@ -133,7 +133,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 console.log(error);
             }
         )
-
-    }
+    
+    } */
     ngOnDestroy(): void { }
 }
