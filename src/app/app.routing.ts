@@ -11,6 +11,7 @@ import { ContactComponent } from './contact/contact.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ProjectsComponent } from './projects/projects.component';
+import { OneProjectComponent } from './oneProject/oneProject.component';
 import { AuthGuard } from './_guard/auth.guard';
 
 const appRoutes: Routes = [
@@ -26,6 +27,7 @@ const appRoutes: Routes = [
     { path: 'createProject', component: CreateProjectComponent },
     { path: 'settings', component: SettingsComponent },
     { path: 'projects', component: ProjectsComponent },
+    { path: 'oneProject', component: OneProjectComponent },
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
