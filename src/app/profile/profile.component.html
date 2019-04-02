@@ -178,11 +178,14 @@
         <div class="tab-pane fade" id="joinProjects" role="tabpanel" aria-labelledby="joinProjects-tab">
           <h1>Join Projects</h1>
           <!-- todo: convert this to a form -->
-          <div class="form-check" *ngFor="let type of typesProject">
-            <input type="checkbox" value={{type.idType}} class="form-check-input"
-              formControlName="saveName" />{{type.nameType}}
-          </div>
-          <button type="button" class="btn btn-primary">Send</button>
+          <form>
+            <div class="form-check" *ngFor="let type of typesProject">
+              <input type="checkbox" value={{type.idType}} class="form-check-input" />
+              <!-- formControlName="saveName" -->
+              <label>{{type.nameType}}</label>
+            </div>
+            <button type="button" class="btn btn-primary">Send</button>
+          </form>
         </div>
       </div>
 
