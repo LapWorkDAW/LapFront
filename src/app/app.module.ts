@@ -15,6 +15,7 @@ import { CreateProjectComponent } from './createProject/createProject.component'
 import { SettingsComponent } from './settings/settings.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ContactComponent } from './contact/contact.component';
+import { OneProjectComponent } from './oneProject/oneProject.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ProfileComponent } from './profile/profile.component';
 import { StorageServiceModule } from 'angular-webstorage-service';
@@ -55,7 +56,8 @@ export function getAuthServiceConfigs() {
     ProfileComponent,
     CreateProjectComponent,
     SettingsComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    OneProjectComponent
     /* ,
     UserSettingsComponent */
   ],

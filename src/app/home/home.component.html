@@ -39,7 +39,7 @@
 
               <small class="text-muted">{{project.idType}}</small>
             </div>
-            <a class="btn btn-outline-primary mt-4" href="#" role="button">Link</a><br>
+            <a class="btn btn-outline-primary mt-4" [routerLink]="['oneProject']" role="button">Link</a><br>
           </div>
         </div>
         <a [routerLink]="['projects']" class="btn btn-block mt-3 btn-outline-secondary">More</a>
@@ -59,7 +59,7 @@
                 {{project.likes}}</small>
               <small class="text-muted">{{project.idType}}</small>
             </div>
-            <a class="btn btn-outline-primary mt-4" [routerLink]="['projects']" role="button">Link</a><br>
+            <a class="btn btn-outline-primary mt-4" [routerLink]="['oneProject']" role="button">Link</a><br>
           </div>
         </div>
 
