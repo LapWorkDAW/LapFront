@@ -10,9 +10,13 @@ export class ProjectService {
   constructor(private http: HttpClient) { }
 
   register(token: String, project) {
+    console.log("post");
+
+    console.log(project);
+
     let url = "/api.php?controller=Project&token=" + token;
     return this.http.post(
-      url, project, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
+      url, project, { headers: new HttpHeaders({ 'enctype': 'multipart/form-data' }) }
     );
   }
 
@@ -30,29 +34,29 @@ export class ProjectService {
     );
   }
 
-  getProjectFinished(token: String) {
-    let url = "/api.php?controller=Project&function=getfinish&token=" + token;
+  getProjectFinished() {
+    let url = "/api.php?controller=Project&function=getfinish";
     return this.http.get(
       url, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
     );
   }
 
-  getProjectNoFinished(token: String) {
-    let url = "/api.php?controller=Project&function=getnofinish&token=" + token;
+  getProjectNoFinished() {
+    let url = "/api.php?controller=Project&function=getnofinish";
     return this.http.get(
       url, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
     );
   }
 
-  getProjectStar(token: String) {
-    let url = "/api.php?controller=VProjectStar&function=allVotes&token=" + token;
+  getProjectStar(id: number) {
+    let url = "/api.php?controller=VProjectStar&function=allvotes&id=" + id;
     return this.http.get(
       url, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
     );
   }
 
-  getProjectFavorite(token: String) {
-    let url = "/api.php?controller=VProjectFav&function=allVotes&token=" + token;
+  getProjectFavorite(id: number) {
+    let url = "/api.php?controller=VProjectFav&function=allvotes&id=" + id;
     return this.http.get(
       url, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
     );

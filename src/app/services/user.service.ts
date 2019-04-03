@@ -11,8 +11,15 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
 
-  update(user: FormData, token: String) {
+  update(user: User, token: String) {
     let url = "/api.php?controller=User&token=" + token;
+    return this.http.put(
+      url, user, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
+    );
+  }
+
+  updatewithImg(user: FormData, token: String) {
+    let url = "/api.php?controller=User&function=photo&token=" + token;
     return this.http.put(
       url, user, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
     );

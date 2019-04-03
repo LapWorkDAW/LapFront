@@ -20,6 +20,7 @@ export class CreateProjectComponent implements OnInit {
     newProject: Project = new Project();
     createProjectForm: FormGroup;
     submitted = false;
+    img;
 
     constructor(
         private authenticationService: AuthenticationService, private projectService: ProjectService,
@@ -44,9 +45,9 @@ export class CreateProjectComponent implements OnInit {
         );
 
         this.createProjectForm = this.formBuilder.group({
-            projectName: ['', Validators.required],
-            description: ['', Validators.required],
-            idType: ['', Validators.required],
+            projectName: ['a', Validators.required],
+            description: ['a', Validators.required],
+            idType: ['1', Validators.required],
             dateFinish: ['', Validators.required],
             img: ['']
         }, {
@@ -60,7 +61,11 @@ export class CreateProjectComponent implements OnInit {
         if (event.target.files && event.target.files[0]) {
             const reader = new FileReader();
             reader.onload = () => {
-                this.createProjectForm.get('file').setValue(event.target.files[0]);
+                console.log("Este es file");
+
+                console.log(event.target.files[0]);
+                /* this.createProjectForm.get('img').setValue(event.target.files[0]); */
+                this.img = event.target.files[0];
             };
             reader.readAsDataURL(event.target.files[0]);
         }
@@ -72,22 +77,23 @@ export class CreateProjectComponent implements OnInit {
         if (this.createProjectForm.invalid) {
             return;
         }
-        console.log(this.createProjectForm.value);
+
         /*  this.newProject = this.createProjectForm.value; */
         /*  this.newProject.userO = this.currentUser; */
         this.newProject.nameCreator = this.currentUser.firstname + " " + this.currentUser.surname;
         /* code for upload file */
         const uploadData = new FormData();
-        /* uploadData.append('projectName', this.createProjectForm.get('projectName').value);
+        uploadData.append('projectName', this.createProjectForm.get('projectName').value);
         uploadData.append('description', this.createProjectForm.get('description').value);
         uploadData.append('idType', this.createProjectForm.get('idType').value);
         uploadData.append('dateFinish', this.createProjectForm.get('dateFinish').value);
         uploadData.append('userO', JSON.stringify(this.currentUser));
-        uploadData.append('nameCreator', this.newProject.nameCreator); */
+        uploadData.append('nameCreator', this.newProject.nameCreator);
         uploadData.append('project', JSON.stringify(this.newProject));
-        if (this.createProjectForm.get('file') != null) {
-            uploadData.append('photo', this.createProjectForm.get('file').value);
-        }
+        uploadData.append('photo', this.img);
+        console.log("es uploadData");
+        console.log(uploadData.get('description'));
+        console.log(uploadData);
 
 
         this.projectService.register(this.currentUser.token, uploadData)
