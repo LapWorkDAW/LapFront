@@ -10,10 +10,6 @@ export class ProjectService {
   constructor(private http: HttpClient) { }
 
   register(token: String, project) {
-    console.log("post");
-
-    console.log(project);
-
     let url = "/api.php?controller=Project&token=" + token;
     return this.http.post(
       url, project, { headers: new HttpHeaders({ 'enctype': 'multipart/form-data' }) }
@@ -69,4 +65,24 @@ export class ProjectService {
     );
   }
 
+  getOneProject(id: number) {
+    let url = "/api.php?controller=Project&function=projectid&id=" + id;
+    return this.http.get(
+      url, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
+    );
+  }
+
+  checkVoteStar(token: string, id: number) {
+    let url = "/api.php?controller=ProjectStar&function=userprojectd&id=" + id + "&token=" + token;
+    return this.http.get(
+      url, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
+    );
+  }
+
+  checkVoteLike(token: string, id: number) {
+    let url = "/api.php?controller=ProjectFav&function=userproject&id=" + id + "&token=" + token;
+    return this.http.get(
+      url, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
+    );
+  }
 }

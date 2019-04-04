@@ -18,11 +18,6 @@ export class NavNoLogComponent {
 
     constructor(private socialAuthService: AuthService, public router: Router, private authenticationService: AuthenticationService) {
         this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-
-
-        /* if (this.currentUser.photo == null) {
-            this.photo = false;
-        } */
     }
 
     ngOnInit() { }

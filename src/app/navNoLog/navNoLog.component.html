@@ -27,17 +27,17 @@
               <img [src]="'./assets/userAssets/photos/girl.jpg'" style="height: 40px;"
                 class=" list-inline-item rounded float-left ml-4" alt="...">
             </ng-template>
-            <a class="dropdown-item text-primary" [routerLink]="['../profile']">Signed in as
+            <a class="dropdown-item text-primary" [routerLink]="['/profile']">Signed in as
               <br>{{currentUser.firstname}}</a>
           </div>
 
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" [routerLink]="['../profile']">My Projects</a>
-          <a class="dropdown-item" [routerLink]="['../profile']">Favourites</a>
-          <a class="dropdown-item" [routerLink]="['../profile']"
+          <a class="dropdown-item" [routerLink]="['/profile']">My Projects</a>
+          <a class="dropdown-item" [routerLink]="['/profile']">Favourites</a>
+          <a class="dropdown-item" [routerLink]="['/profile']"
             href="/src/app/profile/profile.component.html/#joinProjects">Join projects</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" [routerLink]="['../settings']">Settings</a>
+          <a class="dropdown-item" [routerLink]="['/settings']">Settings</a>
           <a class="dropdown-item" (click)="signOut()" href="">Log Out</a>
         </div>
       </li>

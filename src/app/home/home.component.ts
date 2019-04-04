@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
   currentUser: User;
   projectsInProgress: Array<Project>;
   projectsFinished: Array<Project>;
-  ctrl = new FormControl(null, Validators.required);
+  /*  ctrl = new FormControl(null, Validators.required); */
 
   constructor(private projectService: ProjectService, private router: Router, config: NgbRatingConfig) {
     // customize default values of ratings used by this component tree
@@ -82,18 +82,6 @@ export class HomeComponent implements OnInit {
       },
       error => { }
     )
-  }
-
-
-
-
-
-  toggle() {
-
-    /* this.ctrl.value */
-
-    this.ctrl.disable();
-
   }
 
 }

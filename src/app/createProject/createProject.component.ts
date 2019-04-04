@@ -61,10 +61,6 @@ export class CreateProjectComponent implements OnInit {
         if (event.target.files && event.target.files[0]) {
             const reader = new FileReader();
             reader.onload = () => {
-                console.log("Este es file");
-
-                console.log(event.target.files[0]);
-                /* this.createProjectForm.get('img').setValue(event.target.files[0]); */
                 this.img = event.target.files[0];
             };
             reader.readAsDataURL(event.target.files[0]);
@@ -78,28 +74,21 @@ export class CreateProjectComponent implements OnInit {
             return;
         }
 
-        /*  this.newProject = this.createProjectForm.value; */
+        this.newProject = this.createProjectForm.value;
         /*  this.newProject.userO = this.currentUser; */
         this.newProject.nameCreator = this.currentUser.firstname + " " + this.currentUser.surname;
+        delete this.newProject['img'];
+        this.newProject.userO = this.currentUser;
         /* code for upload file */
         const uploadData = new FormData();
-        uploadData.append('projectName', this.createProjectForm.get('projectName').value);
-        uploadData.append('description', this.createProjectForm.get('description').value);
-        uploadData.append('idType', this.createProjectForm.get('idType').value);
-        uploadData.append('dateFinish', this.createProjectForm.get('dateFinish').value);
-        uploadData.append('userO', JSON.stringify(this.currentUser));
-        uploadData.append('nameCreator', this.newProject.nameCreator);
         uploadData.append('project', JSON.stringify(this.newProject));
         uploadData.append('photo', this.img);
-        console.log("es uploadData");
-        console.log(uploadData.get('description'));
-        console.log(uploadData);
-
 
         this.projectService.register(this.currentUser.token, uploadData)
             .subscribe(
                 resul => {
                     console.log(resul);
+                    /* this.router.navigate(['/oneProject', this.newProject.projectName]); */
                 },
                 error => {
                     console.log(error);
