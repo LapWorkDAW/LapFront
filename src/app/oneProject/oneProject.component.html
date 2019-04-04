@@ -1,6 +1,42 @@
 <navNoLog></navNoLog>
-<div class="container col-md-7">
-  <div class="col-">
+<div class="container col-md-10">
+  <div class="row">
+    <div class="col-3">
+      <br><br>
+      <figure class="figure">
+        <img [src]="'assets/icons/standard/table7.jpg'" class="w-100 rounded" alt="...">
+        <figcaption class="figure-caption text-center">type</figcaption>
+      </figure>
+    </div>
+    <div class="col">
+      <br><br>
+      <h1>title</h1>
+      <p>description: Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere incidunt, ad repellendus tempore
+        ipsa mollitia porro asperiores labore atque. Illo temporibus aut nihil ipsam pariatur reprehenderit impedit
+        accusantium totam nemo. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab nesciunt adipisci sed
+        excepturi? Tempora iste, officiis fugit ad voluptatum eos necessitatibus error. Ut quia dolorum optio, quis
+        dolores hic culpa! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum dicta aperiam voluptatem
+        molestiae ipsum ipsam reprehenderit autem provident quis neque maiores dolor est, voluptates quod adipisci
+        debitis ad perspiciatis commodi, ducimus sequi atque dolorem! Aut earum nisi tempore nobis vel?</p>
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <small>author </small><br>
+          <small>team </small><br>
+          <small>finish date </small>
+        </div>
+        <div>
+          <ngb-rating [formControl]="ctrl" (click)="toggle()" style="color:#FFC300"></ngb-rating>
+          <div class="form-text small">
+            <div *ngIf="ctrl.valid" class="text-success">Thanks!</div>
+            <div *ngIf="ctrl.invalid" class="text-danger">Please rate us</div>
+          </div>
+        </div>
+      </div>
+      <div>
+
+      </div>
+
+    </div>
 
   </div>
 </div>
