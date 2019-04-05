@@ -33,17 +33,7 @@
                 </span>
               </ng-template>
               <ngb-rating [(rate)]="project.stars" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
-
-              <!--  <div class="form-group">
-                <ngb-rating [formControl]="ctrl" (click)="toggle()" style="color:#FFC300"></ngb-rating>
-                <div class="form-text small">
-                  <div *ngIf="ctrl.valid" class="text-success">Thanks!</div>
-                  <div *ngIf="ctrl.invalid" class="text-danger">Please rate us</div>
-                </div>
-              </div> -->
-
-
-              <small class="text-muted">{{project.idType}}</small>
+              <small class="text-muted">{{project.type.nameType}}</small>
             </div>
             <a class="btn btn-outline-primary mt-4" [routerLink]="['/oneProject', project.idProject]"
               role="button">Link</a><br>
@@ -67,7 +57,7 @@
                 <small class="">{{project.likes}}</small>
               </ng-template>
               <ngb-rating [rate]="1" [starTemplate]="t" [readonly]="true"></ngb-rating>
-              <small class="text-muted">{{project.idType}}</small>
+              <small class="text-muted">{{project.type.nameType}}</small>
             </div>
             <a class="btn btn-outline-primary mt-4" [routerLink]="['/oneProject',project.idProject]"
               routerLinkActive="active" role="button">Link</a><br>

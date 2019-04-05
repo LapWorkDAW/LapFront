@@ -70,7 +70,6 @@ export class HomeComponent implements OnInit {
       result => {
         this.projectsFinished = result["data"];
         for (let i = 0; i < this.projectsFinished.length; i++) {
-          const element = this.projectsFinished[i];
           this.projectService.getProjectStar(this.projectsFinished[i].idProject).subscribe(
             result => {
               this.projectsFinished[i]["stars"] = result["data"];

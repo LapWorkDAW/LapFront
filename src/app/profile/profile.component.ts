@@ -74,7 +74,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
             }
         ); */
 
-        /* this.getProjectsInProgress(); */
+        this.getProjectsInProgress();
+        this.getProjectsFinished();
     }
 
 
@@ -88,22 +89,20 @@ export class ProfileComponent implements OnInit, OnDestroy {
             });
     }
 
-    /* getProjectsInProgress() {
-        this.projectService.getProjectNoFinished(this.currentUser.token).subscribe(
+    getProjectsInProgress() {
+        this.projectService.getProjectNoFinishedUser(this.currentUser.token).subscribe(
             result => {
                 this.projectsInProgress = result["data"];
                 console.log(this.projectsInProgress);
-
             },
             error => {
-
                 console.log(error);
             }
-        ) 
-}*/
+        )
+    }
 
-    /* getProjectsFinished() {
-        this.projectService.getProjectFinished(this.currentUser.token).subscribe(
+    getProjectsFinished() {
+        this.projectService.getProjectFinishedUser(this.currentUser.token).subscribe(
             result => {
                 this.projectsFinished = result["data"];
             },
@@ -111,7 +110,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 console.log(error);
             }
         )
-    } */
+    }
 
     /* getProjectsStar() {
         this.projectService.getProjectStar(this.currentUser.token).subscribe(

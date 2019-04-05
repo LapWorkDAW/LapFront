@@ -44,6 +44,20 @@ export class ProjectService {
     );
   }
 
+  getProjectFinishedUser(token: string) {
+    let url = "/api.php?controller=Project&function=byuserfinish&token=" + token;
+    return this.http.get(
+      url, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
+    );
+  }
+
+  getProjectNoFinishedUser(token: string) {
+    let url = "/api.php?controller=Project&function=byusernofinish&token=" + token;
+    return this.http.get(
+      url, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
+    );
+  }
+
   getProjectStar(id: number) {
     let url = "/api.php?controller=VProjectStar&function=allvotes&id=" + id;
     return this.http.get(
