@@ -18,6 +18,7 @@ export class OneProjectComponent {
     isVote: boolean;
     isLike: boolean;
     currentUser: User;
+    userExistandNoVoted: boolean = false;
     ctrl = new FormControl(null, Validators.required);
 
     constructor(private _router: Router, private projectService: ProjectService,
@@ -36,7 +37,6 @@ export class OneProjectComponent {
                 this.project = resul["data"];
             },
             error => {
-
             }
         )
         if (this.project.projectStatus == 0) {
@@ -44,8 +44,9 @@ export class OneProjectComponent {
         } else {
             this.isLike = false;
         }
-
-        this.isVoted();
+        if (this.currentUser) {
+            this.isVoted();
+        }
     }
     //0-no esta votado, 1 - si
 
@@ -80,8 +81,9 @@ export class OneProjectComponent {
     }
 
     toggle() {
-        /* this.ctrl.value */
+        console.log(this.ctrl.value);
         this.ctrl.disable();
+        this.ctrl.valid;
     }
 
 }
