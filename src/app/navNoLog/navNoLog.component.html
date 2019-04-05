@@ -18,7 +18,7 @@
           Menu
         </a>
         <div class="dropdown-menu" style="min-width:250px;" aria-labelledby="navbarDropdown">
-          <div class="list-inline">
+          <div class="list-inline d-flex justify-content-between align-items-center">
             <ng-template [ngIf]="currentUser" [ngIfElse]="notPhoto">
               <img [src]="currentUser.photo" style="height: 40px;"
                 class="list-inline-item rounded float-left ml-4 photo" alt="...">
