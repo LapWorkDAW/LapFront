@@ -23,7 +23,9 @@
 
             <div class="tab-pane fade show active" id="list-profile" role="tabpanel"
               aria-labelledby="list-profile-list">
-              <h1>Public profile</h1><br>
+              <h2>Public profile</h2>
+              <hr>
+              <br>
               <div *ngIf="dateModifiedSuccessfull" class="alert alert-success" role="alert">Data have been updated.
               </div>
               <form [formGroup]="modifyUserForm" (ngSubmit)="sendForm()">
@@ -87,7 +89,29 @@
             </div>
 
             <div class="tab-pane fade" id="list-account" role="tabpanel" aria-labelledby="list-account-list">
-              <h1>Account</h1>
+              <h2>Change password</h2>
+              <hr><br>
+              <form>
+                <div class="form-group">
+                  <label>Old password</label>
+                  <input type="password" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label>New password</label>
+                  <input type="password" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label>Confirm new password</label>
+                  <input type="password" class="form-control" />
+                </div>
+                <button class="btn btn-outline-primary">Save</button>
+              </form><br><br>
+              <h2 class="text-danger">Delete account</h2>
+              <hr><br>
+              <small>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut consequuntur non quos reiciendis.
+                Expedita eaque minus illum est provident magni blanditiis iste officiis nemo, quae sequi odit. Autem, id
+                quo.</small>
+
             </div>
             <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
             <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
