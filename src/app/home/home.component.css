@@ -1,5 +1,13 @@
-.star {
-    color: #b0c4de;
+#IT {
+  color: #ff7537 !important;
+}
+
+#Art {
+  color: #42d692 !important;
+}
+
+#Engineering {
+  color: #f6989d;
 }
 
 /*# sourceMappingURL=home.component.css.map */
