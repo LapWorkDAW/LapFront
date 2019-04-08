@@ -32,7 +32,8 @@
                 </span>
               </ng-template>
               <ngb-rating [(rate)]="project.stars" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
-              <small class="text-muted">{{project.type.nameType}}</small>
+              <small class="text" id="{{project.type.nameType}}">{{project.type.nameType}}</small>
+
             </div>
             <a class="btn btn-outline-primary mt-4" [routerLink]="['/oneProject', project.idProject]"
               role="button">Link</a><br>
@@ -56,7 +57,7 @@
                 <small class="">{{project.likes}}</small>
               </ng-template>
               <ngb-rating [rate]="1" [starTemplate]="t" [readonly]="true"></ngb-rating>
-              <small class="text-muted" id="{{project.type.nameType}}">{{project.type.nameType}}</small>
+              <small class="text" id="{{project.type.nameType}}">{{project.type.nameType}}</small>
             </div>
             <a class="btn btn-outline-primary mt-4" [routerLink]="['/oneProject',project.idProject]"
               routerLinkActive="active" role="button">Link</a><br>
