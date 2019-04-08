@@ -87,14 +87,14 @@ export class ProjectService {
   }
 
   checkVoteStar(token: string, id: number) {
-    let url = "/api.php?controller=ProjectStar&function=userprojectd&id=" + id + "&token=" + token;
+    let url = "/api.php?controller=VProjectStar&function=userproject&id=" + id + "&token=" + token;
     return this.http.get(
       url, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
     );
   }
 
   checkVoteLike(token: string, id: number) {
-    let url = "/api.php?controller=ProjectFav&function=userproject&id=" + id + "&token=" + token;
+    let url = "/api.php?controller=VProjectFav&function=userproject&id=" + id + "&token=" + token;
     return this.http.get(
       url, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
     );

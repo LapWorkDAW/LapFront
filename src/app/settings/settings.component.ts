@@ -22,6 +22,7 @@ export class SettingsComponent implements OnInit {
     public addrKeys: string[];
     public addr: object;
     dateModifiedSuccessfull: boolean = false;
+    img;
 
     constructor(
         /* private _activRoute: ActivatedRoute, */
@@ -63,7 +64,7 @@ export class SettingsComponent implements OnInit {
         if (event.target.files && event.target.files[0]) {
             const reader = new FileReader();
             reader.onload = () => {
-                this.modifyUserForm.get('file').setValue(event.target.files[0]);
+                this.img = event.target.files[0];
             };
             reader.readAsDataURL(event.target.files[0]);
         }
@@ -94,30 +95,18 @@ export class SettingsComponent implements OnInit {
         this.modifyUser.photo = this.currentUser.photo;
         const uploadData = new FormData();
         uploadData.append('user', JSON.stringify(this.modifyUser));
-        if (this.modifyUserForm.get('file') != null) {
-            uploadData.append('photo', this.modifyUserForm.get('file').value);
-            this.userService.updatewithImg(uploadData, this.currentUser.token)
-                .subscribe(
-                    resul => {
-                        this.dateModifiedSuccessfull = true;
-                        console.log(resul);
-                    },
-                    error => {
-                        console.log(error);
-                    }
-                );
-        } else {
-            this.userService.update(this.modifyUser, this.currentUser.token)
-                .subscribe(
-                    resul => {
-                        this.dateModifiedSuccessfull = true;
-                        console.log(resul);
-                    },
-                    error => {
-                        console.log(error);
-                    }
-                );
-        }
+        uploadData.append('photo', this.img);
+        this.userService.update(uploadData, this.currentUser.token)
+            .subscribe(
+                resul => {
+                    this.dateModifiedSuccessfull = true;
+                    console.log(resul);
+                },
+                error => {
+                    console.log(error);
+                }
+            );
+
 
 
         /* this.modifyUser = new User();

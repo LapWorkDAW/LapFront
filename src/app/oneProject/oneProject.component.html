@@ -17,7 +17,7 @@
           <small>{{project.nameCreator}}</small><br>
           <small>{{project.dateFinish}}</small>
         </div>
-        <div *ngIf="userExistandNoVoted">
+        <div *ngIf="userExistAndNoVoted">
           <ngb-rating [formControl]="ctrl" (click)="toggle()" style="color:#007bff" max="5"></ngb-rating>
           <div class="form-text small">
             <div *ngIf="ctrl.valid" class="text-success">Thanks!</div>

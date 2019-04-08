@@ -93,7 +93,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.projectService.getProjectNoFinishedUser(this.currentUser.token).subscribe(
             result => {
                 this.projectsInProgress = result["data"];
-                console.log(this.projectsInProgress);
             },
             error => {
                 console.log(error);
