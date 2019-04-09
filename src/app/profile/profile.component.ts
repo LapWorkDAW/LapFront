@@ -11,6 +11,7 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 @Component({
     selector: 'profile',
     templateUrl: './profile.component.html',
+    styleUrls: ['../home/home.component.css', './profile.component.css'],
     styles: [`
     #Art {
         color: #99644c;
