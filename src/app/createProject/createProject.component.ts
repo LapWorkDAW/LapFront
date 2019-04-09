@@ -88,13 +88,13 @@ export class CreateProjectComponent implements OnInit {
             .subscribe(
                 resul => {
                     console.log(resul);
-                    /* this.router.navigate(['/oneProject', this.newProject.projectName]); */
+                    this.router.navigate(['/oneProject', this.newProject.projectName]);
                 },
                 error => {
+                    console.log("error");
                     console.log(error);
                 }
             );
         this.newProject = new Project();
-        this.createProjectForm.reset();
     }
 }
