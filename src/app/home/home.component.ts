@@ -26,6 +26,22 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
       overflow: hidden;
       color: #007bff;
     }
+    #Art {
+      color: #99644c;
+    }
+    #Engineering {
+      color: #7456bf;
+    }
+    #IT {
+      color: #f25139;
+    }
+    #Literary {
+      color: #ff7d49;
+    }
+    #Technological {
+      color: #46b275;
+    }
+
   `],
   providers: [NgbRatingConfig]
 })
