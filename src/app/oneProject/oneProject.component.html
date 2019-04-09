@@ -17,20 +17,38 @@
           <small>{{project.nameCreator}}</small><br>
           <small>{{project.dateFinish}}</small>
         </div>
-        <div *ngIf="userExistAndNoVoted">
-          <ngb-rating [formControl]="ctrl" (click)="toggleStar()" style="color:#007bff" max="5"></ngb-rating>
-          <div class="form-text small">
-            <div *ngIf="ctrl.valid" class="text-success">Thanks!</div>
-            <div *ngIf="ctrl.invalid" class="text-danger">Please rate us</div>
-          </div>
-        </div>
-
+        <ng-template [ngIf]="isLike" [ngIfElse]="notLike">
+          <ng-template [ngIf]="userExistAndNoLike" [ngIfElse]="VoteLike">
+            <ngb-rating [formControl]="ctrl" (click)="toggleLike()" style="color:#007bff" max="1">
+              <ng-template let-fill="fill" let-index="index">
+                <span class="star" [class.filled]="fill === 100" [class.bad]="index<3">&hearts;</span>
+              </ng-template>
+            </ngb-rating>
+          </ng-template>
+          <ng-template #VoteLike>
+            <ng-template #t>
+              <span style="color: #007bff; font-size: 20px; line-height: 0px;"> &hearts; </span>
+              <small class="">{{project.likes}}</small>
+            </ng-template>
+            <ngb-rating [rate]="1" [starTemplate]="t" [readonly]="true"></ngb-rating>
+          </ng-template>
+        </ng-template>
+        <ng-template #notLike>
+          <ng-template [ngIf]="userExistAndNoVoted" [ngIfElse]="notVote">
+            <ngb-rating [formControl]="ctrl" (click)="toggleStar()" style="color:#007bff" max="5"></ngb-rating>
+          </ng-template>
+          <ng-template #notVote>
+            <ng-template #t let-fill="fill">
+              <span class="star" [class.full]="fill === 100">
+                <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+              </span>
+            </ng-template>
+            <ngb-rating [(rate)]="project.stars" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
+          </ng-template>
+        </ng-template>
       </div>
       <div>
-
       </div>
-
     </div>
-
   </div>
 </div>

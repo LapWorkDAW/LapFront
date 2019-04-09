@@ -112,6 +112,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.projectService.getProjectNoFinishedUser(this.currentUser.token).subscribe(
             result => {
                 this.projectsInProgres = result["data"];
+                for (let i = 0; i < this.projectsInProgres.length; i++) {
+                    this.projectService.getProjectFavorite(this.projectsInProgres[i].idProject).subscribe(
+                        result => {
+                            this.projectsInProgres[i]["likes"] = result["data"];
+                        }, error => {
+                            this.projectsInProgres[i]["likes"] = 0;
+                        }
+                    )
+                }
             },
             error => {
                 console.log(error);
@@ -123,6 +132,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.projectService.getProjectFinishedUser(this.currentUser.token).subscribe(
             result => {
                 this.projectsFinished = result["data"];
+                for (let i = 0; i < this.projectsFinished.length; i++) {
+                    this.projectService.getProjectStar(this.projectsFinished[i].idProject).subscribe(
+                        result => {
+                            this.projectsFinished[i]["stars"] = result["data"];
+                        }, error => {
+                            this.projectsFinished[i]["stars"] = 0;
+                        }
+                    )
+                }
             },
             error => {
                 console.log(error);
