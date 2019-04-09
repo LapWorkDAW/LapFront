@@ -6,12 +6,30 @@ import { ProjectService } from '../services/project.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';/* ActivatedRoute, Params */
 import { Project } from 'src/assets/models/Project';
+import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'profile',
     templateUrl: './profile.component.html',
-    styleUrls: ['../home/home.component.css', './profile.component.css']
-
+    styleUrls: ['../home/home.component.css', './profile.component.css'],
+    styles: [`
+    .star {
+      position: relative;
+      display: inline-block;
+      font-size: 1rem;
+      color: #d3d3d3;
+    }
+    .full {
+      color:#007bff;
+    }
+    .half {
+      position: absolute;
+      display: inline-block;
+      overflow: hidden;
+      color: #007bff;
+    }
+  `],
+    providers: [NgbRatingConfig]
 })
 export class ProfileComponent implements OnInit, OnDestroy {
     /* active_myProjects = "";
@@ -22,7 +40,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     currentUserSubscription: Subscription;
     projectsStar: Array<Project>;
     projectsFavorite: Array<Project>;
-    projectsInProgress: Array<Project>;
+    projectsInProgres: Array<Project>;
     projectsFinished: Array<Project>;
     photo: boolean = true;
     typesProject: Array<String>;
@@ -30,8 +48,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
     constructor(
         /* private _activRoute: ActivatedRoute, */
         private authenticationService: AuthenticationService, private projectService: ProjectService,
-        private userService: UserService, private router: Router
+        private userService: UserService, private router: Router, config: NgbRatingConfig
     ) {
+        config.max = 1;
         this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
             this.currentUser = user;
         });
@@ -92,7 +111,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     getProjectsInProgress() {
         this.projectService.getProjectNoFinishedUser(this.currentUser.token).subscribe(
             result => {
-                this.projectsInProgress = result["data"];
+                this.projectsInProgres = result["data"];
             },
             error => {
                 console.log(error);
@@ -111,8 +130,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
         )
     }
 
-    /* getProjectsStar() {
-        this.projectService.getProjectStar(this.currentUser.token).subscribe(
+    getProjectsStar() {
+        this.projectService.getProjectsStarUser(this.currentUser.token).subscribe(
             result => {
                 this.projectsStar = result["data"];
             },
@@ -120,18 +139,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 console.log(error);
             }
         )
-    } */
+    }
 
-    /* getProjectsFavorite() {
-        this.projectService.getProjectStar(this.currentUser.token).subscribe(
+    getProjectsFavorite() {
+        this.projectService.getProjectsFavoriteUser(this.currentUser.token).subscribe(
             result => {
-                this.projectsStar = result["data"];
+                this.projectsFavorite = result["data"];
             },
             error => {
                 console.log(error);
             }
         )
-    
-    } */
+
+    }
     ngOnDestroy(): void { }
 }

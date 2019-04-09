@@ -50,8 +50,8 @@ export class HomeComponent implements OnInit {
     this.projectService.getProjectNoFinished().subscribe(
       result => {
         this.projectsInProgress = result["data"];
+
         for (let i = 0; i < this.projectsInProgress.length; i++) {
-          const element = this.projectsInProgress[i];
           this.projectService.getProjectFavorite(this.projectsInProgress[i].idProject).subscribe(
             result => {
               this.projectsInProgress[i]["likes"] = result["data"];

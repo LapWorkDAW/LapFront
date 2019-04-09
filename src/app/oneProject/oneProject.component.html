@@ -18,7 +18,7 @@
           <small>{{project.dateFinish}}</small>
         </div>
         <div *ngIf="userExistAndNoVoted">
-          <ngb-rating [formControl]="ctrl" (click)="toggle()" style="color:#007bff" max="5"></ngb-rating>
+          <ngb-rating [formControl]="ctrl" (click)="toggleStar()" style="color:#007bff" max="5"></ngb-rating>
           <div class="form-text small">
             <div *ngIf="ctrl.valid" class="text-success">Thanks!</div>
             <div *ngIf="ctrl.invalid" class="text-danger">Please rate us</div>

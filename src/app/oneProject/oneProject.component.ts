@@ -6,6 +6,10 @@ import { User } from "src/assets/models/User";
 import { Subscription } from "rxjs";
 import { AuthenticationService } from "../services/authentication.service";
 import { FormControl, Validators } from "@angular/forms";
+import { VProjectStarService } from "../services/v-project-star.service";
+import { VProjectStar } from "src/assets/models/VProjectStar";
+import { VProjectFav } from "src/assets/models/VProjectFav";
+import { VProjectFavService } from "../services/v-project-fav.service";
 
 @Component({
     selector: 'oneProject',
@@ -18,12 +22,14 @@ export class OneProjectComponent {
     isVote: boolean; //si esta valorado
     isLike: boolean; //para saber si mostrar estrellas o corazones
     currentUser: User;
-    userExistAndNoVoted: boolean = false; //para habilitar poder de votar
+    userExistAndNoVoted: boolean = true; //para habilitar poder de votar
     ctrl = new FormControl(null, Validators.required);
+    star: VProjectStar = new VProjectStar();
+    like: VProjectFav = new VProjectFav();
 
     constructor(private _router: Router, private projectService: ProjectService,
-        private _activRoute: ActivatedRoute) {
-
+        private _activRoute: ActivatedRoute, private voteStar: VProjectStarService,
+        private voteLike: VProjectFavService) {
     }
 
     ngOnInit() {
@@ -66,6 +72,7 @@ export class OneProjectComponent {
                     } else {
                         console.log("error");
                         this.isVote = true;
+                        this.userExistAndNoVoted = true;
                     }
                 },
                 error => {
@@ -89,10 +96,36 @@ export class OneProjectComponent {
         }
     }
 
-    toggle() {
-        console.log(this.ctrl.value);
-        this.ctrl.disable();
-        this.ctrl.valid;
+    toggleStar() {
+        this.star.project = this.project;
+        this.star.quantity = this.ctrl.value;
+        this.star.userVote = this.currentUser;
+        this.voteStar.vote(this.star, this.currentUser.token).subscribe(
+            result => {
+                console.log(result);
+                this.ctrl.disable();
+                this.ctrl.valid;
+            },
+            error => {
+                console.log("error");
+
+            }
+        )
     }
 
+    toggleLike() {
+        this.like.project = this.project;
+        this.like.userVote = this.currentUser;
+        this.voteLike.vote(this.like, this.currentUser.token).subscribe(
+            result => {
+                console.log(result);
+                this.ctrl.disable();
+                this.ctrl.valid;
+            },
+            error => {
+                console.log("error");
+
+            }
+        )
+    }
 }
