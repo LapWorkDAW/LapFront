@@ -40,4 +40,11 @@ export class UserService {
         fn(resp.data);
       });
   }
+
+  checkCurrentPassword(password: String, token: string) {
+    let url = "/api.php?controller=User&function=getbymail&id=";
+    return this.http.get(
+      url, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
+    );
+  }
 }

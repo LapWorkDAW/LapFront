@@ -91,18 +91,38 @@
             <div class="tab-pane fade" id="list-account" role="tabpanel" aria-labelledby="list-account-list">
               <h2>Change password</h2>
               <hr><br>
-              <form>
+              <form [formGroup]="passwordForm" (ngSubmit)="sendPassword()">
                 <div class="form-group">
                   <label>Old password</label>
-                  <input type="password" class="form-control" />
+                  <input type="password" class="form-control" formControlName="oldPassword"
+                    [ngClass]="{ 'is-invalid': submitted && f.oldPassword.errors }" (blur)="checkPassword()" />
+                  <div *ngIf="submitted && f.oldPassword.errors" class="invalid-feedback">
+                    <div *ngIf="f.oldPassword.errors.required">Confirm Password is required</div>
+                  </div>
+                  <div *ngIf="isPasswordMatch">
+                    <div>
+                      <label style="color: #dc3545; font-size: 80%; margin-top: 0.25rem;">
+                        This mail is already used. Try another one.</label>
+                    </div>
+                  </div>
                 </div>
                 <div class="form-group">
                   <label>New password</label>
-                  <input type="password" class="form-control" />
+                  <input type="password" class="form-control" formControlName="newPassword"
+                    [ngClass]="{ 'is-invalid': submitted && f.newPassword.errors }" />
+                  <div *ngIf="submitted && f.newPassword.errors" class="invalid-feedback">
+                    <div *ngIf="f.pass.newPassword.required">Password is required</div>
+                    <div *ngIf="f.pass.newPassword.minlength">Password must be at least 6 characters</div>
+                  </div>
                 </div>
                 <div class="form-group">
                   <label>Confirm new password</label>
-                  <input type="password" class="form-control" />
+                  <input type="password" class="form-control" formControlName="confirmPassword"
+                    [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+                  <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                    <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+                    <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+                  </div>
                 </div>
                 <button class="btn btn-outline-primary">Save</button>
               </form><br><br>
@@ -111,7 +131,11 @@
               <small>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut consequuntur non quos reiciendis.
                 Expedita eaque minus illum est provident magni blanditiis iste officiis nemo, quae sequi odit. Autem, id
                 quo.</small>
-
+              <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}
+              </ngb-alert>
+              <p>
+                <button class="btn btn-primary" (click)="changeSuccessMessage()">Delete account</button>
+              </p>
             </div>
             <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
             <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
