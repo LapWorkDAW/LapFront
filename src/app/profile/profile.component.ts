@@ -10,7 +10,25 @@ import { Project } from 'src/assets/models/Project';
 @Component({
     selector: 'profile',
     templateUrl: './profile.component.html',
-    styleUrls: ['../home/home.component.css', './profile.component.css']
+    styleUrls: ['../home/home.component.css', './profile.component.css'],
+    styles: [`
+    #Art {
+        color: #99644c;
+      }
+      #Engineering {
+        color: #7456bf;
+      }
+      #IT {
+        color: #f25139;
+      }
+      #Literary {
+        color: #ff7d49;
+      }
+      #Technological {
+        color: #46b275;
+      }
+  
+    `]
 
 })
 export class ProfileComponent implements OnInit, OnDestroy {
