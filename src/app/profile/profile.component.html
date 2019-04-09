@@ -1,9 +1,9 @@
 <navNoLog></navNoLog>
-<div class="container mt-5">
+<div class="container mt-5 px-lg-5">
 
-  <div class="row">
+  <div class="row mx-lg-n5">
 
-    <div class="col-3 mr-5">
+    <div class="col-4">
       <div class="card" style="width: 18rem;">
         <ng-template [ngIf]="photo" [ngIfElse]="notPhoto">
           <img [src]="currentUser.photo" class="card-img-top photo" alt="...">
@@ -22,6 +22,7 @@
           <li class="list-group-item"><a [routerLink]="['../settings']" class="card-link">Edit</a></li>
         </ul>
       </div>
+
     </div>
 
     <div class="col-8">
@@ -61,12 +62,11 @@
 
           </div><br>
 
-          <div class="tab-content" id="pills-tabContent">
+          <div class="tab-content w-100" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-onGoingProjects" role="tabpanel"
               aria-labelledby="pills-onGoingProjects-tab">
               <h3>On-going projects</h3>
-              <div class="card-columns">
-
+              <div class=" card-columns">
                 <div class="card" *ngFor="let project of projectsInProgress">
                   <img [src]="'assets/icons/standard/books.jpg'" class="card-img-top" alt="...">
                   <div class="card-body">
@@ -81,6 +81,7 @@
                       role="button">Link</a>
                   </div>
                 </div>
+
               </div>
 
             </div>
