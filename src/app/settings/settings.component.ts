@@ -30,6 +30,7 @@ export class SettingsComponent implements OnInit {
     private _success = new Subject<string>();
     successMessage: string;
     isPasswordMatch: boolean;
+    newPassword: string;
 
     constructor(
         /* private _activRoute: ActivatedRoute, */
@@ -122,6 +123,7 @@ export class SettingsComponent implements OnInit {
             .subscribe(
                 resul => {
                     this.dateModifiedSuccessfull = true;
+                    localStorage.setItem('currentUser', JSON.stringify(resul["data"]));
                     console.log(resul);
                 },
                 error => {
@@ -140,8 +142,11 @@ export class SettingsComponent implements OnInit {
         if (this.passwordForm.invalid || this.isPasswordMatch) {
             return;
         }
-        //pasar nueva y vieja
-        /* this.userService.updatePassword(, this.currentUser.token)
+
+        this.newPassword = this.passwordForm.value;
+        delete this.newPassword['confirmPassword'];
+
+        this.userService.updatePassword(this.newPassword, this.currentUser.token)
             .subscribe(
                 resul => {
                     this.dateModifiedSuccessfull = true;
@@ -150,7 +155,7 @@ export class SettingsComponent implements OnInit {
                 error => {
                     console.log(error);
                 }
-            ); */
+            );
     }
 
     deleteAccount() {
@@ -166,15 +171,5 @@ export class SettingsComponent implements OnInit {
                 this._success.next(`There was an error deleting account. Try again later.`);
             }
         );
-    }
-
-    checkPasswordMatch() {
-        this.userService.checkCurrentPassword(this.f.oldPassword.value, this.currentUser.token).subscribe(
-            resul => {
-                this.isPasswordMatch = true;
-            },
-            error => {
-                this.isPasswordMatch = false;
-            });
     }
 }

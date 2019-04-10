@@ -95,7 +95,7 @@
                 <div class="form-group">
                   <label>Old password</label>
                   <input type="password" class="form-control" formControlName="oldPassword"
-                    [ngClass]="{ 'is-invalid': submitted && f.oldPassword.errors }" (blur)="checkPassword()" />
+                    [ngClass]="{ 'is-invalid': submitted && f.oldPassword.errors }" />
                   <div *ngIf="submitted && f.oldPassword.errors" class="invalid-feedback">
                     <div *ngIf="f.oldPassword.errors.required">Confirm Password is required</div>
                   </div>

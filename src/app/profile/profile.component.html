@@ -5,12 +5,7 @@
 
     <div class="col-4">
       <div class="card" style="width: 18rem;">
-        <ng-template [ngIf]="photo" [ngIfElse]="notPhoto">
-          <img [src]="currentUser.photo" class="card-img-top photo" alt="...">
-        </ng-template>
-        <ng-template #notPhoto>
-          <img [src]="'./assets/userAssets/photos/girl.jpg'" class="card-img-top" alt="...">
-        </ng-template>
+        <img [src]="currentUser.photo" class="card-img-top photo" alt="...">
         <div class="card-body">
           <h5 class="card-title">{{currentUser.firstname}} {{currentUser.surname}}</h5>
           <p class="card-text">{{currentUser.description}}</p>
@@ -68,7 +63,7 @@
               <h3>On-going projects</h3>
               <div class=" card-columns">
                 <div class="card" *ngFor="let project of projectsInProgres">
-                  <img [src]="'assets/icons/standard/books.jpg'" class="card-img-top" alt="...">
+                  <img [src]="project.img" class="card-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">{{project.projectName}}</h5>
                     <p class="card-text w-100">{{project.description}}</p>
@@ -96,7 +91,7 @@
               <div class="card-columns">
 
                 <div class="card" *ngFor="let project of projectsFinished">
-                  <img [src]="'assets/icons/standard/books.jpg'" class="card-img-top" alt="...">
+                  <img [src]="project.img" class="card-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">{{project.projectName}}</h5>
                     <p class="card-text">{{project.description}}</p>

@@ -70,6 +70,9 @@ export class OneProjectComponent {
         this.projectService.getOneProject(this.id).subscribe(
             resul => {
                 this.project = resul["data"];
+                if (this.project.img == null) {
+                    this.project.img = 'assets/icons/standard/table7.jpg';
+                }
                 let status = resul["data"]["projectStatus"];
                 let id = resul["data"]["idProject"];
 
