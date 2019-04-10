@@ -158,9 +158,8 @@ export class SettingsComponent implements OnInit {
             result => {
                 this._success.next(`Your account successfully deleted.`);
                 localStorage.clear();
-                setTimeout(() => this.router.navigate(['/home']), 3000);
-                /* setTimeout(() => location.reload(), 5000); */
-
+                setTimeout(() => this.router.navigate(['**']), 3000);
+                setTimeout(() => location.reload(), 2900);
             },
             error => {
                 console.log("error");
