@@ -16,37 +16,50 @@
       <br>
       <h1 class="text-center mt-4">Most popular finished projects</h1><br><br>
       <div class="col">
-        <div class="card" *ngFor="let project of projectsFinished">
+        <div class="card mt-4 text-left" *ngFor="let project of projectsFinished">
           <div class="card-body">
             <h5 class="card-title">{{project.projectName}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{project.type.nameType}}</h6>
-            <p class="card-text">{{project.description}}</p>
+            <p class="card-text text-left">{{project.description}}</p>
+            <small class="">{{project.nameCreator}}</small>
+            <div class="dropdown-divider"></div>
+            <div class="d-flex justify-content-between align-items-center">
+              <ng-template #t let-fill="fill">
+                <span class="star" [class.full]="fill === 100">
+                  <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                </span>
+              </ng-template>
+              <ngb-rating [(rate)]="project.stars" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
+              <small class="text" id="{{project.type.nameType}}">{{project.type.nameType}}</small>
+            </div><br>
             <a href="#" class="card-link" [routerLink]="['/oneProject', project.idProject]">Card link</a>
-            <!-- <a href="#" class="card-link">Another link</a> -->
           </div>
         </div>
-
       </div>
 
     </div>
-
-
 
 
     <div class="tab-pane fade" id="ongoing" role="tabpanel" aria-labelledby="ongoing-tab">
       <br>
       <h1 class="text-center mt-4">Most popular ongoing projects</h1><br><br>
       <div class="col">
-        <div class="card" *ngFor="let project of projectsInProgres">
+        <div class="card mt-4 text-left" *ngFor="let project of projectsInProgres">
           <div class="card-body">
             <h5 class="card-title">{{project.projectName}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{project.type.nameType}}</h6>
-            <p class="card-text">{{project.description}}</p>
+            <p class="card-text text-left">{{project.description}}</p>
+            <small class="">{{project.nameCreator}}</small>
+            <div class="dropdown-divider"></div>
+            <div class="d-flex justify-content-between align-items-center">
+              <ng-template #t>
+                <span style="color: #007bff; font-size: 20px; line-height: 0px;"> &hearts; </span>
+                <small class="">{{project.likes}}</small>
+              </ng-template>
+              <ngb-rating [rate]="1" max="1" [starTemplate]="t" [readonly]="true"></ngb-rating>
+              <small class="text" id="{{project.type.nameType}}">{{project.type.nameType}}</small>
+            </div><br>
             <a href="#" class="card-link" [routerLink]="['/oneProject', project.idProject]">Card link</a>
-            <!-- <a href="#" class="card-link">Another link</a> -->
           </div>
         </div>
-
       </div>
 
     </div>
