@@ -126,6 +126,7 @@ export class OneProjectComponent {
                         this.userExistAndNoLike = true;
                     } else {
                         this.isVote = true;
+                        this.userExistAndNoLike = false;
                     }
                 },
                 error => {
@@ -152,12 +153,12 @@ export class OneProjectComponent {
         this.like.project = this.project;
         this.like.userVote = this.currentUser;
         this.voteLike.vote(this.like, this.currentUser.token).subscribe(
-            result => {
-                this.ctrl.disable();
-            },
-            error => {
-                this.ctrl.enable();
-            }
+            /*  result => {
+                 this.ctrl.disable();
+             },
+             error => {
+                 this.ctrl.enable();
+             } */
         )
     }
 }

@@ -28,7 +28,7 @@
               <br>
               <div *ngIf="dateModifiedSuccessfull" class="alert alert-success" role="alert">Data have been updated.
               </div>
-              <form [formGroup]="modifyUserForm" (ngSubmit)="sendForm()">
+              <form [formGroup]="modifyUserForm" (ngSubmit)="sendForm()" enctype="multipart/form-data">
                 <div class="form-row">
                   <div class="form-group col-2">
                     <img [src]="currentUser.photo" class="img-thumbnail" alt="...">
@@ -111,8 +111,8 @@
                   <input type="password" class="form-control" formControlName="newPassword"
                     [ngClass]="{ 'is-invalid': submitted && f.newPassword.errors }" />
                   <div *ngIf="submitted && f.newPassword.errors" class="invalid-feedback">
-                    <div *ngIf="f.pass.newPassword.required">Password is required</div>
-                    <div *ngIf="f.pass.newPassword.minlength">Password must be at least 6 characters</div>
+                    <div *ngIf="f.newPassword.required">Password is required</div>
+                    <div *ngIf="f.newPassword.minlength">Password must be at least 6 characters</div>
                   </div>
                 </div>
                 <div class="form-group">

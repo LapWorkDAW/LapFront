@@ -12,9 +12,9 @@ export class UserService {
 
 
   update(date: FormData, token: String) {
-    let url = "/api.php?controller=User&token=" + token;
-    return this.http.put(
-      url, date, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
+    let url = "/api.php?controller=User&function=photo&token=" + token;
+    return this.http.post(
+      url, date, { headers: new HttpHeaders({ 'enctype': 'multipart/form-data' }) }
     );
   }
 
