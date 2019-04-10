@@ -5,7 +5,39 @@ import { ProjectService } from "../services/project.service";
 @Component({
     selector: 'projects',
     templateUrl: './projects.component.html',
-    styleUrls: ['./projects.component.css']
+    styleUrls: ['./projects.component.css'],
+    styles: [`
+    #Art {
+      color: #99644c;
+    }
+    #Engineering {
+      color: #7456bf;
+    }
+    #IT {
+      color: #f25139;
+    }
+    #Literary {
+      color: #ff7d49;
+    }
+    #Technological {
+      color: #46b275;
+    }
+    .star {
+        position: relative;
+        display: inline-block;
+        font-size: 1rem;
+        color: #d3d3d3;
+      }
+      .full {
+        color:#007bff;
+      }
+      .half {
+        position: absolute;
+        display: inline-block;
+        overflow: hidden;
+        color: #007bff;
+      }
+  `]
 })
 export class ProjectsComponent implements OnInit {
     projectsInProgres: Array<Project>;
