@@ -104,32 +104,27 @@ export class OneProjectComponent {
 
     isVoted(status, id) {
         //0-no acabado, 1-acabado
-        if (status == 0) {
-            console.log("Like");
+        if (status == 1) {
             this.projectService.checkVoteLike(this.currentUser.token, id).subscribe(
                 result => {
                     if (result["data"] == 0) {
-                        console.log(result["data"]);
                         this.isVote = false;
                         this.userExistAndNoVoted = true;
                     } else {
-                        console.log("error");
                         this.isVote = true;
+                        this.userExistAndNoVoted = false;
                     }
                 },
                 error => {
                 }
             )
         } else {
-            console.log("Star");
             this.projectService.checkVoteStar(this.currentUser.token, id).subscribe(
                 result => {
-                    if (result["data"] == 0) {
-                        console.log(result["data"]);
+                    if (result["data"] == 0) {//0-no ha votado, 1-si ha votado
                         this.isVote = false;
                         this.userExistAndNoLike = true;
                     } else {
-                        console.log("error");
                         this.isVote = true;
                     }
                 },
@@ -145,11 +140,9 @@ export class OneProjectComponent {
         this.star.userVote = this.currentUser;
         this.voteStar.vote(this.star, this.currentUser.token).subscribe(
             result => {
-                console.log(result);
                 this.ctrl.disable();
             },
             error => {
-                console.log("error");
                 this.ctrl.enable();
             }
         )
@@ -160,11 +153,9 @@ export class OneProjectComponent {
         this.like.userVote = this.currentUser;
         this.voteLike.vote(this.like, this.currentUser.token).subscribe(
             result => {
-                console.log(result);
                 this.ctrl.disable();
             },
             error => {
-                console.log("error");
                 this.ctrl.enable();
             }
         )

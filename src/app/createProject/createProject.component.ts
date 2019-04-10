@@ -75,7 +75,6 @@ export class CreateProjectComponent implements OnInit {
         }
 
         this.newProject = this.createProjectForm.value;
-        /*  this.newProject.userO = this.currentUser; */
         this.newProject.nameCreator = this.currentUser.firstname + " " + this.currentUser.surname;
         delete this.newProject['img'];
         this.newProject.userO = this.currentUser;
@@ -87,12 +86,10 @@ export class CreateProjectComponent implements OnInit {
         this.projectService.register(this.currentUser.token, uploadData)
             .subscribe(
                 resul => {
-                    console.log(resul);
-                    this.router.navigate(['/oneProject', this.newProject.projectName]);
+                    this.router.navigate(['/oneProject', resul["data"]["idProject"]]);
                 },
                 error => {
                     console.log("error");
-                    console.log(error);
                 }
             );
         this.newProject = new Project();
