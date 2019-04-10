@@ -4,8 +4,10 @@ import { Router } from "@angular/router";
 import { AuthenticationService } from "../services/authentication.service";
 import { UserService } from "../services/user.service";
 import { ProjectService } from "../services/project.service";
-import { Subscription } from "rxjs";
+import { Subscription, Subject } from "rxjs";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { debounceTime } from 'rxjs/operators';
+import { MustMatch } from "../_helpers/must-match.validator";
 
 @Component({
     selector: 'settings',
@@ -18,11 +20,16 @@ export class SettingsComponent implements OnInit {
     currentUserSubscription: Subscription;
     googleOK: boolean = false;
     modifyUserForm: FormGroup;
+    passwordForm: FormGroup;
+    submittedPassword = false;
     submitted = false;
     public addrKeys: string[];
     public addr: object;
     dateModifiedSuccessfull: boolean = false;
     img;
+    private _success = new Subject<string>();
+    successMessage: string;
+    isPasswordMatch: boolean;
 
     constructor(
         /* private _activRoute: ActivatedRoute, */
@@ -51,7 +58,22 @@ export class SettingsComponent implements OnInit {
             knowledge: [this.currentUser.knowledge],
             photo: []
         });
+
+        this.passwordForm = this.formBuilder.group({
+            oldPassword: ['', Validators.required],
+            newPassword: ['', [Validators.required, Validators.minLength(6)]],
+            confirmPassword: ['', Validators.required],
+        }, {
+                validator: MustMatch('newPassword', 'confirmPassword')
+            });
+
+
+        this._success.subscribe((message) => this.successMessage = message);
+        this._success.pipe(
+            debounceTime(5000)
+        ).subscribe(() => this.successMessage = null);
     }
+
 
     setAddress(addrObj) {
         this.zone.run(() => {
@@ -107,9 +129,51 @@ export class SettingsComponent implements OnInit {
                 }
             );
 
-
-
         /* this.modifyUser = new User();
          this.modifyUserForm.reset(); */
+    }
+
+    get f() { return this.passwordForm.controls; }
+    sendPassword() {
+
+        this.submittedPassword = true;
+
+        if (this.passwordForm.invalid || this.isPasswordMatch) {
+            return;
+        }
+
+        /*  this.userService.updatePassword(, this.currentUser.token)
+             .subscribe(
+                 resul => {
+                     this.dateModifiedSuccessfull = true;
+                     console.log(resul);
+                 },
+                 error => {
+                     console.log(error);
+                 }
+             ); */
+    }
+
+    changeSuccessMessage() {
+        this.userService.delete(this.currentUser.token).subscribe(
+            result => {
+                this._success.next(`Your account successfully deleted.`);
+                setTimeout(() => this.router.navigate(['/home']), 5000);
+            },
+            error => {
+                console.log("error");
+                this._success.next(`There was an error deleting account. Try again later.`);
+            }
+        );
+    }
+
+    checkPasswordMatch() {
+        this.userService.checkCurrentPassword(this.f.oldPassword.value, this.currentUser.token).subscribe(
+            resul => {
+                this.isPasswordMatch = true;
+            },
+            error => {
+                this.isPasswordMatch = false;
+            });
     }
 }

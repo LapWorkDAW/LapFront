@@ -48,7 +48,7 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 
 export class HomeComponent implements OnInit {
   currentUser: User;
-  projectsInProgress: Array<Project>;
+  projectsInProgres: Array<Project>;
   projectsFinished: Array<Project>;
   /*  ctrl = new FormControl(null, Validators.required); */
 
@@ -65,17 +65,18 @@ export class HomeComponent implements OnInit {
   getProjectsInProgress() {
     this.projectService.getProjectNoFinished().subscribe(
       result => {
-        this.projectsInProgress = result["data"];
-        for (let i = 0; i < this.projectsInProgress.length; i++) {
-          const element = this.projectsInProgress[i];
-          this.projectService.getProjectFavorite(this.projectsInProgress[i].idProject).subscribe(
+        this.projectsInProgres = result["data"];
+        for (let i = 0; i < this.projectsInProgres.length; i++) {
+          this.projectService.getProjectFavorite(this.projectsInProgres[i].idProject).subscribe(
             result => {
-              this.projectsInProgress[i]["likes"] = result["data"];
+              this.projectsInProgres[i]["likes"] = result["data"];
+
             }, error => {
-              this.projectsInProgress[i]["likes"] = 0;
+              this.projectsInProgres[i]["likes"] = 0;
             }
           )
         }
+        /*  this.projectsInProgres.sort(function(a, b){return b.likes - a.likes}); */
       },
       error => { }
     )
@@ -98,5 +99,4 @@ export class HomeComponent implements OnInit {
       error => { }
     )
   }
-
 }

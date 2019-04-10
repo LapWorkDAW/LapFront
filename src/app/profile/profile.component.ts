@@ -6,6 +6,7 @@ import { ProjectService } from '../services/project.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';/* ActivatedRoute, Params */
 import { Project } from 'src/assets/models/Project';
+import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'profile',
@@ -27,9 +28,23 @@ import { Project } from 'src/assets/models/Project';
       #Technological {
         color: #46b275;
       }
-  
-    `]
-
+    .star {
+      position: relative;
+      display: inline-block;
+      font-size: 1rem;
+      color: #d3d3d3;
+    }
+    .full {
+      color:#007bff;
+    }
+    .half {
+      position: absolute;
+      display: inline-block;
+      overflow: hidden;
+      color: #007bff;
+    }
+  `],
+    providers: [NgbRatingConfig]
 })
 export class ProfileComponent implements OnInit, OnDestroy {
     /* active_myProjects = "";
@@ -40,7 +55,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     currentUserSubscription: Subscription;
     projectsStar: Array<Project>;
     projectsFavorite: Array<Project>;
-    projectsInProgress: Array<Project>;
+    projectsInProgres: Array<Project>;
     projectsFinished: Array<Project>;
     photo: boolean = true;
     typesProject: Array<String>;
@@ -48,8 +63,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
     constructor(
         /* private _activRoute: ActivatedRoute, */
         private authenticationService: AuthenticationService, private projectService: ProjectService,
-        private userService: UserService, private router: Router
+        private userService: UserService, private router: Router, config: NgbRatingConfig
     ) {
+        config.max = 1;
         this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
             this.currentUser = user;
         });
@@ -110,7 +126,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
     getProjectsInProgress() {
         this.projectService.getProjectNoFinishedUser(this.currentUser.token).subscribe(
             result => {
-                this.projectsInProgress = result["data"];
+                this.projectsInProgres = result["data"];
+                for (let i = 0; i < this.projectsInProgres.length; i++) {
+                    this.projectService.getProjectFavorite(this.projectsInProgres[i].idProject).subscribe(
+                        result => {
+                            this.projectsInProgres[i]["likes"] = result["data"];
+                        }, error => {
+                            this.projectsInProgres[i]["likes"] = 0;
+                        }
+                    )
+                }
             },
             error => {
                 console.log(error);
@@ -122,6 +147,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.projectService.getProjectFinishedUser(this.currentUser.token).subscribe(
             result => {
                 this.projectsFinished = result["data"];
+                for (let i = 0; i < this.projectsFinished.length; i++) {
+                    this.projectService.getProjectStar(this.projectsFinished[i].idProject).subscribe(
+                        result => {
+                            this.projectsFinished[i]["stars"] = result["data"];
+                        }, error => {
+                            this.projectsFinished[i]["stars"] = 0;
+                        }
+                    )
+                }
             },
             error => {
                 console.log(error);
@@ -129,8 +163,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
         )
     }
 
-    /* getProjectsStar() {
-        this.projectService.getProjectStar(this.currentUser.token).subscribe(
+    getProjectsStar() {
+        this.projectService.getProjectsStarUser(this.currentUser.token).subscribe(
             result => {
                 this.projectsStar = result["data"];
             },
@@ -138,18 +172,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 console.log(error);
             }
         )
-    } */
+    }
 
-    /* getProjectsFavorite() {
-        this.projectService.getProjectStar(this.currentUser.token).subscribe(
+    getProjectsFavorite() {
+        this.projectService.getProjectsFavoriteUser(this.currentUser.token).subscribe(
             result => {
-                this.projectsStar = result["data"];
+                this.projectsFavorite = result["data"];
             },
             error => {
                 console.log(error);
             }
         )
-    
-    } */
+
+    }
     ngOnDestroy(): void { }
 }

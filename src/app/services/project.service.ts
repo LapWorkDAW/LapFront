@@ -99,4 +99,18 @@ export class ProjectService {
       url, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
     );
   }
+
+  getProjectsStarUser(token: string) {
+    let url = "/api.php?controller=VProjectStar&function=allstars&token=" + token;
+    return this.http.get(
+      url, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
+    );
+  }
+
+  getProjectsFavoriteUser(token: string) {
+    let url = "/api.php?controller=VProjectFav&function=alllikes&token=" + token;
+    return this.http.get(
+      url, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
+    );
+  }
 }
