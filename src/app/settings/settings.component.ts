@@ -134,31 +134,33 @@ export class SettingsComponent implements OnInit {
     }
 
     get f() { return this.passwordForm.controls; }
+
     sendPassword() {
-
         this.submittedPassword = true;
-
         if (this.passwordForm.invalid || this.isPasswordMatch) {
             return;
         }
-
-        /*  this.userService.updatePassword(, this.currentUser.token)
-             .subscribe(
-                 resul => {
-                     this.dateModifiedSuccessfull = true;
-                     console.log(resul);
-                 },
-                 error => {
-                     console.log(error);
-                 }
-             ); */
+        //pasar nueva y vieja
+        /* this.userService.updatePassword(, this.currentUser.token)
+            .subscribe(
+                resul => {
+                    this.dateModifiedSuccessfull = true;
+                    console.log(resul);
+                },
+                error => {
+                    console.log(error);
+                }
+            ); */
     }
 
-    changeSuccessMessage() {
+    deleteAccount() {
         this.userService.delete(this.currentUser.token).subscribe(
             result => {
                 this._success.next(`Your account successfully deleted.`);
-                setTimeout(() => this.router.navigate(['/home']), 5000);
+                localStorage.clear();
+                setTimeout(() => this.router.navigate(['/home']), 3000);
+                /* setTimeout(() => location.reload(), 5000); */
+
             },
             error => {
                 console.log("error");

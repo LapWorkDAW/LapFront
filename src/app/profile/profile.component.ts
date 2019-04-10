@@ -130,8 +130,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 for (let i = 0; i < this.projectsInProgres.length; i++) {
                     this.projectService.getProjectFavorite(this.projectsInProgres[i].idProject).subscribe(
                         result => {
-                            console.log(result["data"]);
-
                             this.projectsInProgres[i]["likes"] = result["data"];
                         }, error => {
                             this.projectsInProgres[i]["likes"] = 0;

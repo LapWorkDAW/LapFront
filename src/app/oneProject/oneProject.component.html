@@ -19,6 +19,7 @@
         </div>
         <ng-template [ngIf]="isLike" [ngIfElse]="notLike">
           <ng-template [ngIf]="userExistAndNoLike" [ngIfElse]="VoteLike">
+            {{userExistAndNoLike}}
             <ngb-rating [formControl]="ctrl" (click)="toggleLike()" style="color:#007bff" max="1">
               <ng-template let-fill="fill" let-index="index">
                 <span class="star" [class.filled]="fill === 100" [class.bad]="index<3">&hearts;</span>

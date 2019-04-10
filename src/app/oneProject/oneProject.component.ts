@@ -45,7 +45,6 @@ import { NgbRatingConfig } from "@ng-bootstrap/ng-bootstrap";
 export class OneProjectComponent {
     id: number;
     project: Project = new Project();
-    isVote: boolean; //si esta valorado
     isLike: boolean = false; //para saber si mostrar estrellas o corazones
     currentUser: User;
     userExistAndNoVoted: boolean = false; //para habilitar poder de votar
@@ -103,16 +102,14 @@ export class OneProjectComponent {
     //0-no esta votado, 1 - si
 
     isVoted(status, id) {
-        //0-no acabado, 1-acabado
+        //0-acabado, 1- no acabado
         if (status == 1) {
             this.projectService.checkVoteLike(this.currentUser.token, id).subscribe(
                 result => {
-                    if (result["data"] == 0) {
-                        this.isVote = false;
-                        this.userExistAndNoVoted = true;
+                    if (result["data"] == 1) {
+                        this.userExistAndNoLike = true;
                     } else {
-                        this.isVote = true;
-                        this.userExistAndNoVoted = false;
+                        this.userExistAndNoLike = false;
                     }
                 },
                 error => {
@@ -121,12 +118,10 @@ export class OneProjectComponent {
         } else {
             this.projectService.checkVoteStar(this.currentUser.token, id).subscribe(
                 result => {
-                    if (result["data"] == 0) {//0-no ha votado, 1-si ha votado
-                        this.isVote = false;
-                        this.userExistAndNoLike = true;
+                    if (result["data"] == 1) {//0-no ha votado, 1-si ha votado                         
+                        this.userExistAndNoVoted = false;
                     } else {
-                        this.isVote = true;
-                        this.userExistAndNoLike = false;
+                        this.userExistAndNoVoted = true;
                     }
                 },
                 error => {
