@@ -110,6 +110,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
         this.getProjectsInProgress();
         this.getProjectsFinished();
+        this.getProjectsStar();
+        this.getProjectsFavorite();
     }
 
 
@@ -173,6 +175,21 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.projectService.getProjectsStarUser(this.currentUser.token).subscribe(
             result => {
                 this.projectsStar = result["data"];
+                console.log(result["data"]);
+
+                for (let i = 0; i < this.projectsStar.length; i++) {
+                    if (this.projectsStar[i].img == null) {
+                        this.projectsStar[i].img = 'assets/icons/standard/books.jpg';
+                    }
+                    this.projectService.getProjectStar(this.projectsStar[i].idProject).subscribe(
+                        result => {
+                            this.projectsStar[i]["stars"] = result["data"];
+                        }, error => {
+                            this.projectsStar[i]["stars"] = 0;
+                        }
+                    )
+                }
+
             },
             error => {
                 console.log(error);
@@ -184,6 +201,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.projectService.getProjectsFavoriteUser(this.currentUser.token).subscribe(
             result => {
                 this.projectsFavorite = result["data"];
+                for (let i = 0; i < this.projectsFavorite.length; i++) {
+                    if (this.projectsFavorite[i].img == null) {
+                        this.projectsFavorite[i].img = 'assets/icons/standard/books.jpg';
+                    }
+                    this.projectService.getProjectFavorite(this.projectsFavorite[i].idProject).subscribe(
+                        result => {
+                            this.projectsFavorite[i]["likes"] = result["data"];
+                        }, error => {
+                            this.projectsFavorite[i]["likes"] = 0;
+                        }
+                    )
+                }
             },
             error => {
                 console.log(error);
