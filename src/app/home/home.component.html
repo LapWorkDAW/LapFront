@@ -20,7 +20,8 @@
       <div class="col-6 mb-4">
         <h3>Finished projects</h3>
         <div class="card mt-4 text-left" *ngFor="let project of projectsFinished | slice:0:3">
-          <img [src]="'assets/icons/standard/table3.jpg'" class="card-img-top" alt="...">
+
+          <img [src]="project.img" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">{{project.projectName}}</h5>
             <p class="card-text text-left">{{project.description}}</p>
@@ -45,7 +46,7 @@
       <div class="col-6 mb-4">
         <h3>On going projects</h3>
         <div class="card mt-4 text-left" *ngFor="let project of projectsInProgres | slice:0:3">
-          <img [src]="'assets/icons/standard/table7.jpg'" class="card-img-top" alt="...">
+          <img [src]="project.img" class="card-img-top rounded" alt="...">
           <div class="card-body">
             <h5 class="card-title">{{project.projectName}}</h5>
             <p class="card-text text-left">{{project.description}}</p>

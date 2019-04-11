@@ -30,6 +30,7 @@ export class SettingsComponent implements OnInit {
     private _success = new Subject<string>();
     successMessage: string;
     isPasswordMatch: boolean;
+    newPassword: string;
 
     constructor(
         /* private _activRoute: ActivatedRoute, */
@@ -122,6 +123,7 @@ export class SettingsComponent implements OnInit {
             .subscribe(
                 resul => {
                     this.dateModifiedSuccessfull = true;
+                    localStorage.setItem('currentUser', JSON.stringify(resul["data"]));
                     console.log(resul);
                 },
                 error => {
@@ -134,46 +136,40 @@ export class SettingsComponent implements OnInit {
     }
 
     get f() { return this.passwordForm.controls; }
+
     sendPassword() {
-
         this.submittedPassword = true;
-
         if (this.passwordForm.invalid || this.isPasswordMatch) {
             return;
         }
 
-        /*  this.userService.updatePassword(, this.currentUser.token)
-             .subscribe(
-                 resul => {
-                     this.dateModifiedSuccessfull = true;
-                     console.log(resul);
-                 },
-                 error => {
-                     console.log(error);
-                 }
-             ); */
+        this.newPassword = this.passwordForm.value;
+        delete this.newPassword['confirmPassword'];
+
+        this.userService.updatePassword(this.newPassword, this.currentUser.token)
+            .subscribe(
+                resul => {
+                    this.dateModifiedSuccessfull = true;
+                    console.log(resul);
+                },
+                error => {
+                    console.log(error);
+                }
+            );
     }
 
-    changeSuccessMessage() {
+    deleteAccount() {
         this.userService.delete(this.currentUser.token).subscribe(
             result => {
                 this._success.next(`Your account successfully deleted.`);
-                setTimeout(() => this.router.navigate(['/home']), 5000);
+                localStorage.clear();
+                setTimeout(() => this.router.navigate(['**']), 3000);
+                setTimeout(() => location.reload(), 2900);
             },
             error => {
                 console.log("error");
                 this._success.next(`There was an error deleting account. Try again later.`);
             }
         );
-    }
-
-    checkPasswordMatch() {
-        this.userService.checkCurrentPassword(this.f.oldPassword.value, this.currentUser.token).subscribe(
-            resul => {
-                this.isPasswordMatch = true;
-            },
-            error => {
-                this.isPasswordMatch = false;
-            });
     }
 }

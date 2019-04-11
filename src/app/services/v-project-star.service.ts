@@ -10,7 +10,7 @@ export class VProjectStarService {
   constructor(private http: HttpClient) { }
 
   vote(date: VProjectStar, token: string) {
-    let url = "/api.php?controller=VProjectStar&function=allvotes&token=" + token;
+    let url = "/api.php?controller=VProjectStar&token=" + token;
     return this.http.post(
       url, date, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
     );

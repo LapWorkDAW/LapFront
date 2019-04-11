@@ -45,7 +45,6 @@ import { NgbRatingConfig } from "@ng-bootstrap/ng-bootstrap";
 export class OneProjectComponent {
     id: number;
     project: Project = new Project();
-    isVote: boolean; //si esta valorado
     isLike: boolean = false; //para saber si mostrar estrellas o corazones
     currentUser: User;
     userExistAndNoVoted: boolean = false; //para habilitar poder de votar
@@ -71,6 +70,9 @@ export class OneProjectComponent {
         this.projectService.getOneProject(this.id).subscribe(
             resul => {
                 this.project = resul["data"];
+                if (this.project.img == null) {
+                    this.project.img = 'assets/icons/standard/table7.jpg';
+                }
                 let status = resul["data"]["projectStatus"];
                 let id = resul["data"]["idProject"];
 
@@ -103,34 +105,26 @@ export class OneProjectComponent {
     //0-no esta votado, 1 - si
 
     isVoted(status, id) {
-        //0-no acabado, 1-acabado
-        if (status == 0) {
-            console.log("Like");
+        //0-acabado, 1- no acabado
+        if (status == 1) {
             this.projectService.checkVoteLike(this.currentUser.token, id).subscribe(
                 result => {
-                    if (result["data"] == 0) {
-                        console.log(result["data"]);
-                        this.isVote = false;
-                        this.userExistAndNoVoted = true;
+                    if (result["data"] == 1) {
+                        this.userExistAndNoLike = true;
                     } else {
-                        console.log("error");
-                        this.isVote = true;
+                        this.userExistAndNoLike = false;
                     }
                 },
                 error => {
                 }
             )
         } else {
-            console.log("Star");
             this.projectService.checkVoteStar(this.currentUser.token, id).subscribe(
                 result => {
-                    if (result["data"] == 0) {
-                        console.log(result["data"]);
-                        this.isVote = false;
-                        this.userExistAndNoLike = true;
+                    if (result["data"] == 1) {//0-no ha votado, 1-si ha votado                         
+                        this.userExistAndNoVoted = false;
                     } else {
-                        console.log("error");
-                        this.isVote = true;
+                        this.userExistAndNoVoted = true;
                     }
                 },
                 error => {
@@ -145,11 +139,9 @@ export class OneProjectComponent {
         this.star.userVote = this.currentUser;
         this.voteStar.vote(this.star, this.currentUser.token).subscribe(
             result => {
-                console.log(result);
                 this.ctrl.disable();
             },
             error => {
-                console.log("error");
                 this.ctrl.enable();
             }
         )
@@ -159,14 +151,12 @@ export class OneProjectComponent {
         this.like.project = this.project;
         this.like.userVote = this.currentUser;
         this.voteLike.vote(this.like, this.currentUser.token).subscribe(
-            result => {
-                console.log(result);
-                this.ctrl.disable();
-            },
-            error => {
-                console.log("error");
-                this.ctrl.enable();
-            }
+            /*  result => {
+                 this.ctrl.disable();
+             },
+             error => {
+                 this.ctrl.enable();
+             } */
         )
     }
 }
