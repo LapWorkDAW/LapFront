@@ -21,15 +21,16 @@ export class NavNoLogComponent {
     }
 
     ngOnInit() {
-        if (this.currentUser.photo == null) {
-            this.currentUser.photo = 'assets/userAssets/photos/girl.jpg';
+        if (this.currentUser) {
+            if (this.currentUser.photo == null) {
+                this.currentUser.photo = 'assets/userAssets/photos/girl.jpg';
+            }
         }
     }
 
     public signOut() {
         /* If the user's password is empty then he is a Google user */
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        console.log(localStorage.getItem('currentUser'));
 
         if (this.currentUser.pass === null || this.currentUser.pass === "") {
             this.socialAuthService.signOut();
