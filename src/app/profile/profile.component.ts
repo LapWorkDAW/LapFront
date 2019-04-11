@@ -178,8 +178,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 console.log(result["data"]);
 
                 for (let i = 0; i < this.projectsStar.length; i++) {
-                    if (this.projectsStar[i].img == null) {
-                        this.projectsStar[i].img = 'assets/icons/standard/books.jpg';
+                    if (this.projectsStar[i]["project"].img == null) {
+                        this.projectsStar[i]["project"].img = 'assets/icons/standard/books.jpg';
                     }
                     this.projectService.getProjectStar(this.projectsStar[i].idProject).subscribe(
                         result => {
@@ -202,8 +202,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
             result => {
                 this.projectsFavorite = result["data"];
                 for (let i = 0; i < this.projectsFavorite.length; i++) {
-                    if (this.projectsFavorite[i].img == null) {
-                        this.projectsFavorite[i].img = 'assets/icons/standard/books.jpg';
+                    if (this.projectsFavorite[i]["project"].img == null) {
+                        this.projectsFavorite[i]["project"].img = 'assets/icons/standard/books.jpg';
                     }
                     this.projectService.getProjectFavorite(this.projectsFavorite[i].idProject).subscribe(
                         result => {
