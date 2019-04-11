@@ -218,7 +218,21 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 console.log(error);
             }
         )
+    }
 
+    collectTypes() {
+        let array = [];
+        for (let i = 0; i < this.typesProject.length; i++) {
+            const type = this.typesProject[i];
+            if ("check" in type) {
+                if (type["check"] == true) {
+                    array.push(type["idType"]);
+                }
+            }
+
+
+        }
+        console.log(array);
     }
     ngOnDestroy(): void { }
 }
