@@ -8,6 +8,7 @@ import { Subscription, Subject } from "rxjs";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { debounceTime } from 'rxjs/operators';
 import { MustMatch } from "../_helpers/must-match.validator";
+import { AuthService } from "angular-6-social-login";
 
 @Component({
     selector: 'settings',
@@ -36,7 +37,7 @@ export class SettingsComponent implements OnInit {
         /* private _activRoute: ActivatedRoute, */
         private authenticationService: AuthenticationService, private projectService: ProjectService,
         private userService: UserService, private router: Router, private formBuilder: FormBuilder,
-        private zone: NgZone
+        private zone: NgZone, private socialAuthService: AuthService
     ) {
         this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
             this.currentUser = user;
@@ -162,9 +163,16 @@ export class SettingsComponent implements OnInit {
         this.userService.delete(this.currentUser.token).subscribe(
             result => {
                 this._success.next(`Your account successfully deleted.`);
-                localStorage.clear();
-                setTimeout(() => this.router.navigate(['**']), 3000);
-                setTimeout(() => location.reload(), 2900);
+                /*  localStorage.clear();
+                 setTimeout(() => this.router.navigate(['**']), 3000);
+                 setTimeout(() => location.reload(), 2900); */
+                this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+                if (this.currentUser.pass === null || this.currentUser.pass === "") {
+                    this.socialAuthService.signOut();
+                }
+                this.authenticationService.logout();
+                this.router.navigate(['']);
             },
             error => {
                 console.log("error");

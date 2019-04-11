@@ -58,6 +58,8 @@ export class HomeComponent implements OnInit {
   }
   ngOnInit(): void {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    console.log(this.currentUser);
+
     this.getProjectsInProgress();
     this.getProjectsFinished();
 
@@ -79,7 +81,7 @@ export class HomeComponent implements OnInit {
             }
           )
         }
-        /*  this.projectsInProgres.sort(function(a, b){return b.likes - a.likes}); */
+        this.projectsInProgres.sort(function (a, b) { return b["likes"] - a["likes"] });
       },
       error => { }
     )

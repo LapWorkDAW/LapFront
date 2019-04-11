@@ -143,10 +143,10 @@
                   <div class="row">
                     <div class="card-columns">
                       <div class="card" *ngFor="let project of projectsFavorite">
-                        <img [src]="project.img" class="card-img-top" alt="...">
+                        <img [src]="project.project.img" class="card-img-top" alt="...">
                         <div class="card-body">
-                          <h5 class="card-title">{{project.projectName}}</h5>
-                          <p class="card-text">{{project.description}}</p>
+                          <h5 class="card-title">{{project.project.projectName}}</h5>
+                          <p class="card-text">{{project.project.description}}</p>
                           <div class="dropdown-divider"></div>
                           <div class="d-flex justify-content-between align-items-center">
                             <ng-template #t>
@@ -154,7 +154,8 @@
                               <small class="">{{project.likes}}</small>
                             </ng-template>
                             <ngb-rating [rate]="1" [starTemplate]="t" [readonly]="true"></ngb-rating>
-                            <small class="text" id="{{project.type.nameType}}">{{project.type.nameType}}</small>
+                            <small class="text"
+                              id="{{project.project.idType.nameType}}">{{project.project.idType.nameType}}</small>
                           </div>
                           <a class="btn btn-outline-primary mt-4" [routerLink]="['/oneProject', project.idProject]"
                             role="button">Link</a>
@@ -168,15 +169,21 @@
                   <h3>Starred</h3>
                   <div class="card-columns">
                     <div class="card" *ngFor="let project of projectsStar">
-                      <img [src]="'assets/icons/standard/books.jpg'" class="card-img-top" alt="...">
+                      <img [src]="project.project.img" class="card-img-top" alt="...">
                       <div class="card-body">
-                        <h5 class="card-title">{{project.projectName}}</h5>
-                        <p class="card-text">{{project.description}}</p>
+                        <h5 class="card-title">{{project.project.projectName}}</h5>
+                        <p class="card-text">{{project.project.description}}</p>
                         <div class="dropdown-divider"></div>
                         <div class="d-flex justify-content-between align-items-center">
+                          <ng-template #t let-fill="fill">
+                            <span class="star" [class.full]="fill === 100">
+                              <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                            </span>
+                          </ng-template>
                           <ngb-rating [(rate)]="project.stars" [starTemplate]="t" [readonly]="true" max="5">
                           </ngb-rating>
-                          <small class="text" id="{{project.type.nameType}}">{{project.type.nameType}}</small>
+                          <small class="text"
+                            id="{{project.project.idType.nameType}}">{{project.project.idType.nameType}}</small>
                         </div>
                         <a class="btn btn-outline-primary mt-4" [routerLink]="['/oneProject', project.idProject]"
                           role="button">Link</a>
