@@ -15,6 +15,7 @@ import { CreateProjectComponent } from './createProject/createProject.component'
 import { SettingsComponent } from './settings/settings.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ContactComponent } from './contact/contact.component';
+import { ChangePasswordComponent } from './ChangePassword/changePassword.component';
 import { OneProjectComponent } from './oneProject/oneProject.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ProfileComponent } from './profile/profile.component';
@@ -52,6 +53,7 @@ export function getAuthServiceConfigs() {
     PrivacyPolicyComponent,
     GooglePlacesDirective,
     TermsOfUseComponent,
+    ChangePasswordComponent,
     NavNoLogComponent,
     ContactComponent,
     ProfileComponent,
