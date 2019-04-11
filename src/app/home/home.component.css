@@ -1,22 +1,7 @@
-/* #IT {
-  color: #ff7537 !important;
+@media (min-width: 576px) {
+  h1 {
+    font-size: 2rem;
+  }
 }
-
-#Art {
-  color: #42d692 !important;
-}
-
-#Engineering {
-  color: #f6989d !important;
-}
-
-#Literary {
-  color: #9a9cff !important;
-}
-
-#Technological {
-  color: #8f8f8f !important;
-}
- */
 
 /*# sourceMappingURL=home.component.css.map */
