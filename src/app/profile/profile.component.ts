@@ -84,6 +84,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.projectService.getTypesProject(this.currentUser.token).subscribe(
             result => {
                 this.typesProject = result["data"];
+                console.log(result["data"]);
+
             },
             error => {
                 console.log(error);
@@ -175,8 +177,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.projectService.getProjectsStarUser(this.currentUser.token).subscribe(
             result => {
                 this.projectsStar = result["data"];
-                console.log(result["data"]);
-
                 for (let i = 0; i < this.projectsStar.length; i++) {
                     if (this.projectsStar[i]["project"].img == null) {
                         this.projectsStar[i]["project"].img = 'assets/icons/standard/books.jpg';

@@ -205,12 +205,14 @@
           <!-- todo: convert this to a form -->
           <form>
             <div class="form-check" *ngFor="let type of typesProject">
-              <input type="checkbox" value={{type.idType}} class="form-check-input" />
+              <input type="checkbox" value={{type.idType}} name="project" [(ngModel)]="type.check"
+                class="form-check-input" />
               <!-- formControlName="saveName" -->
-              <label>{{type.nameType}}</label>
+              <label>{{type.nameType}} --{{type.check}}</label>
             </div>
-            <button type="button" class="btn btn-primary">Send</button>
+            <button type="button" class="btn btn-primary">Send </button>
           </form>
+
         </div>
       </div>
 
