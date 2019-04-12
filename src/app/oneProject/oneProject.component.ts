@@ -18,7 +18,7 @@ import { NgbRatingConfig } from "@ng-bootstrap/ng-bootstrap";
     styleUrls: ['./oneProject.component.css'],
     styles: [`
     .star {
-      font-size: 1.5rem;
+      font-size: 1rem;
       color: #b0c4de;
     }
     .filled {
