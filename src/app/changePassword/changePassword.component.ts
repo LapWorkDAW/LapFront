@@ -14,15 +14,13 @@ import { debounceTime } from "rxjs/operators";
     styleUrls: ['changePassword.component.css']
 })
 export class ChangePasswordComponent implements OnInit {
-    submittedPassword = false;
+    submitted = false;
     passwordForm: FormGroup;
     isPasswordMatch: boolean;
     newPassword: string;
     currentUser: User;
     currentUserSubscription: Subscription;
     dateModifiedSuccessfull: boolean = false;
-    private _success = new Subject<string>();
-    successMessage: string;
 
 
     constructor(private userService: UserService,
@@ -46,20 +44,14 @@ export class ChangePasswordComponent implements OnInit {
         }, {
                 validator: MustMatch('newPassword', 'confirmPassword')
             });
-
-
-        this._success.subscribe((message) => this.successMessage = message);
-        this._success.pipe(
-            debounceTime(5000)
-        ).subscribe(() => this.successMessage = null);
-
     }
 
 
     get f() { return this.passwordForm.controls; }
 
-    sendPassword() {
-        this.submittedPassword = true;
+    sendForm() {
+
+        this.submitted = true;
         if (this.passwordForm.invalid || this.isPasswordMatch) {
             return;
         }
@@ -67,7 +59,7 @@ export class ChangePasswordComponent implements OnInit {
         this.newPassword = this.passwordForm.value;
         delete this.newPassword['confirmPassword'];
 
-        this.userService.updatePassword(this.newPassword, this.currentUser.token)
+        /* this.userService.updatePassword(this.newPassword, this.currentUser.token)
             .subscribe(
                 resul => {
                     this.dateModifiedSuccessfull = true;
@@ -76,6 +68,11 @@ export class ChangePasswordComponent implements OnInit {
                 error => {
                     console.log(error);
                 }
-            );
+            ); */
+
+        this.passwordForm.reset();
+        /*  for (let name in this.passwordForm.controls) {
+             this.passwordForm.controls[name].setErrors(null);
+         } */
     }
 }

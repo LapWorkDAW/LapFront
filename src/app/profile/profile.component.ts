@@ -232,7 +232,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
 
         }
-        console.log(array);
+        console.log(JSON.stringify(array));
     }
     ngOnDestroy(): void { }
 }

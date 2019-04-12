@@ -1,6 +1,6 @@
 {
   "/api.php*": {
-    "target": "http://localhost/LapBack/",
+    "target": "http://serverstucom.tk:8106/LapBack/",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true

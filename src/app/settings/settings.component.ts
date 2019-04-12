@@ -30,8 +30,6 @@ export class SettingsComponent implements OnInit {
     img;
     private _success = new Subject<string>();
     successMessage: string;
-    isPasswordMatch: boolean;
-    newPassword: string;
 
     constructor(
         /* private _activRoute: ActivatedRoute, */
@@ -49,7 +47,6 @@ export class SettingsComponent implements OnInit {
 
     ngOnInit(): void {
         window.setInterval(() => { this.googleOK = true; }, 100);
-
         this.modifyUserForm = this.formBuilder.group({
             firstname: [this.currentUser.firstname],
             surname: [this.currentUser.surname],
@@ -60,20 +57,6 @@ export class SettingsComponent implements OnInit {
             knowledge: [this.currentUser.knowledge],
             photo: []
         });
-
-        this.passwordForm = this.formBuilder.group({
-            oldPassword: ['', Validators.required],
-            newPassword: ['', [Validators.required, Validators.minLength(6)]],
-            confirmPassword: ['', Validators.required],
-        }, {
-                validator: MustMatch('newPassword', 'confirmPassword')
-            });
-
-
-        this._success.subscribe((message) => this.successMessage = message);
-        this._success.pipe(
-            debounceTime(5000)
-        ).subscribe(() => this.successMessage = null);
     }
 
 
@@ -95,17 +78,13 @@ export class SettingsComponent implements OnInit {
     }
 
     sendForm() {
-
         this.submitted = true;
-
         if (this.modifyUserForm.invalid) {
             return;
         }
 
         this.modifyUser = this.modifyUserForm.value;
-
         if (<String>this.modifyUserForm.get('location').value != undefined) {
-
             if (<String>this.modifyUserForm.get('location').value != "") {
                 let newLocation = this.addr["city"] + ", " + this.addr["country"];
                 this.modifyUser.location = newLocation;
@@ -136,28 +115,6 @@ export class SettingsComponent implements OnInit {
          this.modifyUserForm.reset(); */
     }
 
-    get f() { return this.passwordForm.controls; }
-
-    sendPassword() {
-        this.submittedPassword = true;
-        if (this.passwordForm.invalid || this.isPasswordMatch) {
-            return;
-        }
-
-        this.newPassword = this.passwordForm.value;
-        delete this.newPassword['confirmPassword'];
-
-        this.userService.updatePassword(this.newPassword, this.currentUser.token)
-            .subscribe(
-                resul => {
-                    this.dateModifiedSuccessfull = true;
-                    console.log(resul);
-                },
-                error => {
-                    console.log(error);
-                }
-            );
-    }
 
     deleteAccount() {
         this.userService.delete(this.currentUser.token).subscribe(
