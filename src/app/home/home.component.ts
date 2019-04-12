@@ -58,12 +58,10 @@ export class HomeComponent implements OnInit {
   }
   ngOnInit(): void {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(this.currentUser);
-
     this.getProjectsInProgress();
     this.getProjectsFinished();
-
   }
+
   getProjectsInProgress() {
     this.projectService.getProjectNoFinished().subscribe(
       result => {
