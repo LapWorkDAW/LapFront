@@ -40,13 +40,13 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
     }
     #Technological {
       color: #46b275;
-    }
-
+    }    
   `],
   providers: [NgbRatingConfig]
 })
 
 export class HomeComponent implements OnInit {
+  subirVisible:boolean=true;
   currentUser: User;
   projectsInProgres: Array<Project>;
   projectsFinished: Array<Project>;
@@ -56,10 +56,11 @@ export class HomeComponent implements OnInit {
     // customize default values of ratings used by this component tree
     config.max = 1;
   }
-  ngOnInit(): void {
+  ngOnInit(): void {    
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.getProjectsInProgress();
     this.getProjectsFinished();
+
   }
 
   getProjectsInProgress() {

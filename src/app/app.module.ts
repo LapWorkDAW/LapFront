@@ -30,6 +30,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ScrollTopComponent } from './scrollTop/scrollTop.component';
 
 export function getAuthServiceConfigs() {
   let config = new AuthServiceConfig(
@@ -60,7 +61,8 @@ export function getAuthServiceConfigs() {
     CreateProjectComponent,
     SettingsComponent,
     ProjectsComponent,
-    OneProjectComponent
+    OneProjectComponent,
+    ScrollTopComponent
     /* ,
     UserSettingsComponent */
   ],

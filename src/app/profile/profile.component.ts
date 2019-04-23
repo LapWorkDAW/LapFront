@@ -84,8 +84,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.projectService.getTypesProject(this.currentUser.token).subscribe(
             result => {
                 this.typesProject = result["data"];
-                console.log(result["data"]);
-
             },
             error => {
                 console.log(error);
