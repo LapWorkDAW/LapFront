@@ -113,4 +113,13 @@ export class ProjectService {
       url, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
     );
   }
+
+  getProjetsByType(token:string, datos){
+    console.log(datos);
+    
+    let url = "/api.php?controller=Project&function=typeProjects&token=" + token;
+    return this.http.post(
+      url, datos,{ headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
+    );
+  }
 }

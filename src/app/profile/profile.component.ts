@@ -58,7 +58,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     projectsInProgres: Array<Project>;
     projectsFinished: Array<Project>;
     photo: boolean = true;
-    typesProject: Array<String>;
+    typesProject: Array<String>; 
+    projectsByTypes: Array<Project>;   
 
     constructor(
         /* private _activRoute: ActivatedRoute, */
@@ -227,10 +228,20 @@ export class ProfileComponent implements OnInit, OnDestroy {
                     array.push(type["idType"]);
                 }
             }
-
-
         }
-        console.log(JSON.stringify(array));
+        let datos ={};
+        datos["type"] = array;
+        this.projectService.getProjetsByType(this.currentUser.token, JSON.stringify(datos)).subscribe(
+            result=>{
+                this.projectsByTypes= result["data"];                
+                console.log(this.projectsByTypes);  
+            },
+            error=>{
+                console.log(error);  
+            }
+        )        
     }
+
+    
     ngOnDestroy(): void { }
 }
