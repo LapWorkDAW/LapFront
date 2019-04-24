@@ -119,7 +119,7 @@ export class SettingsComponent implements OnInit {
     deleteAccount() {
         this.userService.delete(this.currentUser.token).subscribe(
             result => {
-                this._success.next(`Your account successfully deleted.`);
+                this._success.next(`Your account was successfully deleted.`);
                 /*  localStorage.clear();
                  setTimeout(() => this.router.navigate(['**']), 3000);
                  setTimeout(() => location.reload(), 2900); */
