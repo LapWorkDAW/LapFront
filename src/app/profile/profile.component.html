@@ -80,16 +80,13 @@
                       role="button">Link</a>
                   </div>
                 </div>
-
               </div>
-
             </div>
 
             <div class="tab-pane fade" id="pills-finishedProjects" role="tabpanel"
               aria-labelledby="pills-finishedProjects-tab">
               <h3>Finished projects</h3>
               <div class="card-columns">
-
                 <div class="card" *ngFor="let project of projectsFinished">
                   <img [src]="project.img" class="card-img-top" alt="...">
                   <div class="card-body">
@@ -110,10 +107,8 @@
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
-
         </div>
 
 
@@ -196,19 +191,13 @@
           </div>
         </div>
 
-
-
-
-
         <div class="tab-pane fade" id="joinProjects" role="tabpanel" aria-labelledby="joinProjects-tab">
-          <h1>Join Projects</h1>
-          <!-- todo: convert this to a form -->
+          <h1>Join Projects</h1>          
           <form>
             <div class="form-check" *ngFor="let type of typesProject">
               <input type="checkbox" value={{type.idType}} name="project" [(ngModel)]="type.check"
-                class="form-check-input" />
-              <!-- formControlName="saveName" -->
-              <label>{{type.nameType}} --{{type.check}}</label>
+                class="form-check-input" />             
+              <label>{{type.nameType}}</label>
             </div>
             <button type="button" class="btn btn-primary" (click)="collectTypes()">Send </button>
           </form>
