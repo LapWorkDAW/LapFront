@@ -45,8 +45,8 @@ export class CreateProjectComponent implements OnInit {
         );
 
         this.createProjectForm = this.formBuilder.group({
-            projectName: ['a', Validators.required],
-            description: ['a', Validators.required],
+            projectName: ['', Validators.required],
+            description: ['', Validators.required],
             idType: ['1', Validators.required],
             dateFinish: ['', Validators.required],
             img: ['']

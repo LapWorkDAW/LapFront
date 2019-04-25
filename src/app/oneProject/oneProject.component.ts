@@ -21,6 +21,21 @@ import { NgbRatingConfig } from "@ng-bootstrap/ng-bootstrap";
       font-size: 1rem;
       color: #b0c4de;
     }
+    #Art {
+        color: #99644c;
+      }
+    #Engineering {
+        color: #7456bf;
+    }
+    #IT {
+        color: #f25139;
+    }
+    #Literary {
+        color: #ff7d49;
+    }
+    #Technological {
+        color: #46b275;
+    }    
     .filled {
       color: #1e90ff;
     }
