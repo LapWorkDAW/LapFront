@@ -77,9 +77,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
-        //set default user image in case if user do not image 
-        if (this.currentUser.photo == null) {
-            this.currentUser.photo = 'assets/userAssets/photos/girl.jpg';
+        //set default user image in case if user do not image         
+        
+        if (this.currentUser.photo == null || this.currentUser.photo == "") {             
+            this.currentUser.photo = 'assets/userAssets/photos/girl.jpg';            
         }
 
         this.projectService.getTypesProject(this.currentUser.token).subscribe(
@@ -131,7 +132,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
             result => {
                 this.projectsInProgres = result["data"];
                 for (let i = 0; i < this.projectsInProgres.length; i++) {
-                    if (this.projectsInProgres[i].img == null) {
+                    if (this.projectsInProgres[i].img == null || this.projectsInProgres[i].img=="") {
                         this.projectsInProgres[i].img = 'assets/icons/standard/books.jpg';
                     }
                     this.projectService.getProjectFavorite(this.projectsInProgres[i].idProject).subscribe(
@@ -154,7 +155,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
             result => {
                 this.projectsFinished = result["data"];
                 for (let i = 0; i < this.projectsFinished.length; i++) {
-                    if (this.projectsFinished[i].img == null) {
+                    if (this.projectsFinished[i].img == null || this.projectsFinished[i].img == "") {
                         this.projectsFinished[i].img = 'assets/icons/standard/books.jpg';
                     }
                     this.projectService.getProjectStar(this.projectsFinished[i].idProject).subscribe(
@@ -177,7 +178,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
             result => {
                 this.projectsStar = result["data"];
                 for (let i = 0; i < this.projectsStar.length; i++) {
-                    if (this.projectsStar[i]["project"].img == null) {
+                    if (this.projectsStar[i]["project"].img == null || this.projectsStar[i]["project"].img == "") {
                         this.projectsStar[i]["project"].img = 'assets/icons/standard/books.jpg';
                     }
                     this.projectService.getProjectStar(this.projectsStar[i].idProject).subscribe(
@@ -201,7 +202,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
             result => {
                 this.projectsFavorite = result["data"];
                 for (let i = 0; i < this.projectsFavorite.length; i++) {
-                    if (this.projectsFavorite[i]["project"].img == null) {
+                    if (this.projectsFavorite[i]["project"].img == null || this.projectsFavorite[i]["project"].img == null) {
                         this.projectsFavorite[i]["project"].img = 'assets/icons/standard/books.jpg';
                     }
                     this.projectService.getProjectFavorite(this.projectsFavorite[i].idProject).subscribe(
@@ -233,8 +234,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         datos["type"] = array;
         this.projectService.getProjetsByType(this.currentUser.token, JSON.stringify(datos)).subscribe(
             result=>{
-                this.projectsByTypes= result["data"];                
-                console.log(this.projectsByTypes);  
+                this.projectsByTypes= result["data"];         
             },
             error=>{
                 console.log(error);  

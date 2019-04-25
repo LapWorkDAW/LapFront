@@ -68,7 +68,7 @@ export class HomeComponent implements OnInit {
       result => {
         this.projectsInProgres = result["data"];
         for (let i = 0; i < this.projectsInProgres.length; i++) {
-          if (this.projectsInProgres[i].img == null) {
+          if (this.projectsInProgres[i].img == null || this.projectsInProgres[i].img == "") {
             this.projectsInProgres[i].img = 'assets/icons/standard/table7.jpg';
           }
           this.projectService.getProjectFavorite(this.projectsInProgres[i].idProject).subscribe(
@@ -91,7 +91,7 @@ export class HomeComponent implements OnInit {
       result => {
         this.projectsFinished = result["data"];
         for (let i = 0; i < this.projectsFinished.length; i++) {
-          if (this.projectsFinished[i].img == null) {
+          if (this.projectsFinished[i].img == null || this.projectsFinished[i].img == "") {
             this.projectsFinished[i].img = 'assets/icons/standard/table3.jpg';
           }
           this.projectService.getProjectStar(this.projectsFinished[i].idProject).subscribe(

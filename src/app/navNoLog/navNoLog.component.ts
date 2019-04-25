@@ -22,7 +22,7 @@ export class NavNoLogComponent {
 
     ngOnInit() {
         if (this.currentUser) {
-            if (this.currentUser.photo == null) {
+            if (this.currentUser.photo == null || this.currentUser.photo == "") {
                 this.currentUser.photo = 'assets/userAssets/photos/girl.jpg';
             }
         }
