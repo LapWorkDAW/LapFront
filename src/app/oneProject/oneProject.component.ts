@@ -11,6 +11,9 @@ import { VProjectStar } from "src/assets/models/VProjectStar";
 import { VProjectFav } from "src/assets/models/VProjectFav";
 import { VProjectFavService } from "../services/v-project-fav.service";
 import { NgbRatingConfig } from "@ng-bootstrap/ng-bootstrap";
+import { MessageProject } from "src/assets/models/MessageProject";
+import { Post } from "src/assets/models/Post";
+import { MessageProjectService } from "../services/message-project.service";
 
 @Component({
     selector: 'oneProject',
@@ -67,8 +70,9 @@ export class OneProjectComponent {
     ctrl = new FormControl(null, Validators.required);
     star: VProjectStar = new VProjectStar();
     like: VProjectFav = new VProjectFav();
+    messagesWall: Array<MessageProject>;
 
-    constructor(private _router: Router, private projectService: ProjectService,
+    constructor(private _router: Router, private projectService: ProjectService, private messageService: MessageProjectService,
         private _activRoute: ActivatedRoute, private voteStar: VProjectStarService,
         private voteLike: VProjectFavService, config: NgbRatingConfig) {
         config.max = 1;
@@ -101,7 +105,7 @@ export class OneProjectComponent {
                         });
                 } else { //not finished
                     console.log("es like");
-                    
+
                     this.isLike = true;
                     this.projectService.getProjectFavorite(this.project.idProject).subscribe(
                         result => {
@@ -118,6 +122,13 @@ export class OneProjectComponent {
             error => {
             }
         )
+
+        this.messageService.getAllMessage(this.id).subscribe(
+            result => {
+                this.messagesWall = result["data"];
+            },
+            error => { }
+        )
     }
     //0-no esta votado, 1 - si
 
@@ -127,7 +138,7 @@ export class OneProjectComponent {
             this.projectService.checkVoteLike(this.currentUser.token, id).subscribe(
                 result => {
                     if (result["data"] == 1) {
-                        console.log("");                        
+                        console.log("");
                         this.userExistAndNoLike = false;
                     } else {
                         this.userExistAndNoLike = true;
