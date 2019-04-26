@@ -17,8 +17,8 @@ export class MessageProjectService {
     });
   }
 
-  getAllMessage(id:number){
-    let url = "/api.php?controller=Project&id="+id;
+  getAllMessage(){
+    let url = "/api.php?controller=Project";
     return this.http.get(url,{
       headers: new HttpHeaders({ "Content-Type": "application/json" })
     });

@@ -123,7 +123,7 @@ export class OneProjectComponent {
             }
         )
 
-        this.messageService.getAllMessage(this.id).subscribe(
+        this.messageService.getAllMessage().subscribe(
             result => {
                 this.messagesWall = result["data"];
             },
