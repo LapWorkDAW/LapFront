@@ -19,7 +19,6 @@
         </div>
         <ng-template [ngIf]="isLike" [ngIfElse]="notLike">
           <ng-template [ngIf]="userExistAndNoLike" [ngIfElse]="VoteLike">
-            {{userExistAndNoLike}}
             <ngb-rating [formControl]="ctrl" (click)="toggleLike()" style="color:#007bff" max="1">
               <ng-template let-fill="fill" let-index="index">
                 <span class="star" [class.filled]="fill === 100" [class.bad]="index<3">&hearts;</span>
@@ -41,11 +40,10 @@
           <ng-template #notVote>
             <ng-template #t let-fill="fill">
               <span class="star" [class.full]="fill === 100">
-                <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                <span class="half" style="max-width: 15px;" [style.width.%]="fill">&#9733;</span>&#9733;
               </span>
             </ng-template>
             <ngb-rating [(rate)]="project.stars" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
-            {{project.stars}}
           </ng-template>
         </ng-template>
       </div>

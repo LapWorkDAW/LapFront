@@ -62,7 +62,7 @@
             <div class="tab-pane fade show active" id="pills-onGoingProjects" role="tabpanel"
               aria-labelledby="pills-onGoingProjects-tab">
               <h3>On-going projects</h3>
-              <div class=" card-columns">
+              <div class="card-columns">
                 <div class="card" *ngFor="let project of projectsInProgres">
                   <img [src]="project.img" class="card-img-top" alt="...">
                   <div class="card-body">
@@ -111,7 +111,6 @@
             </div>
           </div>
         </div>
-
 
         <div class="tab-pane fade" id="favourites" role="tabpanel" aria-labelledby="favourites-tab">
           <!--  <h1>Favourites</h1> -->
@@ -194,6 +193,7 @@
 
         <div class="tab-pane fade" id="joinProjects" role="tabpanel" aria-labelledby="joinProjects-tab">
           <h1>Join Projects</h1>
+          <p>Find the most interesting projects, and enroll in them</p>
           <form>
             <div class="form-check" *ngFor="let type of typesProject">
               <input type="checkbox" value={{type.idType}} name="project" [(ngModel)]="type.check"
@@ -201,7 +201,22 @@
               <label>{{type.nameType}}</label>
             </div>
             <button type="button" class="btn btn-primary" (click)="collectTypes()">Send </button>
-          </form>
+          </form><br><br>
+
+
+          <div class="card-columns">
+            <div class="card mb-3" style="max-width: 18rem;">
+              <!-- *ngFor="let projectSelected of " -->
+              <div class="card-header">Type</div>
+              <div class="card-body">
+                <h5 class="card-title">Title</h5>
+                <p class="card-text">Descripcion</p>
+                <div class="dropdown-divider"></div>
+                <button type="button" class="btn btn-outline-primary">Link</button>
+              </div>
+            </div>
+
+          </div>
 
         </div>
       </div>
