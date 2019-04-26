@@ -1,7 +1,7 @@
 import { User } from './User';
 import { Post } from './Post';
 
-export class Message {
+export class MessageUser {
     idMessage: number;
     post: Post;
     receiver: User;
