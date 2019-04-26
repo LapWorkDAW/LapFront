@@ -4,7 +4,8 @@
   <div class="row mx-lg-n5">
 
     <div class="col-4">
-      <div class="card" style="width: 18rem;">
+      <div class="card" style="max-width: 17rem;">
+
         <img [src]="currentUser.photo" class="card-img-top photo" alt="...">
         <div class="card-body">
           <h5 class="card-title">{{currentUser.firstname}} {{currentUser.surname}}</h5>
@@ -192,11 +193,11 @@
         </div>
 
         <div class="tab-pane fade" id="joinProjects" role="tabpanel" aria-labelledby="joinProjects-tab">
-          <h1>Join Projects</h1>          
+          <h1>Join Projects</h1>
           <form>
             <div class="form-check" *ngFor="let type of typesProject">
               <input type="checkbox" value={{type.idType}} name="project" [(ngModel)]="type.check"
-                class="form-check-input" />             
+                class="form-check-input" />
               <label>{{type.nameType}}</label>
             </div>
             <button type="button" class="btn btn-primary" (click)="collectTypes()">Send </button>
