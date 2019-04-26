@@ -205,14 +205,16 @@
 
 
           <div class="card-columns">
-            <div class="card mb-3" style="max-width: 18rem;">
-              <!-- *ngFor="let projectSelected of " -->
-              <div class="card-header">Type</div>
+            <div class="card mb-3" style="max-width: 18rem;" *ngFor="let projectSelected of projectsByTypes">
+              <!--  -->
+              <div class="card-header" id="{{projectSelected.type.nameType}}">
+                {{projectSelected.type.nameType}}</div>
               <div class="card-body">
-                <h5 class="card-title">Title</h5>
-                <p class="card-text">Descripcion</p>
+                <h5 class="card-title">{{projectSelected.projectName}}</h5>
+                <p class="card-text">{{projectSelected.description}}</p>
                 <div class="dropdown-divider"></div>
-                <button type="button" class="btn btn-outline-primary">Link</button>
+                <button type="button" class="btn btn-outline-primary"
+                  [routerLink]="['/oneProject', projectSelected.idProject]">Link</button>
               </div>
             </div>
 
