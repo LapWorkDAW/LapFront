@@ -5,6 +5,7 @@ import { ProjectService } from '../services/project.service';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
+import { DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'home',
@@ -52,7 +53,7 @@ export class HomeComponent implements OnInit {
   projectsFinished: Array<Project>;
   /*  ctrl = new FormControl(null, Validators.required); */
 
-  constructor(private projectService: ProjectService, private router: Router, config: NgbRatingConfig) {
+  constructor(private sanitizer: DomSanitizer, private projectService: ProjectService, private router: Router, config: NgbRatingConfig) {
     // customize default values of ratings used by this component tree
     config.max = 1;
   }
@@ -60,7 +61,6 @@ export class HomeComponent implements OnInit {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.getProjectsInProgress();
     this.getProjectsFinished();
-
   }
 
   getProjectsInProgress() {
@@ -70,7 +70,11 @@ export class HomeComponent implements OnInit {
         for (let i = 0; i < this.projectsInProgres.length; i++) {
           if (this.projectsInProgres[i].img == null || this.projectsInProgres[i].img == "") {
             this.projectsInProgres[i].img = 'assets/icons/standard/table7.jpg';
+          
           }
+            let url =this.sanitizer.bypassSecurityTrustUrl(this.projectsInProgres[i].img);
+            this.projectsInProgres[i].img_safe=url;
+          
           this.projectService.getProjectFavorite(this.projectsInProgres[i].idProject).subscribe(
             result => {
               this.projectsInProgres[i]["likes"] = result["data"];

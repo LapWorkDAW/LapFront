@@ -40,11 +40,12 @@
           </ng-template>
           <ng-template #notVote>
             <ng-template #t let-fill="fill">
-              <span class="star" [class.full]="auto === 100">
-                <span class="half" [style.width.%]="auto">&#9733;</span>&#9733;
+              <span class="star" [class.full]="fill === 100">
+                <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
               </span>
             </ng-template>
             <ngb-rating [(rate)]="project.stars" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
+            {{project.stars}}
           </ng-template>
         </ng-template>
       </div>

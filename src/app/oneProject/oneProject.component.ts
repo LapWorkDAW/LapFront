@@ -100,6 +100,8 @@ export class OneProjectComponent {
                             this.project["stars"] = 0;
                         });
                 } else { //not finished
+                    console.log("es like");
+                    
                     this.isLike = true;
                     this.projectService.getProjectFavorite(this.project.idProject).subscribe(
                         result => {
@@ -125,9 +127,10 @@ export class OneProjectComponent {
             this.projectService.checkVoteLike(this.currentUser.token, id).subscribe(
                 result => {
                     if (result["data"] == 1) {
-                        this.userExistAndNoLike = true;
-                    } else {
+                        console.log("");                        
                         this.userExistAndNoLike = false;
+                    } else {
+                        this.userExistAndNoLike = true;
                     }
                 },
                 error => {
