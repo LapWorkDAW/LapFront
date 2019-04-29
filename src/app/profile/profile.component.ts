@@ -15,18 +15,23 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
     styles: [`
     #Art {
         color: #99644c;
+        
       }
       #Engineering {
         color: #7456bf;
+        
       }
       #IT {
         color: #f25139;
+        
       }
       #Literary {
         color: #ff7d49;
+       
       }
       #Technological {
         color: #46b275;
+       
       }
     .star {
       position: relative;
@@ -58,8 +63,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     projectsInProgres: Array<Project>;
     projectsFinished: Array<Project>;
     photo: boolean = true;
-    typesProject: Array<String>; 
-    projectsByTypes: Array<Project>;   
+    typesProject: Array<String>;
+    projectsByTypes: Array<Project>;
 
     constructor(
         /* private _activRoute: ActivatedRoute, */
@@ -78,9 +83,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
         //set default user image in case if user do not image         
-        
-        if (this.currentUser.photo == null || this.currentUser.photo == "") {             
-            this.currentUser.photo = 'assets/userAssets/photos/girl.jpg';            
+
+        if (this.currentUser.photo == null || this.currentUser.photo == "") {
+            this.currentUser.photo = 'assets/userAssets/photos/girl.jpg';
         }
 
         this.projectService.getTypesProject(this.currentUser.token).subscribe(
@@ -132,7 +137,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
             result => {
                 this.projectsInProgres = result["data"];
                 for (let i = 0; i < this.projectsInProgres.length; i++) {
-                    if (this.projectsInProgres[i].img == null || this.projectsInProgres[i].img=="") {
+                    if (this.projectsInProgres[i].img == null || this.projectsInProgres[i].img == "") {
                         this.projectsInProgres[i].img = 'assets/icons/standard/books.jpg';
                     }
                     this.projectService.getProjectFavorite(this.projectsInProgres[i].idProject).subscribe(
@@ -230,20 +235,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 }
             }
         }
-        let datos ={};
+        let datos = {};
         datos["type"] = array;
         this.projectService.getProjetsByType(this.currentUser.token, JSON.stringify(datos)).subscribe(
-            result=>{
-                this.projectsByTypes= result["data"];   
-                console.log(this.projectsByTypes);
-                      
+            result => {
+                this.projectsByTypes = result["data"];
             },
-            error=>{
-                console.log(error);  
+            error => {
+                console.log(error);
             }
-        )        
+        )
     }
 
-    
+
     ngOnDestroy(): void { }
 }
