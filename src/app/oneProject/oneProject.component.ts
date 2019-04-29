@@ -3,8 +3,6 @@ import { Router, ActivatedRoute, Params } from "@angular/router";
 import { Project } from "src/assets/models/Project";
 import { ProjectService } from '../services/project.service';
 import { User } from "src/assets/models/User";
-import { Subscription } from "rxjs";
-import { AuthenticationService } from "../services/authentication.service";
 import { FormControl, Validators } from "@angular/forms";
 import { VProjectStarService } from "../services/v-project-star.service";
 import { VProjectStar } from "src/assets/models/VProjectStar";
@@ -12,7 +10,6 @@ import { VProjectFav } from "src/assets/models/VProjectFav";
 import { VProjectFavService } from "../services/v-project-fav.service";
 import { NgbRatingConfig } from "@ng-bootstrap/ng-bootstrap";
 import { MessageProject } from "src/assets/models/MessageProject";
-import { Post } from "src/assets/models/Post";
 import { MessageProjectService } from "../services/message-project.service";
 
 @Component({
@@ -123,7 +120,7 @@ export class OneProjectComponent {
             }
         )
 
-        this.messageService.getAllMessage().subscribe(
+        this.messageService.getAllMessage(this.id).subscribe(
             result => {
                 this.messagesWall = result["data"];
             },

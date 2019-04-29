@@ -234,7 +234,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
         datos["type"] = array;
         this.projectService.getProjetsByType(this.currentUser.token, JSON.stringify(datos)).subscribe(
             result=>{
-                this.projectsByTypes= result["data"];         
+                this.projectsByTypes= result["data"];   
+                console.log(this.projectsByTypes);
+                      
             },
             error=>{
                 console.log(error);  

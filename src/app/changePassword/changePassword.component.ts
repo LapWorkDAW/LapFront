@@ -59,7 +59,7 @@ export class ChangePasswordComponent implements OnInit {
         this.newPassword = this.passwordForm.value;
         delete this.newPassword['confirmPassword'];
 
-        /* this.userService.updatePassword(this.newPassword, this.currentUser.token)
+        this.userService.updatePassword(this.newPassword, this.currentUser.token)
             .subscribe(
                 resul => {
                     this.dateModifiedSuccessfull = true;
@@ -68,9 +68,9 @@ export class ChangePasswordComponent implements OnInit {
                 error => {
                     console.log(error);
                 }
-            ); */
+            ); 
 
-        this.passwordForm.reset();
+        /* this.passwordForm.reset(); */
         /*  for (let name in this.passwordForm.controls) {
              this.passwordForm.controls[name].setErrors(null);
          } */
