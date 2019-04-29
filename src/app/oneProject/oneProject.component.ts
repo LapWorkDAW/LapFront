@@ -125,6 +125,8 @@ export class OneProjectComponent {
             },
             error => { }
         )
+
+        this.getAllMessages();
     }
     //0-no esta votado, 1 - si
 
@@ -181,6 +183,20 @@ export class OneProjectComponent {
              error => {
                  this.ctrl.enable();
              } 
+        )
+    }
+
+    getAllMessages() {
+        this.messageService.getAllMessage(this.id).subscribe(
+            result => {
+                console.log(result);
+
+                this.messagesWall = result["data"];
+            },
+            error => {
+                console.log(error);
+
+            }
         )
     }
 }

@@ -14,7 +14,8 @@
       <p>{{project.description}}</p>
       <div class="d-flex justify-content-between align-items-center">
         <div>
-          <small>{{project.nameCreator}}</small><br>
+
+          <a href=""> <small>{{project.nameCreator}} </small></a><br>
           <small>{{project.dateFinish}}</small>
         </div>
         <ng-template [ngIf]="isLike" [ngIfElse]="notLike">
@@ -53,15 +54,30 @@
 
   </div>
   <h3 class="mt-5">Latest updates</h3>
-  <div class="overflow-auto h-100 jumbotron">
-    <div>
-      <small class="text-left text-primary">""author""</small><br>
-      <p class="bg-light rounded px-4 py-4 text-right text-break">Lorem ipsum dolor sit amet consectetur
-        adipisicing
-        elit. Quisquam ipsam numquam reiciendis voluptatibus architecto soluta, voluptate nisi tempora voluptas enim
-        iure quidem quam qui sequi, at repellendus accusamus atque. Nesciunt! <br> <small
-          class="text-muted">""dia-sent""
-          ""hora-sent""</small></p>
+  <div class="overflow-auto jumbotron" style="height: 500px;">
+    <style>
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #343a40;
+      }
+
+    </style>
+    <div *ngFor="let message of messagesWall">
+      <small class="text-left text-primary">{{message.author}}</small><br>
+      <p class="bg-light rounded px-4 py-4 text-right text-break">{{message.post.message}}<br> <small
+          class="text-muted">{{message.post.dataDay}}
+        </small></p>
     </div><br>
 
     <div>

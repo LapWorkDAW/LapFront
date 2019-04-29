@@ -26,6 +26,7 @@ export class MuroSendComponent implements OnInit{
 
 
 
+
     constructor(private authenticationService: AuthenticationService, private messageService: MessageProjectService,
         private router: Router,
         private formBuilder: FormBuilder) {
