@@ -11,7 +11,7 @@ export class MessageProjectService {
   constructor(private http: HttpClient) { }
 
   registerMessage(message: MessageProject, token:string): Observable<any> {
-    let url = "/api.php?controller=Project";
+    let url = "/api.php?controller=Project&&token="+token;
     return this.http.post(url, message, {
       headers: new HttpHeaders({ "Content-Type": "application/json" })
     });

@@ -95,25 +95,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
             error => {
                 console.log(error);
             }
-        );
-        /* this._activRoute.params.forEach(
-            (arrayParams: Params) => {
-                let option = arrayParams["option"];
-                switch (option) {
-                    case "myProjects":
-                        this.active_myProjects = "active";
-                        break;
-                    case "favourites":
-                        this.active_favourites = "active";
-                        break;
-                    case "joinProjects":
-                        this.active_joinProjects = "active";
-                        break;
-                    default:
-                        this.active_myProjects = "active";
-                }
-            }
-        ); */
+        );      
 
         this.getProjectsInProgress();
         this.getProjectsFinished();

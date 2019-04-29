@@ -95,9 +95,12 @@ export class HomeComponent implements OnInit {
       result => {
         this.projectsFinished = result["data"];
         for (let i = 0; i < this.projectsFinished.length; i++) {
+          console.log(this.projectsFinished[i].img);
           if (this.projectsFinished[i].img == null || this.projectsFinished[i].img == "") {
             this.projectsFinished[i].img = 'assets/icons/standard/table3.jpg';
           }
+          let url =this.sanitizer.bypassSecurityTrustUrl(this.projectsFinished[i].img);
+          this.projectsFinished[i].img_safe=url;
           this.projectService.getProjectStar(this.projectsFinished[i].idProject).subscribe(
             result => {
               this.projectsFinished[i]["stars"] = result["data"];

@@ -100,8 +100,7 @@ export class OneProjectComponent {
                         }, error => {
                             this.project["stars"] = 0;
                         });
-                } else { //not finished
-                    console.log("es like");
+                } else { //not finished                   
 
                     this.isLike = true;
                     this.projectService.getProjectFavorite(this.project.idProject).subscribe(
@@ -134,8 +133,7 @@ export class OneProjectComponent {
         if (status == 1) {
             this.projectService.checkVoteLike(this.currentUser.token, id).subscribe(
                 result => {
-                    if (result["data"] == 1) {
-                        console.log("");
+                    if (result["data"] == 1) {                        
                         this.userExistAndNoLike = false;
                     } else {
                         this.userExistAndNoLike = true;
@@ -177,12 +175,12 @@ export class OneProjectComponent {
         this.like.project = this.project;
         this.like.userVote = this.currentUser;
         this.voteLike.vote(this.like, this.currentUser.token).subscribe(
-            /*  result => {
+             result => {
                  this.ctrl.disable();
              },
              error => {
                  this.ctrl.enable();
-             } */
+             } 
         )
     }
 }
