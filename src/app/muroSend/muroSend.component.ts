@@ -21,6 +21,7 @@ export class MuroSendComponent {
     newMessage: MessageProject;
 
 
+
     constructor(private authenticationService: AuthenticationService, private messageService: MessageProjectService,
         private router: Router,
         private formBuilder: FormBuilder) {
