@@ -72,8 +72,8 @@ export class HomeComponent implements OnInit {
             this.projectsInProgres[i].img = 'assets/icons/standard/table7.jpg';
           
           }
-            let url =this.sanitizer.bypassSecurityTrustUrl(this.projectsInProgres[i].img);
-            this.projectsInProgres[i].img_safe=url;
+            /* let url =this.sanitizer.bypassSecurityTrustUrl(this.projectsInProgres[i].img);
+            this.projectsInProgres[i].img_safe=url; */
           
           this.projectService.getProjectFavorite(this.projectsInProgres[i].idProject).subscribe(
             result => {
@@ -99,8 +99,8 @@ export class HomeComponent implements OnInit {
           if (this.projectsFinished[i].img == null || this.projectsFinished[i].img == "") {
             this.projectsFinished[i].img = 'assets/icons/standard/table3.jpg';
           }
-          let url =this.sanitizer.bypassSecurityTrustUrl(this.projectsFinished[i].img);
-          this.projectsFinished[i].img_safe=url;
+          /* let url =this.sanitizer.bypassSecurityTrustUrl(this.projectsFinished[i].img); */
+          /* this.projectsFinished[i].img_safe=url; */
           this.projectService.getProjectStar(this.projectsFinished[i].idProject).subscribe(
             result => {
               this.projectsFinished[i]["stars"] = result["data"];

@@ -11,7 +11,7 @@ export class Project {
   dateStart: Date = new Date();
   dateFinish: Date = new Date();
   img: string = "";
-  img_safe: SafeUrl = "";
+  /* img_safe: SafeUrl = ""; */
   projectStatus: number = 0;
 
   constructor() { }
