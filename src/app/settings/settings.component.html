@@ -11,10 +11,10 @@
               href="#list-profile" role="tab" aria-controls="profile">Profile</a>
             <a class="list-group-item list-group-item-action" id="list-account-list" data-toggle="list"
               href="#list-account" role="tab" aria-controls="account">Account</a>
-            <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list"
+            <!-- <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list"
               href="#list-messages" role="tab" aria-controls="messages">Messages</a>
             <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list"
-              href="#list-settings" role="tab" aria-controls="settings">Settings</a>
+              href="#list-settings" role="tab" aria-controls="settings">Settings</a> -->
           </div>
         </div>
 
@@ -27,9 +27,9 @@
               <hr>
               <br>
               <div *ngIf="dateModifiedSuccessfull" class="alert alert-success" role="alert">Data has been updated.
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
               <form [formGroup]="modifyUserForm" (ngSubmit)="sendForm()" enctype="multipart/form-data">
                 <div class="form-row">
@@ -39,7 +39,8 @@
                   <div class="form-group col">
                     <label>Insert an image</label>
                     <div class="form-group">
-                      <input type="file" name="file" (change)="uploadDocument($event)" formControlName="photo" id="inputGroupFile02">
+                      <input type="file" name="file" (change)="uploadDocument($event)" formControlName="photo"
+                        id="inputGroupFile02">
                     </div>
                   </div>
 
@@ -90,19 +91,35 @@
             <div class="tab-pane fade" id="list-account" role="tabpanel" aria-labelledby="list-account-list">
               <changePassword></changePassword>
 
-              <h2 class="text-danger">Delete account</h2>
-              <hr>
-              <small>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut consequuntur non quos reiciendis.
-                Expedita eaque minus illum est provident magni blanditiis iste officiis nemo, quae sequi odit. Autem, id
-                quo.</small><br><br>
-              <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}
-              </ngb-alert>
               <p>
-                <button class="btn btn-danger" (click)="deleteAccount()">Delete account</button>
+                <a class="btn btn-danger" data-toggle="collapse" href="#collapseExample" role="button"
+                  aria-expanded="false" aria-controls="collapseExample">
+                  Danger Zone
+                </a>
+
               </p>
+              <div class="collapse" id="collapseExample">
+                <div class="">
+                  <br><br>
+                  <h2 class="text-danger">Delete account</h2>
+                  <hr>
+                  <small>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut consequuntur non quos reiciendis.
+                    Expedita eaque minus illum est provident magni blanditiis iste officiis nemo, quae sequi odit.
+                    Autem, id
+                    quo.</small><br><br>
+                  <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}
+                  </ngb-alert>
+                  <p>
+                    <button class="btn btn-outline-danger" (click)="deleteAccount()">Delete account</button>
+                  </p>
+
+                </div>
+              </div>
+
+
             </div>
-            <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
-            <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
+            <!-- <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
+            <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div> -->
           </div>
         </div>
 
