@@ -73,7 +73,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     ) {
         config.max = 1;
         this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
-            this.currentUser = user;
+            this.currentUser = user;            
         });
         if (this.currentUser == null) {
             this.router.navigate(['']);
