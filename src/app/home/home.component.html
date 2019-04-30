@@ -20,13 +20,13 @@
       <div class="col-6 mb-4">
         <h3>Finished projects</h3>
         <div class="card mt-4 text-left" *ngFor="let project of projectsFinished | slice:0:3">
-
           <img [src]="project.img" class="card-img-top rounded" alt="...">
-
           <div class="card-body">
             <h5 class="card-title">{{project.projectName}}</h5>
             <p class="card-text text-left">{{project.description}}</p>
-            <small class="">{{project.nameCreator}}</small>
+            <a><small>{{project.nameCreator}}</small></a>
+            <!-- [routerLink]="['/publicProfile', project.]" -->
+
             <div class="dropdown-divider"></div>
             <div class="d-flex justify-content-between align-items-center">
               <ng-template #t let-fill="fill">
@@ -41,6 +41,7 @@
               role="button">Link</a><br>
           </div>
         </div>
+
         <a [routerLink]="['projects']" class="btn btn-block mt-3 btn-outline-secondary">See more</a>
       </div>
 
@@ -51,7 +52,9 @@
           <div class="card-body">
             <h5 class="card-title">{{project.projectName}}</h5>
             <p class="card-text text-left">{{project.description}}</p>
-            <small class="">{{project.nameCreator}}</small>
+            <a><small>{{project.nameCreator}}</small></a>
+            <!-- [routerLink]="['/publicProfile', project.]" -->
+
             <div class="dropdown-divider"></div>
             <div class="d-flex justify-content-between align-items-center">
               <ng-template #t>
