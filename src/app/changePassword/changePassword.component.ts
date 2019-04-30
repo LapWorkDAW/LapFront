@@ -20,7 +20,7 @@ export class ChangePasswordComponent implements OnInit {
     newPassword: string;
     currentUser: User;
     currentUserSubscription: Subscription;
-    dateModifiedSuccessfull: boolean = false;
+    passModifiedSuccessfull: boolean = false;
 
 
     constructor(private userService: UserService,
@@ -62,7 +62,7 @@ export class ChangePasswordComponent implements OnInit {
         this.userService.updatePassword(this.newPassword, this.currentUser.token)
             .subscribe(
                 resul => {
-                    this.dateModifiedSuccessfull = true;
+                    this.passModifiedSuccessfull = true;
                     console.log(resul);
                 },
                 error => {

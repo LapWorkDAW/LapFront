@@ -94,8 +94,7 @@ export class HomeComponent implements OnInit {
     this.projectService.getProjectFinished().subscribe(
       result => {
         this.projectsFinished = result["data"];
-        for (let i = 0; i < this.projectsFinished.length; i++) {
-          console.log(this.projectsFinished[i].img);
+        for (let i = 0; i < this.projectsFinished.length; i++) {          
           if (this.projectsFinished[i].img == null || this.projectsFinished[i].img == "") {
             this.projectsFinished[i].img = 'assets/icons/standard/table3.jpg';
           }
