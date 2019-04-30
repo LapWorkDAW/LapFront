@@ -15,7 +15,8 @@
       <div class="d-flex justify-content-between align-items-center">
         <div>
 
-          <a href=""> <small>{{project.nameCreator}} </small></a><br>
+          <a> <small>{{project.nameCreator}} </small></a><br>
+          <!-- [routerLink]="['/publicProfile', project.]" -->
           <small>{{project.dateFinish}}</small>
         </div>
         <ng-template [ngIf]="isLike" [ngIfElse]="notLike">

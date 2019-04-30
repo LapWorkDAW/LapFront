@@ -29,7 +29,7 @@ const appRoutes: Routes = [
     { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
     { path: 'projects', component: ProjectsComponent },
     { path: 'oneProject/:id', component: OneProjectComponent },
-    { path: 'publicProfile', component: PublicProfileComponent },
+    { path: 'publicProfile/:id', component: PublicProfileComponent },
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }

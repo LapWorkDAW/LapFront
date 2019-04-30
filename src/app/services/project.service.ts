@@ -114,12 +114,19 @@ export class ProjectService {
     );
   }
 
-  getProjetsByType(token:string, datos){
+  getProjetsByType(token: string, datos) {
     console.log(datos);
-    
     let url = "/api.php?controller=Project&function=typeProjects&token=" + token;
     return this.http.post(
-      url, datos,{ headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
+      url, datos, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
     );
   }
+
+  getAllProjects() {
+    let url = "/api.php?controller=Project&function=byuser";
+    return this.http.post(
+      url, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
+    );
+  }
+
 }
