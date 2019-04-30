@@ -12,6 +12,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { OneProjectComponent } from './oneProject/oneProject.component';
+import { PublicProfileComponent } from './publicProfile/publicProfile.component';
 import { AuthGuard } from './_guard/auth.guard';
 
 const appRoutes: Routes = [
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
     { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
     { path: 'projects', component: ProjectsComponent },
     { path: 'oneProject/:id', component: OneProjectComponent },
+    { path: 'publicProfile', component: PublicProfileComponent },
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }

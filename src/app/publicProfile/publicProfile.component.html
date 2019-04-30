@@ -1,0 +1,28 @@
+<navNoLog></navNoLog>
+<div class="container mt-5 px-lg-5">
+
+  <div class="row mx-lg-n5">
+
+    <div class="col-4">
+      <div class="card" style="max-width: 17rem;">
+
+        <img [src]="currentUser.photo" class="card-img-top photo" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{currentUser.firstname}} {{currentUser.surname}}</h5>
+          <p class="card-text">{{currentUser.description}}</p>
+          <p class="card-text">{{currentUser.location}}</p>
+          <p class="card-text">{{currentUser.knowledge}}</p>
+          <p class="card-text">{{currentUser.cv}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><a [routerLink]="['/settings']" class="card-link">Edit</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="col-8">
+
+    </div>
+  </div>
+</div>
