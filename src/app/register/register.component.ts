@@ -111,6 +111,9 @@ export class RegisterComponent implements OnInit {
         });
     this.newUser = new User();
     this.registerForm.reset();
+    for (let name in this.registerForm.controls) {
+      this.registerForm.controls[name].setErrors(null);
+    }
   }
 
   checkEmail() {

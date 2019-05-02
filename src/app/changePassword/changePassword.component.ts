@@ -68,11 +68,11 @@ export class ChangePasswordComponent implements OnInit {
                 error => {
                     console.log(error);
                 }
-            ); 
+            );
 
-        /* this.passwordForm.reset(); */
-        /*  for (let name in this.passwordForm.controls) {
-             this.passwordForm.controls[name].setErrors(null);
-         } */
+        this.passwordForm.reset();
+        for (let name in this.passwordForm.controls) {
+            this.passwordForm.controls[name].setErrors(null);
+        }
     }
 }

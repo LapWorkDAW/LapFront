@@ -93,5 +93,9 @@ export class CreateProjectComponent implements OnInit {
                 }
             );
         this.newProject = new Project();
+        this.createProjectForm.reset();
+        for (let name in this.createProjectForm.controls) {
+            this.createProjectForm.controls[name].setErrors(null);
+        }
     }
 }

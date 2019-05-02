@@ -6,8 +6,6 @@ import { UserService } from "../services/user.service";
 import { ProjectService } from "../services/project.service";
 import { Subscription, Subject } from "rxjs";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { debounceTime } from 'rxjs/operators';
-import { MustMatch } from "../_helpers/must-match.validator";
 import { AuthService } from "angular-6-social-login";
 
 @Component({
@@ -21,7 +19,6 @@ export class SettingsComponent implements OnInit {
     currentUserSubscription: Subscription;
     googleOK: boolean = false;
     modifyUserForm: FormGroup;
-    passwordForm: FormGroup;
     submittedPassword = false;
     submitted = false;
     public addrKeys: string[];
@@ -33,7 +30,7 @@ export class SettingsComponent implements OnInit {
 
     constructor(
         /* private _activRoute: ActivatedRoute, */
-        private authenticationService: AuthenticationService, private projectService: ProjectService,
+        private authenticationService: AuthenticationService,
         private userService: UserService, private router: Router, private formBuilder: FormBuilder,
         private zone: NgZone, private socialAuthService: AuthService
     ) {
@@ -58,7 +55,6 @@ export class SettingsComponent implements OnInit {
             photo: []
         });
     }
-
 
     setAddress(addrObj) {
         this.zone.run(() => {
@@ -111,10 +107,12 @@ export class SettingsComponent implements OnInit {
                 }
             );
 
-        /* this.modifyUser = new User();
-         this.modifyUserForm.reset(); */
+        this.modifyUser = new User();
+        this.modifyUserForm.reset();
+        for (let name in this.modifyUserForm.controls) {
+            this.modifyUserForm.controls[name].setErrors(null);
+        }
     }
-
 
     deleteAccount() {
         this.userService.delete(this.currentUser.token).subscribe(

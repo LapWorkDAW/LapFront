@@ -33,7 +33,7 @@ export class UserService {
   }
 
   updatePassword(date, token: String) {
-    let url = "/api.php?controller=User&function=photo&token=" + token;
+    let url = "/api.php?controller=User&function=password&token=" + token;
     return this.http.post(
       url, date, { headers: new HttpHeaders({ "Content-Type": "application/json" }) }
     );
