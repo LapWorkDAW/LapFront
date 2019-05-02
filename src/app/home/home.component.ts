@@ -76,6 +76,8 @@ export class HomeComponent implements OnInit {
     this.projectService.getProjectNoFinished().subscribe(
       result => {
         this.projectsInProgres = result["data"];
+        console.log(result["data"]);
+        
         for (let i = 0; i < this.projectsInProgres.length; i++) {
           if (this.projectsInProgres[i].img == null || this.projectsInProgres[i].img == "") {
             this.projectsInProgres[i].img = 'assets/icons/standard/table7.jpg';

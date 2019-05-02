@@ -20,8 +20,7 @@ export class PublicProfileComponent {
 
     constructor(private authenticationService: AuthenticationService,
         private userService: UserService,
-        private router: Router,
-        private projectService: ProjectService,
+        private router: Router,        
         private _activRoute: ActivatedRoute
     ) {
         this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
@@ -35,35 +34,27 @@ export class PublicProfileComponent {
         this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
         if (this.currentUser.photo == null || this.currentUser.photo == "") {
             this.currentUser.photo = 'assets/userAssets/photos/girl.jpg';
-        }
-
-
-        this.projectService.getTypesProject(this.currentUser.token).subscribe(
-            result => {
-                this.typesProject = result["data"];
-            },
-            error => {
-                console.log(error);
-            }
-        );
-        this.getAllProjects();
-
+        } 
         this._activRoute.params.forEach(
             (arrayParams: Params) => {
                 this.id = arrayParams["id"];
             });
 
-    }
-    getAllProjects() {
-        this.projectService.getAllProjects().subscribe(
-            result => {
-                this.allProjects = result["data"];
-                console.log(result["data"]);
+            this.userService.getUserById(this.id).subscribe(
+                result => {
+                    this.user = result["data"];
+                    if (this.user.photo == null || this.user.photo == "") {
+                        this.user.photo = 'assets/userAssets/photos/girl.jpg';
+                    } 
+                    console.log(result["data"]);
+                },
+                error => {
+                    console.log(error);
+                }
+            )
 
-            },
-            error => {
-                console.log(error);
-            }
-        )
     }
+    
+      
+   
 }
