@@ -12,6 +12,7 @@ import { ProjectService } from "../services/project.service";
 })
 export class PublicProfileComponent {
     currentUser: User;
+    user: User = new User();
     currentUserSubscription: Subscription;
     typesProject: Array<String>;
     allProjects: Array<String>;
@@ -22,9 +23,7 @@ export class PublicProfileComponent {
         private router: Router,
         private projectService: ProjectService,
         private _activRoute: ActivatedRoute
-
     ) {
-
         this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
             this.currentUser = user;
         });
@@ -37,6 +36,7 @@ export class PublicProfileComponent {
         if (this.currentUser.photo == null || this.currentUser.photo == "") {
             this.currentUser.photo = 'assets/userAssets/photos/girl.jpg';
         }
+
 
         this.projectService.getTypesProject(this.currentUser.token).subscribe(
             result => {
