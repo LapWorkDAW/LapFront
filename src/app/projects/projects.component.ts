@@ -48,7 +48,16 @@ export class ProjectsComponent implements OnInit {
     ngOnInit(): void {
         this.getProjectsInProgress();
         this.getProjectsFinished();
+        window.setInterval(() => {this.orderLike(); this.orderStar();}, 100);
     }
+
+    orderLike(){       
+        this.projectsInProgres.sort(function (a, b) { return b["likes"] - a["likes"] });
+      }
+    
+      orderStar(){
+        this.projectsFinished.sort(function (a, b) { return b["stars"] - a["stars"] });
+      }
 
     getProjectsInProgress() {
         this.projectService.getProjectNoFinished().subscribe(

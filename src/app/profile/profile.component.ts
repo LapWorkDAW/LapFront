@@ -101,7 +101,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.getProjectsFinished();
         this.getProjectsStar();
         this.getProjectsFavorite();
+        window.setInterval(() => {this.orderLike(); this.orderStar();}, 100);
     }
+
+    orderLike(){        
+        this.projectsFavorite.sort(function (a, b) { return b["likes"] - a["likes"] });
+      }
+    
+      orderStar(){        
+        this.projectsStar.sort(function (a, b) { return b["stars"] - a["stars"] });
+      }
 
 
     deleteUser() {

@@ -61,6 +61,15 @@ export class HomeComponent implements OnInit {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.getProjectsInProgress();
     this.getProjectsFinished();
+    window.setInterval(() => {this.orderLike(); this.orderStar();}, 100);        
+  }
+
+  orderLike(){       
+    this.projectsInProgres.sort(function (a, b) { return b["likes"] - a["likes"] });
+  }
+
+  orderStar(){
+    this.projectsFinished.sort(function (a, b) { return b["stars"] - a["stars"] });
   }
 
   getProjectsInProgress() {
@@ -78,16 +87,14 @@ export class HomeComponent implements OnInit {
           this.projectService.getProjectFavorite(this.projectsInProgres[i].idProject).subscribe(
             result => {
               this.projectsInProgres[i]["likes"] = result["data"];
-
             }, error => {
               this.projectsInProgres[i]["likes"] = 0;
             }
           )
-        }
-        this.projectsInProgres.sort(function (a, b) { return b["likes"] - a["likes"] });
+        }        
       },
       error => { }
-    )
+    )    
   }
 
   getProjectsFinished() {
@@ -112,4 +119,6 @@ export class HomeComponent implements OnInit {
       error => { }
     )
   }
+
+
 }
