@@ -135,7 +135,7 @@ export class OneProjectComponent {
         if (status == 1) {
             this.projectService.checkVoteLike(this.currentUser.token, id).subscribe(
                 result => {
-                    if (result["data"] == 1) {                        
+                    if (result["data"] == 1) {
                         this.userExistAndNoLike = false;
                     } else {
                         this.userExistAndNoLike = true;
@@ -176,14 +176,25 @@ export class OneProjectComponent {
     toggleLike() {
         this.like.project = this.project;
         this.like.userVote = this.currentUser;
-        this.voteLike.vote(this.like, this.currentUser.token).subscribe(
-             result => {
-                 this.ctrl.disable();
-             },
-             error => {
-                 this.ctrl.enable();
-             } 
+        this.projectService.checkVoteLike(this.currentUser.token, this.id).subscribe(
+            result => {
+                if (result["data"] == 0) {
+                    this.voteLike.vote(this.like, this.currentUser.token).subscribe(
+                        result => {
+                            this.ctrl.disable();
+                        },
+                        error => {
+                            this.ctrl.enable();
+                        }
+                    )
+                } else {
+                    this.ctrl.disable();
+                }
+            },
+            error => {
+            }
         )
+
     }
 
     getAllMessages() {
