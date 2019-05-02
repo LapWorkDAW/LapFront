@@ -26,6 +26,7 @@
               </ng-template>
             </ngb-rating>
           </ng-template>
+
           <ng-template #VoteLike>
             <ng-template #t>
               <span style="color: #007bff; font-size: 20px; line-height: 0px;"> &hearts; </span>
@@ -34,6 +35,7 @@
             <ngb-rating [rate]="1" [starTemplate]="t" [readonly]="true"></ngb-rating>
           </ng-template>
         </ng-template>
+
         <ng-template #notLike>
           <ng-template [ngIf]="userExistAndNoVoted" [ngIfElse]="notVote">
             <ngb-rating [formControl]="ctrl" (click)="toggleStar()" style="color:#007bff" max="5"></ngb-rating>
