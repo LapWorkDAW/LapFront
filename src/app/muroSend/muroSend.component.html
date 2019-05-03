@@ -1,5 +1,5 @@
 <div *ngIf="owner">
-  <form [formGroup]="messageForm" (ngSubmit)="sendForm()">
+  <form [formGroup]="messageForm" (ngSubmit)="sendForm()">    
     <textarea rows="4" class="w-100" class="form-control" formControlName="newMessage"></textarea>
     <div *ngIf="submitted && f.newMessage.errors" class="invalid-feedback">
       <div *ngIf="f.newMessageword.errors.required">Text is required</div>

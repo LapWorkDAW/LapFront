@@ -6,24 +6,19 @@
     <div class="col-4">
       <div class="card" style="max-width: 17rem;">
 
-        <img [src]="currentUser.photo" class="card-img-top photo" alt="...">
+        <img [src]="user.photo" class="card-img-top photo" alt="...">
         <div class="card-body">
-          <h5 class="card-title">{{currentUser.firstname}} {{currentUser.surname}}</h5>
-          <p class="card-text">{{currentUser.description}}</p>
-          <p class="card-text">{{currentUser.location}}</p>
-          <p class="card-text">{{currentUser.knowledge}}</p>
-          <p class="card-text">{{currentUser.cv}}</p>
-          <p class="card-text">{{currentUser.email}}</p>
+          <h5 class="card-title">{{user.firstname}} {{user.surname}}</h5>
+          <p class="card-text">{{user.description}}</p>
+          <p class="card-text">{{user.location}}</p>
+          <p class="card-text">{{user.knowledge}}</p>
+          <p class="card-text">{{user.cv}}</p>
+          <p class="card-text">{{user.email}}</p>
         </div>
-
       </div>
-
     </div>
-
     <div class="col-8">
-
       <div class="card-columns">
-
         <div class="card" *ngFor="let project of ">
           <img [src]="project.project.img" class="card-img-top" alt="...">
           <div class="card-body">
@@ -37,9 +32,7 @@
               role="button">Link</a>
           </div>
         </div>
-
       </div>
-
     </div>
   </div>
 </div>

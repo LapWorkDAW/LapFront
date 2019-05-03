@@ -40,7 +40,7 @@ export class UserService {
   }
 
   getUserById(id:number){
-    let url = "/api.php?controller=User&function=getuser";
+    let url = "/api.php?controller=User&function=getuser&id="+id;
     return this.http.get(
       url, { headers: new HttpHeaders({ "Content-Type": "application/json" }) }
     );

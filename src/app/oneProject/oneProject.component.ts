@@ -69,7 +69,7 @@ export class OneProjectComponent {
     like: VProjectFav = new VProjectFav();
     messagesWall: Array<MessageProject>;
 
-    constructor(private _router: Router, private projectService: ProjectService, private messageService: MessageProjectService,
+    constructor(private projectService: ProjectService, private messageService: MessageProjectService,
         private _activRoute: ActivatedRoute, private voteStar: VProjectStarService,
         private voteLike: VProjectFavService, config: NgbRatingConfig) {
         config.max = 1;
@@ -77,7 +77,11 @@ export class OneProjectComponent {
 
     ngOnInit() {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-
+        if (this.currentUser != null) {
+            if (this.currentUser.photo == null || this.currentUser.photo == "") {
+                this.currentUser.photo = 'assets/userAssets/photos/girl.jpg';
+            }
+        }
         this._activRoute.params.forEach(
             (arrayParams: Params) => {
                 this.id = arrayParams["id"];

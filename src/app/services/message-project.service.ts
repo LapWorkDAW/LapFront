@@ -11,14 +11,14 @@ export class MessageProjectService {
   constructor(private http: HttpClient) { }
 
   registerMessage(message: MessageProject, token:string): Observable<any> {
-    let url = "/api.php?controller=Project&&token="+token;
+    let url = "/api.php?controller=Post&token="+token;
     return this.http.post(url, message, {
       headers: new HttpHeaders({ "Content-Type": "application/json" })
     });
   }
 
   getAllMessage(id:number){
-    let url = "/api.php?controller=Project&id="+id;
+    let url = "/api.php?controller=Post&function=byproject&id="+id;
     return this.http.get(url,{
       headers: new HttpHeaders({ "Content-Type": "application/json" })
     });

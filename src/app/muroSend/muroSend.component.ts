@@ -14,7 +14,7 @@ import { projection } from "@angular/core/src/render3/instructions";
     templateUrl: './muroSend.component.html'
 })
 
-export class MuroSendComponent implements OnInit{
+export class MuroSendComponent implements OnInit {
 
     submitted = false;
     messageForm: FormGroup;
@@ -36,18 +36,18 @@ export class MuroSendComponent implements OnInit{
         if (this.currentUser == null) {
             this.router.navigate(['']);
         }
-       
+
     }
 
     ngOnInit(): void {
         this.messageForm = this.formBuilder.group({
             newMessage: ['', Validators.required]
         });
-        window.setInterval(() => { 
-            if (this.currentUser.firstname +" "+ this.currentUser.surname === this.project.nameCreator) {                      
-            this.owner = true;
-        }
-        }, 1);        
+        window.setInterval(() => {
+            if (this.currentUser.firstname + " " + this.currentUser.surname === this.project.nameCreator) {
+                this.owner = true;
+            }
+        }, 1);
     }
 
     get f() { return this.messageForm.controls; }
@@ -57,11 +57,10 @@ export class MuroSendComponent implements OnInit{
         if (this.messageForm.invalid) {
             return;
         }
-        
-        this.newMessage.project = this.project;        
+
+        this.newMessage.project = this.project;
         this.newMessage.post.message = this.messageForm.value["newMessage"];
         this.newMessage.post.remitter = this.currentUser;
-        this.newMessage.post.dataDay = new Date();        
 
         this.messageService.registerMessage(this.newMessage, this.currentUser.token)
             .subscribe(
@@ -72,5 +71,7 @@ export class MuroSendComponent implements OnInit{
                     console.log(error);
                 }
             );
+
+            
     }
 }
