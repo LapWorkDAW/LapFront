@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { Router, ActivatedRoute, Params } from "@angular/router";
+import { ActivatedRoute, Params } from "@angular/router";
 import { Project } from "src/assets/models/Project";
 import { ProjectService } from '../services/project.service';
 import { User } from "src/assets/models/User";
@@ -82,6 +82,7 @@ export class OneProjectComponent {
                 this.currentUser.photo = 'assets/userAssets/photos/girl.jpg';
             }
         }
+
         this._activRoute.params.forEach(
             (arrayParams: Params) => {
                 this.id = arrayParams["id"];

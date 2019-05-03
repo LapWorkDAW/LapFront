@@ -23,8 +23,7 @@ const appRoutes: Routes = [
     { path: 'login', component: LogInComponent },
     { path: 'navNoLog', component: NavNoLogComponent },
     { path: 'contact', component: ContactComponent },
-    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-    /* { path: 'profile/:option', component: ProfileComponent, canActivate: [AuthGuard] }, */
+    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },    
     { path: 'createProject', component: CreateProjectComponent, canActivate: [AuthGuard] },
     { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
     { path: 'projects', component: ProjectsComponent },

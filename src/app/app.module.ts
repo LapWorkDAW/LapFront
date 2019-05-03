@@ -25,8 +25,7 @@ import { StorageServiceModule } from 'angular-webstorage-service';
 import {
   SocialLoginModule,
   AuthServiceConfig,
-  GoogleLoginProvider,
-  LinkedinLoginProvider,
+  GoogleLoginProvider,  
 } from "angular-6-social-login";
 import { ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
@@ -65,9 +64,6 @@ export function getAuthServiceConfigs() {
     MuroSendComponent,
     OneProjectComponent,
     PublicProfileComponent
-
-    /* ,
-    UserSettingsComponent */
   ],
   providers: [
     {

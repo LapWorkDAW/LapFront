@@ -75,8 +75,7 @@ export class HomeComponent implements OnInit {
   getProjectsInProgress() {
     this.projectService.getProjectNoFinished().subscribe(
       result => {
-        this.projectsInProgres = result["data"];
-        console.log(result["data"]);
+        this.projectsInProgres = result["data"];        
         
         for (let i = 0; i < this.projectsInProgres.length; i++) {
           if (this.projectsInProgres[i].img == null || this.projectsInProgres[i].img == "") {

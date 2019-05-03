@@ -102,7 +102,7 @@
 
   </div>
 
-  <muroSend [project]='project'></muroSend>
+  <muroSend [project]='project' *ngIf="currentUser"></muroSend>
 
 </div>
 <footer-tag></footer-tag>
