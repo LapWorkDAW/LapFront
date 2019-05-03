@@ -70,69 +70,76 @@
               <h3>On-going projects</h3>
               <!-- DIV DE EMPTY ARRAY -->
               <!-- <ng-template> -->
-              <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                You haven't created any projects yet - <a [routerLink]="['../createProject']">Create one now</a>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <!-- </ng-template> -->
+              <ng-template #notOnGoing>
+                <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                  You haven't created any projects yet - <a [routerLink]="['../createProject']">Create one now</a>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </ng-template>
 
-              <div class="card-columns">
-                <div class="card" *ngFor="let project of projectsInProgres">
-                  <img [src]="project.img" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">{{project.projectName}}</h5>
-                    <p class="card-text w-100">{{project.description}}</p>
-                    <div class="dropdown-divider"></div>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <ng-template #t>
-                        <span style="color: #007bff; font-size: 20px; line-height: 0px;"> &hearts; </span>
-                        <small class="">{{project.likes}}</small>
-                      </ng-template>
-                      <ngb-rating [rate]="1" [starTemplate]="t" [readonly]="true"></ngb-rating>
-                      <small class="text" id="{{project.type.nameType}}">{{project.type.nameType}}</small>
+              <ng-template [ngIf]="OnGoing" [ngIfElse]="notOnGoing">
+                <div class="card-columns">
+                  <div class="card" *ngFor="let project of projectsInProgres">
+                    <img [src]="project.img" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">{{project.projectName}}</h5>
+                      <p class="card-text w-100">{{project.description}}</p>
+                      <div class="dropdown-divider"></div>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <ng-template #t>
+                          <span style="color: #007bff; font-size: 20px; line-height: 0px;"> &hearts; </span>
+                          <small class="">{{project.likes}}</small>
+                        </ng-template>
+                        <ngb-rating [rate]="1" [starTemplate]="t" [readonly]="true"></ngb-rating>
+                        <small class="text" id="{{project.type.nameType}}">{{project.type.nameType}}</small>
+                      </div>
+                      <a class="btn btn-outline-primary mt-4" [routerLink]="['/oneProject', project.idProject]"
+                        role="button">Link</a>
                     </div>
-                    <a class="btn btn-outline-primary mt-4" [routerLink]="['/oneProject', project.idProject]"
-                      role="button">Link</a>
                   </div>
                 </div>
-              </div>
+              </ng-template>
             </div>
+
 
             <div class="tab-pane fade" id="pills-finishedProjects" role="tabpanel"
               aria-labelledby="pills-finishedProjects-tab">
               <h3>Finished projects</h3>
               <!-- DIV DE EMPTY ARRAY -->
-              <!-- <ng-template> -->
-              <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                You haven't finished any projects yet - <a [routerLink]="['../createProject']">Create one now</a>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <!-- </ng-template> -->
-              <div class="card-columns">
-                <div class="card" *ngFor="let project of projectsFinished">
-                  <img [src]="project.img" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">{{project.projectName}}</h5>
-                    <p class="card-text">{{project.description}}</p>
-                    <div class="dropdown-divider"></div>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <ng-template #t let-fill="fill">
-                        <span class="star" [class.full]="fill === 100">
-                          <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
-                        </span>
-                      </ng-template>
-                      <ngb-rating [(rate)]="project.stars" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
-                      <small class="text" id="{{project.type.nameType}}">{{project.type.nameType}}</small>
+              <ng-template #notFinished>
+                <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                  You haven't finished any projects yet - <a [routerLink]="['../createProject']">Create one now</a>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </ng-template>
+
+              <ng-template [ngIf]="finished" [ngIfElse]="notFinished">
+                <div class="card-columns">
+                  <div class="card" *ngFor="let project of projectsFinished">
+                    <img [src]="project.img" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">{{project.projectName}}</h5>
+                      <p class="card-text">{{project.description}}</p>
+                      <div class="dropdown-divider"></div>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <ng-template #t let-fill="fill">
+                          <span class="star" [class.full]="fill === 100">
+                            <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                          </span>
+                        </ng-template>
+                        <ngb-rating [(rate)]="project.stars" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
+                        <small class="text" id="{{project.type.nameType}}">{{project.type.nameType}}</small>
+                      </div>
+                      <a class="btn btn-outline-primary mt-4" [routerLink]="['/oneProject', project.idProject]"
+                        role="button">Link</a>
                     </div>
-                    <a class="btn btn-outline-primary mt-4" [routerLink]="['/oneProject', project.idProject]"
-                      role="button">Link</a>
                   </div>
                 </div>
-              </div>
+              </ng-template>
             </div>
           </div>
         </div>
@@ -163,27 +170,69 @@
                   <h3>Liked</h3>
                   <!-- DIV DE EMPTY ARRAY -->
                   <!-- <ng-template> -->
-                  <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                    You haven't liked any projects yet - <a [routerLink]="['../projects']">View some</a>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <!-- </ng-template> -->
-                  <div class="row">
+                  <ng-template #notLiked>
+
+                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                      You haven't liked any projects yet - <a [routerLink]="['../projects']">View some</a>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                  </ng-template>
+                  <ng-template [ngIf]="liked" [ngIfElse]="notLiked">
+                    <div class="row">
+                      <div class="card-columns">
+                        <div class="card" *ngFor="let project of projectsFavorite">
+                          <img [src]="project.project.img" class="card-img-top" alt="...">
+                          <div class="card-body">
+                            <h5 class="card-title">{{project.project.projectName}}</h5>
+                            <p class="card-text">{{project.project.description}}</p>
+                            <div class="dropdown-divider"></div>
+                            <div class="d-flex justify-content-between align-items-center">
+                              <ng-template #t>
+                                <span style="color: #007bff; font-size: 20px; line-height: 0px;"> &hearts; </span>
+                                <small class="">{{project.likes}}</small>
+                              </ng-template>
+                              <ngb-rating [rate]="1" [starTemplate]="t" [readonly]="true"></ngb-rating>
+                              <small class="text"
+                                id="{{project.project.idType.nameType}}">{{project.project.idType.nameType}}</small>
+                            </div>
+                            <a class="btn btn-outline-primary mt-4" [routerLink]="['/oneProject', project.idProject]"
+                              role="button">Link</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </div>
+
+                <div class="tab-pane fade" id="pills-starred" role="tabpanel" aria-labelledby="pills-starred-tab">
+                  <h3>Starred</h3>
+                  <!-- DIV DE EMPTY ARRAY -->
+                  <ng-template #notStarred>
+                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                      You haven't rated any projects yet - <a [routerLink]="['../projects']">View some</a>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                  </ng-template>
+                  <ng-template [ngIf]="starred" [ngIfElse]="notStarred">
                     <div class="card-columns">
-                      <div class="card" *ngFor="let project of projectsFavorite">
+                      <div class="card" *ngFor="let project of projectsStar">
                         <img [src]="project.project.img" class="card-img-top" alt="...">
                         <div class="card-body">
                           <h5 class="card-title">{{project.project.projectName}}</h5>
                           <p class="card-text">{{project.project.description}}</p>
                           <div class="dropdown-divider"></div>
                           <div class="d-flex justify-content-between align-items-center">
-                            <ng-template #t>
-                              <span style="color: #007bff; font-size: 20px; line-height: 0px;"> &hearts; </span>
-                              <small class="">{{project.likes}}</small>
+                            <ng-template #t let-fill="fill">
+                              <span class="star" [class.full]="fill === 100">
+                                <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                              </span>
                             </ng-template>
-                            <ngb-rating [rate]="1" [starTemplate]="t" [readonly]="true"></ngb-rating>
+                            <ngb-rating [(rate)]="project.stars" [starTemplate]="t" [readonly]="true" max="5">
+                            </ngb-rating>
                             <small class="text"
                               id="{{project.project.idType.nameType}}">{{project.project.idType.nameType}}</small>
                           </div>
@@ -192,43 +241,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-
-                <div class="tab-pane fade" id="pills-starred" role="tabpanel" aria-labelledby="pills-starred-tab">
-                  <h3>Starred</h3>
-                  <!-- DIV DE EMPTY ARRAY -->
-                  <!-- <ng-template> -->
-                  <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                    You haven't rated any projects yet - <a [routerLink]="['../projects']">View some</a>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <!-- </ng-template> -->
-                  <div class="card-columns">
-                    <div class="card" *ngFor="let project of projectsStar">
-                      <img [src]="project.project.img" class="card-img-top" alt="...">
-                      <div class="card-body">
-                        <h5 class="card-title">{{project.project.projectName}}</h5>
-                        <p class="card-text">{{project.project.description}}</p>
-                        <div class="dropdown-divider"></div>
-                        <div class="d-flex justify-content-between align-items-center">
-                          <ng-template #t let-fill="fill">
-                            <span class="star" [class.full]="fill === 100">
-                              <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
-                            </span>
-                          </ng-template>
-                          <ngb-rating [(rate)]="project.stars" [starTemplate]="t" [readonly]="true" max="5">
-                          </ngb-rating>
-                          <small class="text"
-                            id="{{project.project.idType.nameType}}">{{project.project.idType.nameType}}</small>
-                        </div>
-                        <a class="btn btn-outline-primary mt-4" [routerLink]="['/oneProject', project.idProject]"
-                          role="button">Link</a>
-                      </div>
-                    </div>
-                  </div>
+                  </ng-template>
                 </div>
               </div>
             </div>
@@ -250,29 +263,32 @@
 
 
           <!-- DIV DE EMPTY ARRAY -->
-          <!-- <ng-template> -->
-          <div class="alert alert-primary alert-dismissible fade show" role="alert">
-            There aren't any projects yet in this field - <a [routerLink]="['../createProject']">Create one now</a>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <!-- </ng-template> -->
-          <div class="card-columns">
-            <div class="card mb-3" style="max-width: 18rem;" *ngFor="let projectSelected of projectsByTypes">
-              <!--  -->
-              <div class="card-header" id="{{projectSelected.type.nameType}}">
-                {{projectSelected.type.nameType}}</div>
-              <div class="card-body">
-                <h5 class="card-title">{{projectSelected.projectName}}</h5>
-                <p class="card-text">{{projectSelected.description}}</p>
-                <div class="dropdown-divider"></div>
-                <button type="button" class="btn btn-outline-primary"
-                  [routerLink]="['/oneProject', projectSelected.idProject]">Link</button>
-              </div>
+          <ng-template #notJoin>            
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+              There aren't any projects yet in this field - <a [routerLink]="['../createProject']">Create one now</a>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
+          </ng-template>
 
-          </div>
+          <ng-template [ngIf]="join" [ngIfElse]="notJoin">
+            <div class="card-columns">
+              <div class="card mb-3" style="max-width: 18rem;" *ngFor="let projectSelected of projectsByTypes">
+
+                <div class="card-header" id="{{projectSelected.type.nameType}}">
+                  {{projectSelected.type.nameType}}</div>
+                <div class="card-body">
+                  <h5 class="card-title">{{projectSelected.projectName}}</h5>
+                  <p class="card-text">{{projectSelected.description}}</p>
+                  <div class="dropdown-divider"></div>
+                  <button type="button" class="btn btn-outline-primary"
+                    [routerLink]="['/oneProject', projectSelected.idProject]">Link</button>
+                </div>
+              </div>
+
+            </div>
+          </ng-template>
 
         </div>
       </div>

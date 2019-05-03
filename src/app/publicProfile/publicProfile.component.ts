@@ -14,7 +14,7 @@ export class PublicProfileComponent {
     user: User = new User();
     allProjects: Array<String>;
     id: number;
-    dataExist:boolean=false;
+    dataExist: boolean = false;
 
     constructor(private userService: UserService, private projectService: ProjectService,
         private _activRoute: ActivatedRoute) { }
@@ -51,15 +51,13 @@ export class PublicProfileComponent {
             result => {
                 console.log(result["data"]);
                 this.allProjects = result["data"];
-                if(this.allProjects.length!=0){
-                    this.dataExist=true;
+                if (this.allProjects.length != 0) {
+                    this.dataExist = true;
                 }
             },
             error => {
                 console.log(error);
             }
         )
-
-
     }
 }

@@ -65,6 +65,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
     photo: boolean = true;
     typesProject: Array<String>;
     projectsByTypes: Array<Project>;
+    OnGoing: boolean = false;
+    finished:boolean=false;
+    liked:boolean=false;
+    starred:boolean=false;
+    join:boolean=false;    
 
     constructor(
         /* private _activRoute: ActivatedRoute, */
@@ -73,7 +78,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     ) {
         config.max = 1;
         this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
-            this.currentUser = user;            
+            this.currentUser = user;
         });
         if (this.currentUser == null) {
             this.router.navigate(['']);
@@ -95,22 +100,22 @@ export class ProfileComponent implements OnInit, OnDestroy {
             error => {
                 console.log(error);
             }
-        );      
+        );
 
         this.getProjectsInProgress();
         this.getProjectsFinished();
         this.getProjectsStar();
         this.getProjectsFavorite();
-        window.setInterval(() => {this.orderLike(); this.orderStar();}, 100);
+        window.setInterval(() => { this.orderLike(); this.orderStar(); }, 100);
     }
 
-    orderLike(){        
+    orderLike() {
         this.projectsFavorite.sort(function (a, b) { return b["likes"] - a["likes"] });
-      }
-    
-      orderStar(){        
+    }
+
+    orderStar() {
         this.projectsStar.sort(function (a, b) { return b["stars"] - a["stars"] });
-      }
+    }
 
 
     deleteUser() {
@@ -127,6 +132,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.projectService.getProjectNoFinishedUser(this.currentUser.token).subscribe(
             result => {
                 this.projectsInProgres = result["data"];
+                if (this.projectsInProgres.length != 0) {
+                    this.OnGoing = true;
+                }
                 for (let i = 0; i < this.projectsInProgres.length; i++) {
                     if (this.projectsInProgres[i].img == null || this.projectsInProgres[i].img == "") {
                         this.projectsInProgres[i].img = 'assets/icons/standard/books.jpg';
@@ -150,6 +158,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.projectService.getProjectFinishedUser(this.currentUser.token).subscribe(
             result => {
                 this.projectsFinished = result["data"];
+                if (this.projectsFinished.length != 0) {
+                    this.finished = true;
+                }
                 for (let i = 0; i < this.projectsFinished.length; i++) {
                     if (this.projectsFinished[i].img == null || this.projectsFinished[i].img == "") {
                         this.projectsFinished[i].img = 'assets/icons/standard/books.jpg';
@@ -173,6 +184,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.projectService.getProjectsStarUser(this.currentUser.token).subscribe(
             result => {
                 this.projectsStar = result["data"];
+                if(this.projectsStar.length!=0){
+                    this.starred=true;
+                }
                 for (let i = 0; i < this.projectsStar.length; i++) {
                     if (this.projectsStar[i]["project"].img == null || this.projectsStar[i]["project"].img == "") {
                         this.projectsStar[i]["project"].img = 'assets/icons/standard/books.jpg';
@@ -197,6 +211,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.projectService.getProjectsFavoriteUser(this.currentUser.token).subscribe(
             result => {
                 this.projectsFavorite = result["data"];
+                if(this.projectsFavorite.length!=0){
+                    this.liked=true;
+                }
                 for (let i = 0; i < this.projectsFavorite.length; i++) {
                     if (this.projectsFavorite[i]["project"].img == null || this.projectsFavorite[i]["project"].img == null) {
                         this.projectsFavorite[i]["project"].img = 'assets/icons/standard/books.jpg';
@@ -217,7 +234,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
 
     collectTypes() {
-        let array = [];
+        let array = [];        
         for (let i = 0; i < this.typesProject.length; i++) {
             const type = this.typesProject[i];
             if ("check" in type) {
@@ -231,6 +248,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.projectService.getProjetsByType(this.currentUser.token, JSON.stringify(datos)).subscribe(
             result => {
                 this.projectsByTypes = result["data"];
+                if(this.projectsByTypes.length!=0){
+                    this.join=true;
+                }
             },
             error => {
                 console.log(error);
