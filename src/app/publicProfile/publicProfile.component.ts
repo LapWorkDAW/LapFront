@@ -3,6 +3,7 @@ import { User } from "src/assets/models/User";
 import { UserService } from "../services/user.service";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { ProjectService } from "../services/project.service";
+import { Project } from "src/assets/models/Project";
 
 
 @Component({
@@ -12,7 +13,7 @@ import { ProjectService } from "../services/project.service";
 export class PublicProfileComponent {
     currentUser: User;
     user: User = new User();
-    allProjects: Array<String>;
+    allProjects: Array<Project>;
     id: number;
     dataExist: boolean = false;
 
@@ -53,6 +54,11 @@ export class PublicProfileComponent {
                 this.allProjects = result["data"];
                 if (this.allProjects.length != 0) {
                     this.dataExist = true;
+                }
+                for (let i = 0; i < this.allProjects.length; i++) {
+                    if (this.allProjects[i].img == null || this.allProjects[i].img == "") {
+                        this.allProjects[i].img = 'assets/icons/standard/books.jpg';
+                    }
                 }
             },
             error => {
