@@ -68,6 +68,7 @@ export class OneProjectComponent {
     star: VProjectStar = new VProjectStar();
     like: VProjectFav = new VProjectFav();
     messagesWall: Array<MessageProject>;
+    datosExist:boolean=false;
 
     constructor(private projectService: ProjectService, private messageService: MessageProjectService,
         private _activRoute: ActivatedRoute, private voteStar: VProjectStarService,
@@ -205,9 +206,11 @@ export class OneProjectComponent {
     getAllMessages() {
         this.messageService.getAllMessage(this.id).subscribe(
             result => {
-                console.log(result);
-
+                console.log(result["data"]);
                 this.messagesWall = result["data"];
+                if(this.messagesWall.length!=0){
+                    this.datosExist=true;
+                }
             },
             error => {
                 console.log(error);

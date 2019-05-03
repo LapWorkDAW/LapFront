@@ -122,11 +122,10 @@ export class ProjectService {
     );
   }
 
-  getAllProjects() {
-    let url = "/api.php?controller=Project&function=byuser";
+   getAllProjectsByUser(id: number) {
+    let url = "/api.php?controller=Project&function=byuser&id="+id;
     return this.http.post(
       url, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
     );
   }
-
 }
