@@ -38,6 +38,13 @@ export class UserService {
       url, date, { headers: new HttpHeaders({ "Content-Type": "application/json" }) }
     );
   }
+
+  getUserById(id:number){
+    let url = "/api.php?controller=User&function=getuser";
+    return this.http.get(
+      url, { headers: new HttpHeaders({ "Content-Type": "application/json" }) }
+    );
+  }
 }
 
 
