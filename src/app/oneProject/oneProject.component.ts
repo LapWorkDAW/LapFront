@@ -200,21 +200,17 @@ export class OneProjectComponent {
             error => {
             }
         )
-
     }
 
     getAllMessages() {
         this.messageService.getAllMessage(this.id).subscribe(
-            result => {
-                console.log(result["data"]);
+            result => {                
                 this.messagesWall = result["data"];
                 if(this.messagesWall.length!=0){
                     this.datosExist=true;
                 }
             },
             error => {
-                console.log(error);
-
             }
         )
     }

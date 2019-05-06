@@ -22,9 +22,9 @@ export class MuroSendComponent implements OnInit {
     currentUserSubscription: Subscription;
     newMessage: MessageProject = new MessageProject();
     owner: boolean = false;
+    enterMessage: boolean = false;
+    lengthMessage:boolean=false;
     @Input() project: Project;
-
-
 
 
     constructor(private authenticationService: AuthenticationService, private messageService: MessageProjectService,
@@ -41,7 +41,7 @@ export class MuroSendComponent implements OnInit {
 
     ngOnInit(): void {
         this.messageForm = this.formBuilder.group({
-            newMessage: ['', Validators.required]
+            newMessage: ['', Validators.minLength(15)]
         });
         window.setInterval(() => {
             if (this.currentUser.firstname + " " + this.currentUser.surname === this.project.nameCreator) {
@@ -53,8 +53,13 @@ export class MuroSendComponent implements OnInit {
     get f() { return this.messageForm.controls; }
 
     sendForm() {
+
         this.submitted = true;
-        if (this.messageForm.invalid) {
+        this.enterMessage = this.messageForm.get('newMessage').value == "";
+
+        this.lengthMessage= <number>this.messageForm.get('newMessage').value.length<20;
+        
+        if (this.enterMessage || this.lengthMessage) {
             return;
         }
 
@@ -72,6 +77,10 @@ export class MuroSendComponent implements OnInit {
                 }
             );
 
-            
+            this.messageForm.reset();
+            for (let name in this.messageForm.controls) {
+                this.messageForm.controls[name].setErrors(null);
+            }
+            window.location.reload();
     }
 }

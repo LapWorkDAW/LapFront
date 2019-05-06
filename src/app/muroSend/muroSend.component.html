@@ -2,8 +2,21 @@
   <form [formGroup]="messageForm" (ngSubmit)="sendForm()">    
     <textarea rows="4" class="w-100" class="form-control" formControlName="newMessage"></textarea>
     <div *ngIf="submitted && f.newMessage.errors" class="invalid-feedback">
-      <div *ngIf="f.newMessageword.errors.required">Text is required</div>
-    </div><br>
+      <div *ngIf="f.newMessage.errors.required">Text is required</div>
+    </div>
+    <div *ngIf="enterMessage">
+        <div>
+          <label style="color: #dc3545; font-size: 80%; margin-top: 0.25rem;">
+            Message is required</label>
+        </div>
+      </div>
+      <div *ngIf="lengthMessage">
+          <div>
+            <label style="color: #dc3545; font-size: 80%; margin-top: 0.25rem;">
+                The message length can not be less than 20</label>
+          </div>
+        </div>      
+    <br>
     <button class="btn btn-outline-primary btn-block">Post</button>
   </form>
 </div>
