@@ -81,6 +81,8 @@ export class MuroSendComponent implements OnInit {
             for (let name in this.messageForm.controls) {
                 this.messageForm.controls[name].setErrors(null);
             }
-            window.location.reload();
+
+            window.setInterval(() => {window.location.reload(); }, 50);
+            
     }
 }
