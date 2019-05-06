@@ -8,7 +8,24 @@ import { Project } from "src/assets/models/Project";
 
 @Component({
     selector: 'publicProfile',
-    templateUrl: './publicProfile.component.html'
+    templateUrl: './publicProfile.component.html',
+    styles: [`
+    #Art {
+      color: #99644c;
+    }
+    #Engineering {
+      color: #7456bf;
+    }
+    #IT {
+      color: #f25139;
+    }
+    #Literary {
+      color: #ff7d49;
+    }
+    #Technological {
+      color: #46b275;
+    }    
+  `]
 })
 export class PublicProfileComponent {
     currentUser: User;
