@@ -92,7 +92,7 @@
               <changePassword></changePassword>
 
               <p>
-                <a class="btn btn-danger" data-toggle="collapse" href="#collapseExample" role="button"
+                <a class="btn btn-outline-danger" data-toggle="collapse" href="#collapseExample" role="button"
                   aria-expanded="false" aria-controls="collapseExample">
                   Danger Zone
                 </a>
@@ -103,14 +103,15 @@
                   <br><br>
                   <h2 class="text-danger">Delete account</h2>
                   <hr>
-                  <small>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut consequuntur non quos reiciendis.
-                    Expedita eaque minus illum est provident magni blanditiis iste officiis nemo, quae sequi odit.
-                    Autem, id
-                    quo.</small><br><br>
+                  <small>Once you delete your account, some of your data may still be stored in our datacenters, due to
+                    <a [routerLink]="['../privacyPolicy']">Privacy Policy</a> reasons and <a
+                      [routerLink]="['../termsOfUse']">Terms of Use</a>. We use your data to provide and improve our
+                    service.</small><br><br>
                   <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}
                   </ngb-alert>
+
                   <p>
-                    <button class="btn btn-outline-danger" (click)="deleteAccount()">Delete account</button>
+                    <button class="btn btn-danger" (click)="deleteAccount()">Delete account</button>
                   </p>
 
                 </div>
