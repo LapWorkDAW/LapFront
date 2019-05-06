@@ -19,13 +19,14 @@ import { ChangePasswordComponent } from './ChangePassword/changePassword.compone
 import { PublicProfileComponent } from './publicProfile/publicProfile.component';
 import { MuroSendComponent } from './muroSend/muroSend.component';
 import { OneProjectComponent } from './oneProject/oneProject.component';
+import { PageNotFoundComponent } from './pageNotFound/pageNotFound.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ProfileComponent } from './profile/profile.component';
 import { StorageServiceModule } from 'angular-webstorage-service';
 import {
   SocialLoginModule,
   AuthServiceConfig,
-  GoogleLoginProvider,  
+  GoogleLoginProvider,
 } from "angular-6-social-login";
 import { ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
@@ -63,7 +64,8 @@ export function getAuthServiceConfigs() {
     ProjectsComponent,
     MuroSendComponent,
     OneProjectComponent,
-    PublicProfileComponent
+    PublicProfileComponent,
+    PageNotFoundComponent
   ],
   providers: [
     {

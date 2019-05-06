@@ -67,11 +67,11 @@ export class LogInComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      username: [''],
-      password: ['']
+      username: ['', Validators.required],
+      password: ['', Validators.required]
     });
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    /* this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/'; */
   }
 
   get f() { return this.loginForm.controls; }
