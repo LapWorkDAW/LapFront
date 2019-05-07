@@ -215,4 +215,8 @@ export class OneProjectComponent {
             }
         )
     }
+
+    getEventFill() {     
+        this.getAllMessages();
+        }        
 }

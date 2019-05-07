@@ -93,7 +93,7 @@
     </div>
   </ng-template>
 
-  <muroSend [project]='project' *ngIf="currentUser"></muroSend>
+  <muroSend [project]='project' *ngIf="currentUser" (onGetEventFill)="getEventFill()"></muroSend>
 
 </div>
 <footer-tag></footer-tag>

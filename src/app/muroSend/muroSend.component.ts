@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AuthenticationService } from "../services/authentication.service";
 import { Router } from "@angular/router";
@@ -23,8 +23,10 @@ export class MuroSendComponent implements OnInit {
     newMessage: MessageProject = new MessageProject();
     owner: boolean = false;
     enterMessage: boolean = false;
-    lengthMessage:boolean=false;
+    lengthMessage: boolean = false;
     @Input() project: Project;
+    @Output() onGetEventFill = new EventEmitter();
+
 
 
     constructor(private authenticationService: AuthenticationService, private messageService: MessageProjectService,
@@ -57,8 +59,8 @@ export class MuroSendComponent implements OnInit {
         this.submitted = true;
         this.enterMessage = this.messageForm.get('newMessage').value == "";
 
-        this.lengthMessage= <number>this.messageForm.get('newMessage').value.length<20;
-        
+        this.lengthMessage = <number>this.messageForm.get('newMessage').value.length < 20;
+
         if (this.enterMessage || this.lengthMessage) {
             return;
         }
@@ -70,19 +72,21 @@ export class MuroSendComponent implements OnInit {
         this.messageService.registerMessage(this.newMessage, this.currentUser.token)
             .subscribe(
                 resul => {
-                    console.log(resul);
+                    this.sendEventToParent();
                 },
                 error => {
                     console.log(error);
+                    this.sendEventToParent();
                 }
             );
 
-            this.messageForm.reset();
-            for (let name in this.messageForm.controls) {
-                this.messageForm.controls[name].setErrors(null);
-            }
+        this.messageForm.reset();
+        for (let name in this.messageForm.controls) {
+            this.messageForm.controls[name].setErrors(null);
+        }
+    }
 
-            window.setInterval(() => {window.location.reload(); }, 50);
-            
+    sendEventToParent() {
+        this.onGetEventFill.emit();
     }
 }

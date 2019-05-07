@@ -34,6 +34,8 @@ const appRoutes: Routes = [
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
+    /* {path: '**', component: NotFoundComponent } */
+
 ];
 
 @NgModule({
