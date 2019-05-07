@@ -32,6 +32,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 export function getAuthServiceConfigs() {
   let config = new AuthServiceConfig(
@@ -83,7 +84,8 @@ export function getAuthServiceConfigs() {
     SocialLoginModule,
     StorageServiceModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    NgxPaginationModule
   ],
   bootstrap: [AppComponent]
 })

@@ -26,6 +26,7 @@
     "angular-webstorage-service": "^1.0.2",
     "angularx-social-login": "^1.2.6",
     "core-js": "^2.5.4",
+    "ngx-pagination": "^3.2.1",
     "ngx-rating": "0.0.9",
     "rxjs": "~6.2.0",
     "sass": "^1.16.1",

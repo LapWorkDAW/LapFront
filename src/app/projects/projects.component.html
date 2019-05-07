@@ -16,7 +16,8 @@
       <br>
       <h1 class="text-center mt-4">Most popular finished projects</h1><br><br>
       <div class="col">
-        <div class="card mt-4 text-left" *ngFor="let project of projectsFinished">
+        <div class="card mt-4 text-left"
+          *ngFor="let project of projectsFinished | paginate: { itemsPerPage: 1, currentPage: p1, id: 'first' }">
           <div class="card-body">
             <h5 class="card-title">{{project.projectName}}</h5>
             <p class="card-text text-left">{{project.description}}</p>
@@ -34,16 +35,18 @@
             <a href="#" class="card-link" [routerLink]="['/oneProject', project.idProject]">Card link</a>
           </div>
         </div>
+        <pagination-controls (pageChange)="p1 = $event" id="first"></pagination-controls>
       </div>
-
     </div>
+
 
 
     <div class="tab-pane fade" id="ongoing" role="tabpanel" aria-labelledby="ongoing-tab">
       <br>
       <h1 class="text-center mt-4">Most popular ongoing projects</h1><br><br>
       <div class="col">
-        <div class="card mt-4 text-left" *ngFor="let project of projectsInProgres">
+        <div class="card mt-4 text-left"
+          *ngFor="let project of projectsInProgres | paginate: { itemsPerPage: 1, currentPage: p2, id: 'second' }">
           <div class="card-body">
             <h5 class="card-title">{{project.projectName}}</h5>
             <p class="card-text text-left">{{project.description}}</p>
@@ -60,6 +63,7 @@
             <a href="#" class="card-link" [routerLink]="['/oneProject', project.idProject]">Card link</a>
           </div>
         </div>
+        <pagination-controls (pageChange)="p2 = $event" id="second"></pagination-controls>
       </div>
 
     </div>

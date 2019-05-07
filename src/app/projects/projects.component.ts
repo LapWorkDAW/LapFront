@@ -42,6 +42,7 @@ import { ProjectService } from "../services/project.service";
 export class ProjectsComponent implements OnInit {
     projectsInProgres: Array<Project>;
     projectsFinished: Array<Project>;
+    p: number = 1;    
 
     constructor(private projectService: ProjectService) { }
 

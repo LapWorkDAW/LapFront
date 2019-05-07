@@ -70,6 +70,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     liked:boolean=false;
     starred:boolean=false;
     join:boolean=false;    
+    p: number = 1; 
 
     constructor(
         /* private _activRoute: ActivatedRoute, */

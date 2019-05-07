@@ -81,7 +81,7 @@
 
               <ng-template [ngIf]="OnGoing" [ngIfElse]="notOnGoing">
                 <div class="card-columns">
-                  <div class="card" *ngFor="let project of projectsInProgres">
+                  <div class="card" *ngFor="let project of projectsInProgres | paginate: { itemsPerPage: 9, currentPage: p1, id: 'first' }">
                     <img [src]="project.img" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h5 class="card-title">{{project.projectName}}</h5>
@@ -99,7 +99,9 @@
                         role="button">Link</a>
                     </div>
                   </div>
+                  
                 </div>
+                <pagination-controls (pageChange)="p1 = $event" id="first"></pagination-controls>
               </ng-template>
             </div>
 
@@ -119,7 +121,7 @@
 
               <ng-template [ngIf]="finished" [ngIfElse]="notFinished">
                 <div class="card-columns">
-                  <div class="card" *ngFor="let project of projectsFinished">
+                  <div class="card" *ngFor="let project of projectsFinished | paginate: { itemsPerPage: 9, currentPage: p2, id: 'second' }">
                     <img [src]="project.img" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h5 class="card-title">{{project.projectName}}</h5>
@@ -137,8 +139,9 @@
                       <a class="btn btn-outline-primary mt-4" [routerLink]="['/oneProject', project.idProject]"
                         role="button">Link</a>
                     </div>
-                  </div>
+                  </div>                  
                 </div>
+                <pagination-controls (pageChange)="p2 = $event" id="second"></pagination-controls>
               </ng-template>
             </div>
           </div>
@@ -182,7 +185,7 @@
                   <ng-template [ngIf]="liked" [ngIfElse]="notLiked">
                     <div class="row">
                       <div class="card-columns">
-                        <div class="card" *ngFor="let project of projectsFavorite">
+                        <div class="card" *ngFor="let project of projectsFavorite | paginate: { itemsPerPage: 9, currentPage: p3, id: 'third' }">
                           <img [src]="project.project.img" class="card-img-top" alt="...">
                           <div class="card-body">
                             <h5 class="card-title">{{project.project.projectName}}</h5>
@@ -200,8 +203,9 @@
                             <a class="btn btn-outline-primary mt-4" [routerLink]="['/oneProject', project.idProject]"
                               role="button">Link</a>
                           </div>
-                        </div>
+                        </div>                        
                       </div>
+                      <pagination-controls (pageChange)="p3 = $event" id="third"></pagination-controls>
                     </div>
                   </ng-template>
                 </div>
@@ -219,7 +223,7 @@
                   </ng-template>
                   <ng-template [ngIf]="starred" [ngIfElse]="notStarred">
                     <div class="card-columns">
-                      <div class="card" *ngFor="let project of projectsStar">
+                      <div class="card" *ngFor="let project of projectsStar | paginate: { itemsPerPage: 9, currentPage: p4, id: 'fourth'}">
                         <img [src]="project.project.img" class="card-img-top" alt="...">
                         <div class="card-body">
                           <h5 class="card-title">{{project.project.projectName}}</h5>
@@ -239,8 +243,9 @@
                           <a class="btn btn-outline-primary mt-4" [routerLink]="['/oneProject', project.idProject]"
                             role="button">Link</a>
                         </div>
-                      </div>
+                      </div>                      
                     </div>
+                    <pagination-controls (pageChange)="p4 = $event" id="fourth"></pagination-controls>
                   </ng-template>
                 </div>
               </div>
@@ -274,8 +279,8 @@
 
           <ng-template [ngIf]="join" [ngIfElse]="notJoin">
             <div class="card-columns">
-              <div class="card mb-3" style="max-width: 18rem;" *ngFor="let projectSelected of projectsByTypes">
-
+              <div class="card mb-3" style="max-width: 18rem;" *ngFor="let projectSelected of projectsByTypes  | paginate: { itemsPerPage: 9, currentPage: p5, 
+                id: 'fifth' }">
                 <div class="card-header" id="{{projectSelected.type.nameType}}">
                   {{projectSelected.type.nameType}}</div>
                 <div class="card-body">
@@ -285,9 +290,9 @@
                   <button type="button" class="btn btn-outline-primary"
                     [routerLink]="['/oneProject', projectSelected.idProject]">Link</button>
                 </div>
-              </div>
-
+              </div>              
             </div>
+            <pagination-controls (pageChange)="p5 = $event" id="fifth"></pagination-controls>
           </ng-template>
 
         </div>
