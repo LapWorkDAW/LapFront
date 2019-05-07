@@ -5,9 +5,5 @@ import { Component } from '@angular/core';
     templateUrl: './footer.component.html',
     styleUrls: ['./footer.component.css']
 })
-export class FooterComponent {
-    topFunction() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-    }
+export class FooterComponent {    
 }
