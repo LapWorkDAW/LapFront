@@ -20,7 +20,7 @@
     <div class="col-8">
       <h1>{{user.firstname}} {{user.surname}}'s projects</h1> <br><br>
       <div class="card-columns">
-        <div class="card" *ngFor="let project of allProjects">
+        <div class="card" *ngFor="let project of allProjects | paginate: { itemsPerPage: 12, currentPage: p}">
           <img [src]="project.img" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">{{project.projectName}}</h5>
@@ -34,6 +34,8 @@
           </div>
         </div>
       </div>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
   </div>
 </div>
+<footer-tag></footer-tag>

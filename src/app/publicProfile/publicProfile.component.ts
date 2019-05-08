@@ -33,6 +33,7 @@ export class PublicProfileComponent {
     allProjects: Array<Project>;
     id: number;
     dataExist: boolean = false;
+    p: number = 1;
 
     constructor(private userService: UserService, private projectService: ProjectService,
         private _activRoute: ActivatedRoute) { }
