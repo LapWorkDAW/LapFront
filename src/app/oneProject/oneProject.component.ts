@@ -48,7 +48,7 @@ import { MessageProjectService } from "../services/message-project.service";
     .full {
         color:#007bff;
       }
-      .half {
+    .half {
         position: absolute;
         display: inline-block;
         overflow: hidden;
@@ -68,7 +68,7 @@ export class OneProjectComponent {
     star: VProjectStar = new VProjectStar();
     like: VProjectFav = new VProjectFav();
     messagesWall: Array<MessageProject>;
-    datosExist:boolean=false;
+    datosExist: boolean = false;
 
     constructor(private projectService: ProjectService, private messageService: MessageProjectService,
         private _activRoute: ActivatedRoute, private voteStar: VProjectStarService,
@@ -204,11 +204,11 @@ export class OneProjectComponent {
 
     getAllMessages() {
         this.messageService.getAllMessage(this.id).subscribe(
-            result => {    
-                console.log(result["data"]);                            
+            result => {
+                console.log(result["data"]);
                 this.messagesWall = result["data"];
-                if(this.messagesWall.length!=0){
-                    this.datosExist=true;
+                if (this.messagesWall.length != 0) {
+                    this.datosExist = true;
                 }
             },
             error => {
@@ -216,7 +216,7 @@ export class OneProjectComponent {
         )
     }
 
-    getEventFill() {     
+    getEventFill() {
         this.getAllMessages();
-        }        
+    }
 }

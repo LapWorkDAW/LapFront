@@ -5,12 +5,12 @@
       <br><br>
       <figure class="figure">
         <img [src]="project.img" class="w-100 rounded" alt="...">
-        <figcaption class="figure-caption text-center">{{project.idType.nameType}}</figcaption>
       </figure>
     </div>
     <div class="col">
       <br><br>
       <h1>{{project.projectName}}</h1>
+      <small class="text" id="{{project.idType.nameType}}">{{project.idType.nameType}}</small>
       <p>{{project.description}}</p>
       <div class="d-flex justify-content-between align-items-center">
         <div>
@@ -55,6 +55,9 @@
     </div>
 
   </div>
+  <div class="col alert alert-secondary mt-5" role="alert">
+    If you are interested in the project, contact me <strong>{{project.userO.email}}</strong>.
+  </div>
   <h3 class="mt-5">Latest updates</h3>
   <ng-template [ngIf]="datosExist" [ngIfElse]="notData">
     <div class="overflow-auto jumbotron" style="height: 500px;">
@@ -74,7 +77,6 @@
         ::-webkit-scrollbar-thumb:hover {
           background: #343a40;
         }
-
       </style>
       <div *ngFor="let message of messagesWall">
         <small class="text-left text-primary">{{message.remitter.firstname}}</small><br>
