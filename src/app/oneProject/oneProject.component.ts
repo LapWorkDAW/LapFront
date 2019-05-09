@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { ActivatedRoute, Params } from "@angular/router";
+import { ActivatedRoute, Params, Router } from "@angular/router";
 import { Project } from "src/assets/models/Project";
 import { ProjectService } from '../services/project.service';
 import { User } from "src/assets/models/User";
@@ -71,7 +71,7 @@ export class OneProjectComponent {
     datosExist: boolean = false;
 
     constructor(private projectService: ProjectService, private messageService: MessageProjectService,
-        private _activRoute: ActivatedRoute, private voteStar: VProjectStarService,
+        private _activRoute: ActivatedRoute, private voteStar: VProjectStarService, public router: Router,
         private voteLike: VProjectFavService, config: NgbRatingConfig) {
         config.max = 1;
     }
@@ -122,6 +122,7 @@ export class OneProjectComponent {
                 }
             },
             error => {
+                this.router.navigate(['/pageNotFound'])
             }
         )
 
