@@ -21,6 +21,7 @@ export class ChangePasswordComponent implements OnInit {
     currentUser: User;
     currentUserSubscription: Subscription;
     passModifiedSuccessfull: boolean = false;
+    password = "password";
 
 
     constructor(private userService: UserService,
@@ -75,4 +76,12 @@ export class ChangePasswordComponent implements OnInit {
             this.passwordForm.controls[name].setErrors(null);
         }
     }
+
+    changeTypeToText() {
+        this.password = "text";
+    }
+    changeTypeToPass() {
+        this.password = "password";
+    }
+
 }

@@ -22,15 +22,17 @@
         <div *ngIf="f.username.errors.required">User name is required</div>
       </div>
     </div>
+
     <div class="form-group">
       <label>Password</label>
+
       <div class="d-flex justify-content-between align-items-center">
         <input [type]="password" class="form-control" formControlName="password"
           [ngClass]="{'is-invalid': submitted && f.password.errors }" />
         <img [src]="'assets/icons/general/eye.png'" style="height: 30px;" (mousedown)="changeTypeToText()"
           (mouseup)="changeTypeToPass()" alt="" class="float-right mt-1 ml-2 mr-1">
-
       </div>
+
       <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
         <div *ngIf="f.password.errors.required">Password is required</div>
       </div>
