@@ -35,7 +35,7 @@ export class PublicProfileComponent {
     dataExist: boolean = false;
     p: number = 1;
 
-    constructor(private userService: UserService, private projectService: ProjectService,
+    constructor(private userService: UserService, private projectService: ProjectService, public router: Router,
         private _activRoute: ActivatedRoute) { }
 
     ngOnInit(): void {
@@ -54,12 +54,12 @@ export class PublicProfileComponent {
         this.userService.getUserById(this.id).subscribe(
             result => {
                 this.user = result["data"];
-
                 if (this.user.photo == null || this.user.photo == "") {
                     this.user.photo = 'assets/userAssets/photos/girl.jpg';
                 }
             },
             error => {
+                this.router.navigate(['/pageNotFound'])
             }
         )
         this.getAllProjects(this.id);
