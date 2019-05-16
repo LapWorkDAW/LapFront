@@ -170,12 +170,22 @@ export class OneProjectComponent {
         this.star.project = this.project;
         this.star.quantity = this.ctrl.value;
         this.star.userVote = this.currentUser;
-        this.voteStar.vote(this.star, this.currentUser.token).subscribe(
+        this.projectService.checkVoteStar(this.currentUser.token, this.id).subscribe(
             result => {
-                this.ctrl.disable();
+                if (result["data"] == 0) {
+                    this.voteStar.vote(this.star, this.currentUser.token).subscribe(
+                        result => {
+                            this.ctrl.disable();
+                        },
+                        error => {
+                            this.ctrl.enable();
+                        }
+                    )
+                } else {
+                    this.ctrl.disable();
+                }
             },
             error => {
-                this.ctrl.enable();
             }
         )
     }
